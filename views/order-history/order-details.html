@@ -1,0 +1,179 @@
+<div class="header-campaign">
+    <div class="new-page-title clearfix">
+        <h4 class="capitalize medium-font pull-left">order edit</h4>
+    </div>
+</div>
+
+<div class="container-order-edit">
+  <div class="row-order-edit clearfix">
+    <div class="column-order-edit pull-left">
+      <label>order number</label>
+      <div class="input-not-fix">{{productOrder.id}}</div>
+    </div>
+    <div class="column-order-edit pull-left">
+      <label>order date</label>
+      <div class="input-not-fix">{{productOrder.date}}</div>
+    </div>
+  </div>
+  <div class="row-order-edit">
+    <div class="column-full-order-edit">
+      <label>Buyer Name</label>
+      <input type='text' ng-model="productOrder.shipping_name"/>
+    </div>
+  </div>
+  <div class="row-order-edit">
+    <div class="column-full-order-edit">
+      <label>Email</label>
+      <div class="input-not-fix ng-binding">
+        {{productOrder.user.email}}
+      </div>
+      <!-- <input type='text' ng-model="productOrder.user.email"/> -->
+    </div>
+  </div>
+  <div class="row-order-edit">
+    <div class="column-full-order-edit">
+      <label>Phone number</label>
+      <input type='text' ng-model="productOrder.shipping_phone"/>
+    </div>
+  </div>
+  <p class="title-order-edit medium-font uppercase">shipping address</p>
+  <div class="row-order-edit">
+    <div class="column-full-order-edit">
+      <label>Address</label>
+      <input type='text' ng-model="productOrder.shipping_address"/>
+    </div>
+  </div>
+  <div class="row-order-edit clearfix">
+    <div class="column-order-edit pull-left">
+      <label>Zip Code</label>
+      <input type='text' ng-model="productOrder.shipping_zipcode"/>
+    </div>
+    <div class="column-order-edit pull-left">
+      <label>City</label>
+      <input type='text' ng-model="productOrder.shipping_city"/>
+    </div>
+  </div>
+  <div class="row-order-edit">
+    <div class="column-full-order-edit">
+      <label>Country</label>
+      <input type='text' ng-model="productOrder.shipping_country"/>
+    </div>
+  </div>
+  <p class="title-order-edit medium-font uppercase">product list <span class="txt-grey">( {{productOrder.products.length}} items )</span></p>
+  <div class="row-order-edit clearfix">
+    <div class="orderStatus">
+      <label>order status</label>
+    </div>
+  </div>
+  <div class="container-product-list">
+    <div class="widget-product-ordered">
+      <div class="process-status-order">
+          <div class="row clearfix">
+            <div class="col-sm-3">
+              <button type="button" class="btn-process-order" ng-class="{'active-btn':  productOrder.process_status === 'cancelled'}" ng-click="changeOrderStatus('cancelled')">Cancelled<div class="arrow-order"></div></button>
+            </div>
+            <div class="col-sm-3">
+              <button type="button" class="btn-process-order" ng-class="{'active-btn':  productOrder.process_status === 'pending'}" ng-click="changeOrderStatus('pending')">Pending<div class="arrow-order"></div><div class="arrow-order-left"></div></button>
+            </div>
+            <div class="col-sm-3">
+              <button type="button" class="btn-process-order" ng-class="{'active-btn':  productOrder.process_status === 'processing'}" ng-click="changeOrderStatus('processing')">Processing<div class="arrow-order"></div><div class="arrow-order-left"></div></button>
+            </div>
+            <div class="col-sm-3">
+              <button type="button" class="btn-process-order" ng-class="{'active-btn':  productOrder.process_status === 'completed'}" ng-click="changeOrderStatus('completed')"><div class="arrow-order-left"></div>Completed</button>
+            </div>
+          </div>
+      </div>
+      <div class="suadauphong">
+        <div class="clearfix order-row" ng-repeat = "product in productOrder.products">
+          <div class="col-sm-5">
+            <div class="clearfix">
+              <div class="photo-product-ordered pull-left" style="background-image:url({{product.product_image}})"></div>
+              <div class="product-name-ordered">
+                <label>product name</label>
+                <div class="input-name-product-notfix capitalize over-text">
+                  {{product.product_name}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="row">
+              <div class="col-sm-5">
+                <label>URL</label>
+                <div class="input-name-product-notfix no-background">
+                  <a class="over-text" ng-if="product.product_url.indexOf('http') > -1" href="{{product.product_url}}" target="_blank">{{product.product_url}}</a>
+                  <p ng-if="product.product_url.indexOf('http') === -1">{{product.product_url}}<p>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <label>price</label>
+                <div class="input-name-product-notfix no-background capitalize">
+                  {{product.product_currency}} {{product.product_price | number:2}}
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <label>Quantity</label>
+                <input type='text' ng-model="product.product_quantity" class="text-right"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="row clearfix">
+              <div class="other-row-two clearfix">
+                <div class="col-sm-5" style="padding-left:115px;">
+                  <label style="margin-top:10px;">Affiliate Other Number</label>
+                  <!-- <div class="input-name-product-notfix no-background capitalize">
+                    {{product.affiliate_order_number}}
+                  </div> -->
+                  <input type="text" name="" ng-model="product.affiliate_order_number" />
+                </div>
+                <div class="col-sm-7">
+                  <div class="row second-row">
+                    <div class="col-sm-2">
+                      <label>Size</label>
+                      <div class="input-name-product-notfix no-background capitalize">
+                        {{product.product_size}}
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <label>Color</label>
+                      <div class="input-name-product-notfix no-background capitalize" style="color: {{product.product_color}}">
+                        {{product.product_color}}
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <label>total</label>
+                      <div class="input-name-product-notfix no-background capitalize">
+                        {{product.product_currency}} {{product.product_price * product.product_quantity | number:2}}
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Status</label>
+                      <div class="input-name-product-notfix no-background capitalize">
+                        {{productOrder.process_status}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-sm-12">
+          <span class="medium-font line-h-40 font-25 pull-right">Total: <u>{{productOrder.total_amount | number:2}}</u> {{productOrder.currency}}</span>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="action-order-edit margin-l-0 clearfix">
+  <button class="btn-cancle" ng-click="cancel()">
+    <span>cancel</span>
+  </button>
+  <button class="btn-save" ng-click="save()">
+    <span>save</span>
+  </button>
+</div>

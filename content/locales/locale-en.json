@@ -1,0 +1,183 @@
+{
+    "views": {
+        "dashboard": {
+            "new_dashboard_chart": {
+                "overview": "Overview {{sample | translate}}",
+                "scans": "Scans",
+                "sales": "Sales",
+                "setting": "Setting",
+                "live": "Live",
+                "days": "days",
+                "all_time": "All Time",
+                "all_campaigns": "All campaigns",
+                "multiple_campaigns": "Multiple campaigns",
+                "select_all_campaigns": "Select all campaigns",
+                "scan_last_hour": "Scans in last hour",
+                "scan_all_time": "Scans all times",
+                "sales_from_to": "Scans from {{nowDateFrom | translate}} to {{nowDate | translate}}",
+                "scans_at": "Scans at",
+                "platform": "Platform",
+                "age": "Age",
+                "gender": "Gender",
+                "use_global_statistics": "Use global statistics"
+
+            },
+            "dashboard_sales": {
+                "set_number": "Set number",
+                "remove_section": "Remove section",
+                "scan_hour": "Scans this hour",
+                "scan_week": "Scans this week",
+                "scan_month": "Scans this months",
+                "scan": "Scans",
+                "active_users": "Active users",
+                "active_campaigns": "Active campaigns",
+                "active_triggers": "Active triggers",
+                "total_revenue": "Total revenue",
+                "transaction": "Transaction",
+                "avg_revenue_sale": "Avg revenue / sale",
+                "sale_vs_scan": "Sale vs scans",
+                "recent_scans": "Recent scans",
+                "campaign": "Campaign",
+                "location": "Location",
+                "gender": "Gender",
+                "age": "Age",
+                "platform": "Platform",
+                "date": "Date",
+                "time": "Time",
+                "recent_sale": "Recent sale",
+                "product": "Product",
+                "affiliate": "Affiliate",
+                "realtime_scan": "Realtime scans",
+                "scan_trend": "Scan trends",
+                "weekday_scans": "Weekday scans",
+                "daytimes_sales": "Daytimes sales",
+                "daytimes_transactions": "Daytimes transactions",
+                "conversion": "Conversion",
+                "industrial_ranking": "Industrial ranking",
+                "brand": "Brand",
+                "scans": "Scans",
+                "percent_of_total": "% of total",
+                "growth": "Growth",
+                "campaigns": "Campaigns",
+                "top": "Top",
+                "worst": "Worst",
+                "media_formats": "Media formats",
+                "top_triggers": "Top triggers",
+                "drop_offs": "Drop offs",
+                "all_campaign": "All campaigns",
+                "user_reached": "User reached",
+                "drop_offs_on": "Drop offs on",
+                "all_scans": "All scans",
+                "product_list": "Product list",
+                "product_details": "Product details",
+                "payment": "Payment",
+                "sale": "Sale",
+                "top_products": "Top products",
+                "top_partners": "Top partners",
+                "payment_methods": "Payment methods",
+                "top_countries": "Top countries",
+                "country": "Country",
+                "demographic": "Demographic",
+                "ages": "Ages",
+                "genre": "Genre"
+            }
+        },
+        "analytics": {
+            "analytics": {
+                "reporting": "REPORTING",
+                "summary": "SUMMARY",
+                "total_revenue": "TOTAL REVENUE",
+                "daytime_sales": "DAYTIME SALES",
+                "daytime_transactions": "DAYTIME TRANSACTIONS",
+                "total_interactions": "Total Interactions",
+                "search_by_location": "Search by Location",
+                "search_by_brand_trigger": "Search by Brand/Trigger",
+                "usage_by_app": "Usage by App",
+                "screen_flow_overview": "Screen Flow Overview",
+                "no_screen_flow_data": "No data for screen flow overview."
+            },
+            "analytics_filter": {
+                "reset": "RESET"
+            },
+            "analytics_top_5_countries": {
+                "top_5": "Top 5 Countries",
+                "no_data": "No data for top 5 countries"
+            },
+            "analytics_search_trend": {
+                "search_trend": "Search Trend",
+                "no_data": "No data for search trend"
+            },
+            "weekday_searches": {
+                "weekday_searches": "Weekday Searches"
+            },
+            "analytics_top_5_image_keyword_triggers": {
+                "top_5": "Top 5 Image Triggers",
+                "no_data": "No data for top 5 image triggers."
+            },
+            "analytics_gender_age": {
+                "gender_ages": "Gender & Ages",
+                "no_data": "No data for top 5 image triggers."
+            },
+            "analytics_engagement": {
+                "engagement": "Engagement",
+                "not_available": "No data for top 5 image triggers.",
+                "session_by": "Session by:",
+                "split_by": "Split by",
+                "add_split": "Add Split",
+                "no_data": "No data for engagements"
+            },
+            "analytics_total_occurrences": {
+                "total_occurrences": "Total Occurrences",
+                "export_to_csv": "Export to CSV file",
+                "no_data": "No data for occurrences",
+                "screen": "Screen",
+                "count": "Count"
+            }
+        },
+        "order_history": {
+            "order_history": {
+                "title": "Order history",
+                "export_to_csv": "Export to CSV",
+                "order_no": "Order no",
+                "date": "Date",
+                "select_all": "Select all",
+                "buyer_name": "Buyer name",
+                "shipping_address": "Shipping address",
+                "total_amount": "Total amount",
+                "total_items": "Total item(s)",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "order_details": {
+                "order_edit": "Order Edit",
+                "order_number": "Order number",
+                "order_date": "Order date",
+                "buyer_name": "Buyer Name",
+                "email": "Email",
+                "phone_number": "Phone number",
+                "shipping_address": "Shipping address",
+                "address": "Address",
+                "zip_code": "Zip code",
+                "city": "City",
+                "country": "Country",
+                "product_list": "Product list",
+                "items": "items",
+                "order_status": "Order status",
+                "cancelled": "Cancelled",
+                "pending": "Pending",
+                "processing": "Processing",
+                "completed": "Completed",
+                "product_name": "Product name",
+                "price": "Price",
+                "quantity": "Quantity",
+                "affiliate_other_number": "Affiliate Other Number",
+                "size": "Size",
+                "color": "Color",
+                "total": "Total",
+                "status": "Status",
+                "cancel": "Cancel",
+                "save": "Save"
+            }
+        }
+    }
+}

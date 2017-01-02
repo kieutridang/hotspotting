@@ -1,0 +1,19 @@
+﻿@font-face {
+  font-family: 'gotham';
+  src: url('../fonts/GOTHAM-LIGHT.eot');
+  src: local('☺'), url('../fonts/GOTHAM-LIGHT.woff') format('woff'), url('../fonts/GOTHAM-LIGHT.ttf') format('truetype'), url('../fonts/GOTHAM-LIGHT.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'gotham-medium';
+  src: url('../fonts/GOTHAM-MEDIUM.eot');
+  src: local('☺'), url('../fonts/GOTHAM-MEDIUM.woff') format('woff'), url('../fonts/GOTHAM-MEDIUM.ttf') format('truetype'), url('../fonts/GOTHAM-MEDIUM.svg') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+.medium-font{font-family: 'gotham-medium';}
+.capitalize{text-transform:capitalize;}
+.uppercase{text-transform:uppercase;}
+.pointer-hover{cursor: pointer;}

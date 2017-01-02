@@ -1,0 +1,134 @@
+body.sign-in-page {
+  background: url(../images/login-page-bg.jpg) no-repeat top left;
+  /*background-size: 100% auto;*/
+  background-color: #1e2225; }
+
+.sign-in-container .sign-in-header {
+  margin-top: 60px; }
+  .sign-in-container .sign-in-header .navbar .navbar-brand img {
+    width: 200px; }
+  .sign-in-container .sign-in-header .navbar .navbar-right {
+    margin-top: 20px; }
+    .sign-in-container .sign-in-header .navbar .navbar-right li a {
+      color: #fef2e1;
+      text-transform: uppercase;
+      font-weight: lighter;
+      padding: 15px 25px;
+      font-size: 14px;
+      font-family: 'Montserrat', sans-serif; }
+      .sign-in-container .sign-in-header .navbar .navbar-right li a i {
+        font-size: 18px; }
+      .sign-in-container .sign-in-header .navbar .navbar-right li a:hover {
+        background: none;
+        /*color: #f5af19;*/ }
+.sign-in-container .sign-in-content .visual-images {
+  background: url("../images/login-main-visual.png") no-repeat top right;
+  min-height: 590px;
+  background-size: 100%;
+  background-position: 30px 0; }
+.sign-in-container .sign-in-content .sign-in-form-container > h3 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  padding-bottom: 30px;
+  padding-top: 0;
+  margin-top: 5px; }
+  .sign-in-container .sign-in-content .sign-in-form-container > h3.title-signin {
+    margin-top: 100px; }
+.sign-in-container .sign-in-content .sign-in-form-container .line-break {
+  border: 1px solid #FFF;
+  width: 95px;
+  margin-bottom: 40px; }
+.sign-in-container .sign-in-content .sign-in-form-container .row > .form-group {
+  margin-top: 0; }
+.sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .form-control {
+  border-radius: 2px; }
+.sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .btn {
+  font-size: 25px;
+  font-family: 'gotham', sans-serif;
+  padding: 5px 45px;
+  width: 100%; }
+.sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .btn-submit {
+  background-color: #000;
+  color: #FFF;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 25px; }
+.sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .btn-link {
+  background-color: transparent;
+  color: #FFF;
+  font-size: 25px;
+  text-decoration: none; }
+  .sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .btn-link > .glyphicon {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    padding: 6px; }
+  .sign-in-container .sign-in-content .sign-in-form-container > .content .sign-in-form .btn-link :hover {
+    background-color: transparent; }
+.sign-in-container .sign-in-content .sign-in-form-container .login-options {
+  margin-top: 40px; }
+  .sign-in-container .sign-in-content .sign-in-form-container .login-options h4 {
+    text-align: center;
+    color: #FFF;
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 30px;
+    position: relative; }
+    .sign-in-container .sign-in-content .sign-in-form-container .login-options h4 .line {
+      position: absolute;
+      width: 30%;
+      border-top: 1px solid #FFF;
+      top: 8px; }
+    .sign-in-container .sign-in-content .sign-in-form-container .login-options h4 .left-line {
+      left: 0; }
+    .sign-in-container .sign-in-content .sign-in-form-container .login-options h4 .right-line {
+      right: 0; }
+  .sign-in-container .sign-in-content .sign-in-form-container .login-options .social-icons a {
+    color: #FFF;
+    text-align: center;
+    display: block;
+    text-decoration: none; }
+    .sign-in-container .sign-in-content .sign-in-form-container .login-options .social-icons a .social-icon {
+      font-size: 24px;
+      display: inline-block; }
+    .sign-in-container .sign-in-content .sign-in-form-container .login-options .social-icons a .title {
+      display: block;
+      color: #FFF;
+      margin-top: 12px; }
+.sign-in-container .sign-in-footer .copyright-text {
+  color: #33393d;
+  padding: 5px;
+  font-weight: lighter;
+  padding-bottom: 25px;
+  margin-bottom: 0; }
+
+@media (max-width: 769px) {
+  html {
+    background-color: #1e2225; }
+
+  body.sign-in-page {
+    background: url(../images/login-page-bg.jpg) no-repeat bottom left;
+    background-color: #1e2225; }
+    body.sign-in-page .navbar {
+      border-radius: 4px;
+      /*background-color: #1e2225;*/ }
+
+  .sign-in-container .sign-in-header {
+    margin-top: 10px; }
+  .sign-in-container .sign-in-content .visual-images {
+    background: url("../images/login-main-visual.png") no-repeat bottom right;
+    min-height: 770px;
+    background-size: 100%;
+    background-position-y: 400px; }
+
+  .sign-in-container .sign-in-content .sign-in-form-container {
+    padding: 0 25px; }
+
+  .sign-in-container .sign-in-content .sign-in-form-container > h3.title-signin {
+    margin-top: 10px; } }
+
+/*# sourceMappingURL=login.css.map */

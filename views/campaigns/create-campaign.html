@@ -1,0 +1,51 @@
+<div class="container-create-campaign">
+  <div class="header-campaign">
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12">
+<!--           <ul class="new-page-breadcrumb">
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Home</a>
+              <i>/</i>
+            </li>
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Campaign</a>
+              <i>/</i>
+            </li>
+          </ul> -->
+          <div class="new-page-title clearfix">
+            <h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+          </div>
+          <div class="navigation-create-campaign clearfix">
+            <a href="#" ng-class="{'active': stepCreateCampaign === 0}">
+              <span>1</span>
+              <label class="uppercase">set trigger</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a href="#" ng-class="{'active': stepCreateCampaign > 0}">
+              <span>2</span>
+              <label class="uppercase">link products</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a>
+              <span>3</span>
+              <label class="uppercase">campaign details</label>
+              <div class="line-bottom"></div>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-campaign">
+    
+  </div>
+
+  <div ng-show="triggerItems.length > 0" class="clearfix">
+    <button class="btn-cancle" ng-click="previousStep()">
+      <span class="icon-text">Cancel</span>
+    </button>
+    <button class="btn-next-step" ng-disabled="uploadInvalid || inCorrectFormat" ng-click="nextStep()">
+      <span class="icon-text">Next</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="dashboard-content">
+    <div class="header-dashboard">
+        <div class="header-dashboard clearfix">
+            <h4 class="capitalize title-page">Overview</h4>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="navigation-dashboard pull-left">
+                        <a ng-class="{'active': isScans}" ng-click="switchTab(true)">
+                            <label class="uppercase">scans</label>
+                            <div class="line-bottom"></div>
+                        </a>
+                        <a ng-class="{'active': !isScans}" ng-click="switchTab(false)">
+                            <label class="uppercase">sales</label>
+                            <div class="line-bottom"></div>
+                        </a>
+                        <a href="#" class="btn-add-new-section uppercase" ng-click="settingDashboard()">Setting</a>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="combobox-select campaign-select" ng-class="{'active': isActiveCombobox}"
+                                 ng-click="activeCombobox()">
+                                <span>{{selectingCampaigns ? (selectingCampaigns.length === 0 ? 'All campaigns' : (selectingCampaigns.length === 1 ? selectingCampaigns[0].campaign_title : 'Multiple campaigns')) : 'All campaigns'}}</span>
+                                <i class="fa fa-caret-down pull-right"></i>
+                                <div class="combobox-list-wrapper">
+                                    <div class="input-search-campaign">
+                                        <label>
+                                            <i class="fa fa-search"></i>
+                                        </label>
+                                        <input type="text" ng-model="searchTitle"/>
+                                    </div>
+                                    <div class="combobox-list-items">
+                                        <a href="" class="select-all-campaign txt-grey"
+                                           ng-click="selectOptionAnalytics(null, 'allCampaign')">
+                                            Select all campaign
+                                        </a>
+                                        <ul>
+                                            <li ng-repeat="campaign in listCampaigns | filter:{campaign_title: searchTitle}"
+                                                ng-class="{'active': campaign.isSelected}"
+                                                ng-click="selectOptionAnalytics(null, campaign)">
+                                                <i class="fa fa-check"></i>
+                                                <span class="capitalize">{{campaign.campaign_title}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="combobox-select option-select" ng-class="{'active': isActiveOptionCombobox}"
+                                 ng-click="activeOptionCombobox()">
+                                <span class="capitalize">{{selectOption | selectOption}}</span>
+                                <i class="fa fa-caret-down pull-right"></i>
+                                <div class="combobox-list-wrapper">
+                                    <div class="combobox-list-items">
+                                        <ul>
+                                            <li ng-class="{'active': selectOption === 1}"
+                                                ng-click="selectOptionAnalytics('live', campaign)">
+                                                <span class="capitalize">Live</span>
+                                            </li>
+                                            <li ng-class="{'active': selectOption === 168}"
+                                                ng-click="selectOptionAnalytics('7days', campaign)">
+                                                <span class="capitalize">Last 7 days</span>
+                                            </li>
+                                            <li ng-class="{'active': selectOption === 720}"
+                                                ng-click="selectOptionAnalytics('30days', campaign)">
+                                                <span class="capitalize">Last 30 days</span>
+                                            </li>
+                                            <li ng-class="{'active': selectOption === null}"
+                                                ng-click="selectOptionAnalytics('alltime', campaign)">
+                                                <span class="capitalize">All Time</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <div class="dashboard-content">
+            <div data-ng-include="'views/dashboard/dashboard-scans.html'"></div>
+            <div data-ng-include="'views/dashboard/dashboard-sales.html'"></div>
+        </div>
+    </div>
+</div>

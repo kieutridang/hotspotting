@@ -1,0 +1,77 @@
+<div class="modal-content">
+  <form ng-submit="saveProduct(form)" name="form" novalidate>
+    <div class="modal-header">
+
+      <!-- <h1 class="modal-title" id="myModalLabel">{{product.id?'Edit':'Create'}} Product</h1> -->
+      <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-weight: 100;"></button>
+      <h3 class="modal-title medium-font" id="myModalLabel">Featured Details</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row clearfix">
+        <div class="pd-edit-left col-sm-7">
+          <div class="form-group pd-edit-item">
+            <label for="input-BrandName">Featured name</label>
+            <input placeholder="Featured's title" class="form-control" name="title" id="inputBrandName" ng-model="feature.name" ng-required="true">
+            <span ng-show="form.$submitted && form.title.$invalid && form.title.$error.required" class="help-block">Please enter a featured name.</span>
+          </div>
+          <div class="form-group pd-edit-item">
+            <label for="input-BrandName">Description</label>
+            <textarea class="form-control" rows="3" ng-model="feature.description" name="description" ng-required="true"></textarea>
+            <span ng-show="form.$submitted && form.description.$invalid && form.description.$error.required" class="help-block">Please enter a description.</span>
+          </div>
+          <div class="list-image-top-featured clearfix">
+            <div class="widget-image-top-feature">
+              <div class="box-image-top-feature">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 pull-left">
+          <div class="upload-featured-top">
+            <!-- <span class="uploadImageProduct">
+              <i class="fa fa-cloud-upload "></i>
+            </span> -->
+            <p class="margin-0 text-center">
+              <i class="fa fa-cloud-upload block"></i>
+              <span class="font-13">Upload feature pictures</span>
+            </p>
+            <input class="input-product-image" id="productImageModal" type="file" onchange="angular.element(this).scope().setFile(this)"accept="image/*"/>
+            <!-- <img class="pd-edit-image" ng-src="{{feature.image_url || 'content/images/no_image.png'}}" height="300px"/> -->
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <label for="input-BrandName" class="font-14">Photo featured</label>
+          <div class="container-list-feature-overview clearfix">
+            <div class="widget-list-feature-overview" ng-repeat="image in feature.images" ng-if="image !== 'deleted'">
+              <div class="box-feature-overview photo-center relative" style="background-image:url({{image}})">
+                <div class="btn-remove-feature-top">
+                  <a href="#" ng-click="removeImage($index)">
+                    <i class="ico-remove-w"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="form-group submit-btn-group pull-right">
+        <div class="btn-group btn-group-icon" role="group" >
+          <button type="button" class="btn-cancel-modal" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+            <span>Cancel</span>
+          </button>
+          <button class="btn-save-modal" type="submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}">
+            <span ng-if="!isLoading">{{product.id ? 'Save': 'Update'}}</span>
+            <span ng-if="isLoading"><img src="/content/images/preloader2.gif"</span>
+          </button>
+
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+</div>

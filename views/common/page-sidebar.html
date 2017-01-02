@@ -1,0 +1,64 @@
+﻿<div class="page-sidebar-wrapper">
+  <div class="page-sidebar navbar-collapse collapse">
+    <!-- BEGIN SIDEBAR MENU -->
+    <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}">
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.dashboard'}">
+        <a ui-sref="home.dashboard" >
+          <i class="icon-home"></i>
+          <span class="title">Dashboard</span>
+          <span class="selected" ng-if="$state.current.name == 'home.dashboard'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.products'}">
+        <a ui-sref="home.products" >
+          <i class="icon-social-dropbox"></i>
+          <span class="title">Manage Products</span>
+          <span class="selected" ng-if="$state.current.name == 'home.products'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{active:$state.includes('home.brandDetails.campaigns')}">
+        <a ui-sref="home.accounts" >
+          <i class="icon-rocket"></i>
+          <span class="title">Campaigns</span>
+          <span class="selected" ng-if="$state.includes('home.brandDetails.campaigns')"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.orderHistory'}">
+        <a ui-sref="home.orderHistory" >
+          <i class="icon-handbag"></i>
+          <span class="title">Orders</span>
+          <span class="selected" ng-if="$state.current.name == 'home.orderHistory'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.analytics'}">
+        <a ui-sref="home.analytics" >
+          <i class="icon-bar-chart"></i>
+          <span class="title">Reporting</span>
+          <span class="selected" ng-if="$state.current.name == 'home.analytics'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.notification'}">
+        <a ui-sref="home.notification" >
+          <i class="icon-bell"></i>
+          <span class="title">Push Notification</span>
+          <span class="selected" ng-if="$state.current.name == 'home.notification'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.faqs'}">
+        <a ui-sref="home.faqs" >
+          <i class="icon-question"></i>
+          <span class="title">FAQs</span>
+          <span class="selected" ng-if="$state.current.name == 'home.faqs'"></span>
+        </a>
+      </li>
+      <li class="nav-item" ng-class="{'active': $state.current.name == 'home.tutorials'}">
+        <a ui-sref="home.tutorials" >
+          <i class="icon-notebook"></i>
+          <span class="title">About</span>
+          <span class="selected" ng-if="$state.current.name == 'home.tutorials'"></span>
+        </a>
+      </li>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="sign-in-form-container">
+	<h3 class="title-signin">Please sign In</h3>
+	<div class="line-break"></div>
+	<div class="content">
+		<form name="signInForm" role="form" novalidate class="sign-in-form">
+			<div class="form-group" ng-class="{ 'has-error':  ( signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid  }">
+				<input type="email" placeholder="Email" ng-model="user.email" name="email" class="form-control" ng-required="true" />
+				<span ng-show="(signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid && signInForm.email.$error.required" class="help-block">Please enter title.</span>
+				<span ng-show="(signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid && signInForm.email.$error.email" class="help-block">Please enter a valid email.</span>
+			</div>
+			<div class="form-group" ng-class="{ 'has-error':  ( signInForm.$submitted || signInForm.password.$touched ) && signInForm.password.$invalid  }">
+				<input type="password" name="password" placeholder="Password" ng-model="user.password" class="form-control" ng-required="true" />
+				<span ng-show="(signInForm.$submitted || signInForm.password.$touched ) && signInForm.password.$invalid && signInForm.password.$error.required" class="help-block">Please enter password.</span>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<button type="submit" class="btn btn-submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}"
+							ng-click="login(signInForm)">
+						Sign in
+					</button>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<!-- <a class="btn btn-link" ng-disabled="isProcessing" ng-click="goSignUp()">
+						<i class="glyphicon glyphicon-user"></i>Sign up
+					</a> -->
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="login-options hidden">
+		<h4>
+			or login with
+			<span class="line left-line"></span>
+			<span class="line right-line"></span>
+		</h4>
+
+		<div class="row social-icons">
+			<div class="col-md-3  col-sm-3 col-xs-3">
+				<a href="#" title="Facebook" class="">
+					<span class="social-icon ">
+						<i class="fa fa-facebook-square"></i>
+					</span>
+					<span class="title">Facebook</span>
+				</a>
+			</div>
+			<div class="col-md-3  col-sm-3 col-xs-3">
+				<a href="#" title="Twitter" class="">
+					<span class="social-icon ">
+						<i class="fa fa-twitter"></i>
+					</span>
+					<span class="title">Twitter</span>
+				</a>
+			</div>
+			<div class="col-md-3  col-sm-3 col-xs-3">
+				<a href="#" title="Instagram" class="">
+					<span class="social-icon ">
+						<i class="fa fa-instagram"></i>
+					</span>
+					<span class="title">Instagram</span>
+				</a>
+			</div>
+			<div class="col-md-3  col-sm-3 col-xs-3">
+				<a href="#" title="Google" class="">
+					<span class="social-icon ">
+						<i class="fa fa-google-plus-square"></i>
+					</span>
+					<span class="title">Google+</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

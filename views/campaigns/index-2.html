@@ -1,0 +1,109 @@
+<div class="container-create-campaign">
+    <div class="header-campaign">
+        <div class="row clearfix">
+            <div class="col-sm-6 col-xs-6">
+                <ul class="new-page-breadcrumb">
+                </ul>
+                <div class="new-page-title clearfix">
+                    <h4 class="capitalize medium-font pull-left">Campaigns</h4>
+                    <span class="medium-font">({{totalCampaigns}})</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-6">
+                <a href="#/brands/{{$stateParams.brandId}}/create-campaign-set-trigger"
+                   class="btn-create-new-campaigns capitalize">+ create new campaign</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-list-campaign">
+        <table cellspacing="0" cellpadding="0" border="0" id="tableBodyScroll" class="table">
+            <thead>
+            <tr>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('title', true)">campaign name <i ng-show="currentSortBy === 'title'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                    <div class="widget-text-box">
+                        <input type="text" placeholder="Search name" ng-model="searchTitle" ng-change="filterCampaign()"/>
+                    </div>
+                </td>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('type', true)">type <i ng-show="currentSortBy === 'type'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                    <select name="selectType" ng-options="option.name for option in dataTypes" ng-model="searchType" ng-change="filterCampaign()">
+                        <option value="">All</option>
+                    </select>
+
+                </td>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('date')">create <i ng-show="currentSortBy === 'date'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                </td>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('no_triggers')">triggers <i ng-show="currentSortBy === 'no_triggers'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                    <span class="number-count">({{totalTriggers}})</span>
+                </td>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('status')">status <i ng-show="currentSortBy === 'status'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                </td>
+                <td>
+                    <label class="uppercase pointer-hover" ng-click="orderBy('no_products')">product <i ng-show="currentSortBy === 'no_products'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                    <span class="number-count">({{totalProducts}})</span>
+                </td>
+                <td>
+                    <label class="uppercase">action</label>
+                </td>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            <tr ng-repeat="campaign in listCampaigns.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+                <td>
+                    <label>{{campaign.title}}</label>
+                </td>
+                <td>
+                    <i ng-if="campaign.type === 'magazine'" class="fa fa-print"></i>
+                    <i ng-if="campaign.type === 'video'" class="fa fa-video-camera"></i>
+                    <i ng-if="campaign.type === 'image'" class="fa fa-picture-o"></i>
+                    <label>{{campaign.type}}</label>
+                </td>
+                <td>
+                    <label>{{campaign.date | momentjs: 'DD-MM-YYYY HH:mm:ss'}}</label>
+                </td>
+                <td>
+                    <label>{{campaign.no_triggers}}</label>
+                </td>
+                <td>
+                    <div class="checkbox-ios" style="margin-top:0px"
+                         ng-show="campaign.is_trainning != '1' && !campaign.isDeleting">
+                        <input type="checkbox" value="None" id="{{campaign.id}}" name="check"
+                               ng-checked="campaign.status === 'active'" ng-click="updateStatusCampaign(campaign)"/>
+                        <label for="{{campaign.id}}"></label>
+                        <div class="for-inactive"></div>
+                    </div>
+                    <div ng-show="campaign.is_trainning == '1'" class="trainning">
+                        Training
+                    </div>
+                    <div ng-show="campaign.isDeleting" class="deleting">
+                        Deleting
+                    </div>
+                </td>
+                <td>
+                    <label>{{campaign.no_products}}</label>
+                </td>
+                <td>
+                    <div ng-hide="campaign.isProcessing || campaign.is_trainning == '1'">
+                        <a class="btn-action-table" ng-click="editTrigger(campaign)">
+                            <i class="icon-note icons"></i>
+                        </a>
+                        <a class="btn-action-table btn-delete-campaign" ng-click="deleteCampaign(campaign)">
+                            <span class="icon-delete fa fa-trash-o"></span>
+                        </a>
+                    </div>
+                    <img ng-show="campaign.isProcessing || campaign.is_trainning == '1'"
+                         src="content/images/preloader2.gif"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <uib-pagination max-size="maxSize" total-items="totalCampaigns" ng-model="currentPage"
+                            ng-change="pageChanged()"></uib-pagination>
+        </div>
+    </div>
+</div>

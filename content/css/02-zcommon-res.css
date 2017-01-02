@@ -1,0 +1,158 @@
+.row.row-gutter-10 {
+  margin-left: -10px;
+  margin-right: -10px; }
+  .row.row-gutter-10 > [class*='col-'] {
+    padding-right: 10px;
+    padding-left: 10px; }
+
+.btn-custom-v1 {
+  background-color: #dfdddd;
+  background: linear-gradient(to bottom, #f4f5f5 0%, #dfdddd 100%);
+  color: #666666;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 300;
+  margin-right: 10px;
+  border: 1px solid #e3e3e3;
+  text-transform: uppercase;
+  outline: none; }
+  .btn-custom-v1:focus {
+    background-color: #dfdddd;
+    outline: none !important; }
+  .btn-custom-v1 .icon-save {
+    background-image: url(../images/ic_save.png);
+    height: 23px;
+    width: 21px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+    margin: auto;
+    margin-right: 10px; }
+
+.add-account-v1 .media-asset-box {
+  width: 100%; }
+.add-account-v1 .trigger-box-item {
+  width: 100%;
+  overflow: auto; }
+
+.heading-title {
+  font-weight: 500;
+  margin-top: 0;
+  color: #8e999d; }
+  .heading-title > .line-seperate {
+    font-weight: 100; }
+
+.modal-sm {
+  max-width: 370px;
+  width: 100%; }
+
+.image-review {
+  height: 210px;
+  width: 210px;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat; }
+
+#PageBrand #logosContainer .thumbnail .img {
+  height: 50%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center; }
+  #PageBrand #logosContainer .thumbnail .img .brandImg {
+    display: none; }
+
+.navbar-fixed-left .left-nav-item span {
+  min-width: 36px; }
+
+.navbar-fixed-left .list-group-item.active {
+  font-weight: 500; }
+
+.navbar-fixed-left .left-nav-item#products span {
+  background-image: url(../images/ic_nav_product.png);
+  height: 36px; }
+.navbar-fixed-left .left-nav-item#products:hover span, .navbar-fixed-left .left-nav-item#products.active span {
+  background-position: 0 -36px; }
+
+@media only screen and (min-width: 1280px) {
+  .navbar-fixed-left .left-nav-item font {
+    margin-top: 8px; }
+
+  .navbar-fixed-left .left-nav-item#manageAccount:hover span, .navbar-fixed-left .left-nav-item#manageAccount.active span {
+    background-position: 0 -30px; }
+  .navbar-fixed-left .left-nav-item#faqs:hover span, .navbar-fixed-left .left-nav-item#faqs.active span {
+    background-position: 0 -36px; }
+  .navbar-fixed-left .left-nav-item #tutorials:hover span, .navbar-fixed-left .left-nav-item #tutorials.active span {
+    background-position: 0 -38px; } }
+@media only screen and (max-width: 1279px) {
+  .navbar-fixed-left .left-nav-item font {
+    margin-top: 0px;
+    max-width: 110px; }
+
+  .navbar-fixed-left .left-nav-item#dashboard font {
+    margin-top: 6px; } }
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .col-left {
+    min-width: 150px; }
+
+  .col-right .container {
+    width: auto; }
+
+  .navbar-default .col-left .logo img {
+    max-width: 120px; }
+
+  .navbar-fixed-left .left-nav-item#dashboard span {
+    max-width: 25px;
+    background-size: 100%;
+    height: 23px;
+    margin-top: -4px; }
+  .navbar-fixed-left .left-nav-item#dashboard:hover span, .navbar-fixed-left .left-nav-item#dashboard.active span {
+    background-position: 0 -23px; }
+  .navbar-fixed-left .left-nav-item#dashboard font {
+    margin-top: -1px; }
+  .navbar-fixed-left .left-nav-item#products span {
+    max-width: 25px;
+    background-size: 100%;
+    height: 26px;
+    background-position: 0 1px;
+    margin-top: 3px; }
+  .navbar-fixed-left .left-nav-item#products:hover span, .navbar-fixed-left .left-nav-item#products.active span {
+    background-position: 0 -25px; }
+  .navbar-fixed-left .left-nav-item#manageAccount span {
+    height: 22px;
+    background-size: 100%;
+    background-position: 0 2px;
+    margin-top: 4px; }
+  .navbar-fixed-left .left-nav-item#manageAccount:hover span, .navbar-fixed-left .left-nav-item#manageAccount.active span {
+    background-position: 0 -21px;
+    margin-top: 7px; }
+  .navbar-fixed-left .left-nav-item#analytics font {
+    margin-top: 7px; }
+  .navbar-fixed-left .left-nav-item#tutorials span {
+    height: 26px;
+    background-size: 100%; }
+  .navbar-fixed-left .left-nav-item#tutorials:hover span, .navbar-fixed-left .left-nav-item#tutorials.active span {
+    background-position: 0 -28px; }
+  .navbar-fixed-left .left-nav-item#tutorials font {
+    margin-top: 4px; }
+  .navbar-fixed-left .left-nav-item#faqs span {
+    height: 25px;
+    background-size: 100%; }
+  .navbar-fixed-left .left-nav-item#faqs:hover span, .navbar-fixed-left .left-nav-item#faqs.active span {
+    background-position: 0 -25px; }
+  .navbar-fixed-left .left-nav-item#faqs font {
+    margin-top: 2px; }
+  .navbar-fixed-left .left-nav-item span {
+    width: 25px;
+    min-width: 25px; }
+  .navbar-fixed-left .left-nav-item font {
+    margin-top: 0; } }
+.media-total-countries .media-left {
+  padding-right: 20px; }
+.media-total-countries .title, .media-total-countries .sub {
+  font-size: 20px; }
+.media-total-countries .count {
+  font-size: 32px;
+  color: red; }
+
+/*# sourceMappingURL=02-zcommon-res.css.map */

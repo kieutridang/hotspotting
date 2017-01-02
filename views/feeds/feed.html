@@ -1,0 +1,78 @@
+<div class="container-create-campaign">
+	<div class="page-bar ng-scope">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard" href="#/dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+  </ul>
+</div>
+	<div class="header-campaign">
+		<div class="row clearfix">
+			<div class="col-sm-6 col-xs-6">
+				  <ul class="new-page-breadcrumb">
+				  </ul>
+				  <div class="new-page-title clearfix">
+				  	<h4 class="capitalize medium-font pull-left">Feeds</h4>
+				  </div>
+			</div>
+			<div class="col-sm-6 col-xs-6">
+				<a href="#" class="btn-create-new-campaigns capitalize" ng-click="showListfeedcamp()">+ edit feeds</a>
+			</div>
+		</div>
+	</div>
+	<div class="container-list-campaign">
+		<table cellspacing="0" cellpadding="0" border="0" id="tableBodyScroll" class="table">
+			<thead>
+				<tr>
+					<td>
+						<label class="uppercase">campaign name <i class="fa fa-long-arrow-down"></i></label>
+						<div class="widget-text-box">
+							<input type="text" placeholder="Search name" ng-model="searchName1" ng-change="searchTypeCampaign1(false)" id="selectNameFeed"/>
+						</div>
+					</td>
+					<td>
+						<label class="uppercase">type</label>
+						<select name="selectType" ng-change="searchTypeCampaign1(true)" id="selectTypeFeed" ng-model="searchType">
+		                    <option value=""></option>
+		                    <option ng-repeat="option in dataTypes1" value="{{option.id}}">{{option.name}}</option>
+		                </select>
+					</td>
+					<td>
+						<label class="uppercase">create</label>
+					</td>
+					<td>
+						<label class="uppercase">feeds</label>
+					</td>
+				</tr>
+			</thead>
+			<tbody id="tableBody">
+					<tr ng-repeat="campaign in listCampignsFeed.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+						<td>
+							<label>{{campaign.title}}</label>
+						</td>
+						<td>
+							<i ng-if="campaign.type === 'magazine'" class="fa fa-print"></i>
+							<i ng-if="campaign.type === 'video'" class="fa fa-video-camera"></i>
+							<i ng-if="campaign.type === 'image'" class="fa fa-picture-o"></i>
+							<label>{{campaign.type}}</label>
+						</td>
+						<td>
+							<label>{{campaign.created_at}}</label>
+						</td>
+						<td>
+							<div class="checkbox-ios-feed" style="margin-top:0px">
+				                <input type="checkbox" value="None" id="mainproduct" name="check" checked disabled="true"/>
+				                <label for="mainproduct"></label>
+				                <div class="for-inactive"></div>
+				              </div>
+						</td>
+					</tr>
+			</tbody>
+		</table>
+		<div class="text-center">
+			<uib-pagination total-items="totalItems1" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+		</div>
+	</div>
+</div>

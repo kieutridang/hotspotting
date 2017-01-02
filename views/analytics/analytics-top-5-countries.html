@@ -1,0 +1,48 @@
+
+<div class="col-md-12 col-xs-12">
+	<div class="portlet light bordered radius">
+		<div class="title-sub">
+			Top 5 Countries
+		</div>
+		<div class="container-analytics" >
+			<highchart id="top5Countries" config="chartCountriesConfig"  height="400" ng-if="analytics.top_countries.length > 0"></highchart>
+			<div class="tmpl-no-data" ng-hide="analytics.top_countries.length > 0">
+		     	No data for top 5 countries.
+		    </div>
+		    <!-- <highchart id="top5Countries" config="configMap"  height="400" ></highchart> -->
+		</div>
+	</div>
+</div>
+
+
+
+<!-- <div class="row m-bottom-20">
+	<div class="col-md-9 clearfix">
+		<div class="title-sub">
+			Top 5 Countries
+		</div>
+	</div>
+	<div class="col-md-9">
+		
+		<div id="top5Countries" style="width: 100%; height: 400px; margin: 0 auto" ng-if="analytics.top_countries.length > 0">
+			<highchart id="chartCountries" config="chartCountriesConfig" style="width:100%;margin: 0 auto"></highchart>
+		</div>
+		 <div class="tmpl-no-data" ng-hide="analytics.top_countries.length > 0">
+	     	No data for top 5 countries.
+	    </div>
+	</div>
+	<div class="col-md-3">
+		<div class="media media-total-countries">
+          <div class="media-left">
+             <img src="content/images/earth_icon.png" style="min-width: 120px" class="img-responsive">
+          </div>
+          <div class="media-body">
+              <div class="title">Total of</div>
+              <div class="count">{{analytics.total_countries || 0}}</div>
+              <div class="sub">countr<span ng-if="analytics.total_countries <= 1">y</span><span ng-if="analytics.total_countries > 1">ies</span></div>
+          </div>
+      </div>
+	</div>
+</div>
+ -->
+

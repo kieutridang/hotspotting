@@ -1,0 +1,190 @@
+<div class="container-create-campaign">
+  <div class="header-campaign">
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12">
+        <div class="new-page-title clearfix">
+          <h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+        </div>
+        <div class="navigation-create-campaign clearfix">
+          <a class="active">
+            <span>1</span>
+            <label class="uppercase">set trigger</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a>
+            <span>2</span>
+            <label class="uppercase">link products</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a ng-if="campaign.custom">
+            <span>3</span>
+            <label class="uppercase">recipe</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a>
+            <span ng-if="campaign.custom">4</span>
+            <span ng-if="!campaign.custom">3</span>
+            <label class="uppercase">campaign details</label>
+            <div class="line-bottom"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-content-campaign">
+    <div class="container-upload-trigger">
+      <span class="medium-font uppercase margin-0">UPLOADED triggers
+        <span class="note-upload-img uppercase" ng-show="triggerItems.length > 0">({{triggerItems.length}} {{triggerItems.length > 1 ? "triggers" : "trigger"}})
+      </span>
+      </span>
+
+
+      <div ng-show="!campaign.type || campaign.type === 'image'">
+        <div class="drag-trigger" ng-hide="isLoading">
+          <p class="medium-font text-center" ng-show="!inCorrectFormat">
+            <i class="fa fa-cloud-upload"></i>
+            <span>Simply drag and drop file <br> or <span class="browser">browser</span> to upload trigger</span>
+          </p>
+
+          <p class="medium-font text-center" ng-show="inCorrectFormat">
+            <img src="/content/images/uploadFailed.png" height="40"></img>
+            <br> Wrong file format.
+            <br> Upload jpg/png, pdf or mov/mp4.
+          </p>
+          <div class="drag-file-browser">
+            <input type="file" nv-file-select="" name="file" id="file" uploader="uploader" onchange="angular.element(this).scope().setFile(this)" multiple/>
+          </div>
+        </div>
+        <div class="drag-trigger" ng-show="isLoading && !inCorrectFormat">
+          <button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+          <br>
+          <p ng-show="campaign.type === 'image'" class="medium-font text-center">
+            <i class="fa fa-picture-o"> file uploaded</i>
+          </p>
+          <p ng-show="isLoading && campaign.type !== 'video' && campaign.type !== 'magazine'" class="medium-font text-center">
+            <br>
+            <!-- <i ng-hide="isWaitingTrigger" class="fa fa-video-camera">
+              Video is uploading
+            </i> -->
+            <div class="progress" ng-hide="isWaitingTrigger">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{percentProcess}}%">
+                {{percentProcess}}% Complete
+              </div>
+            </div>
+            <i ng-show="isWaitingTrigger" class="fa fa-video-camera">
+              Uploaded successfully. Training is in progress…
+            </i>
+          </p>
+        </div>
+        <p class="note-upload-img" ng-show="triggerItems.length === 0 || !triggerItems">
+          Image trigger should be in png or jpg format and must have minimum 640 x 480px size.
+          <br> Print trigger should be in pdf format and must have maximum 250mb filesize.
+          <br> Video trigger should be in mp4 or mov format and must have maximum 250mb and minimum 320 x 320px filesize.
+        </p>
+        <p class="note-upload-img" ng-show="triggerItems.length > 0 && campaign.type === 'image'">
+          Image trigger should be in png or jpg format and must have minimum 640 x 480px size.
+        </p>
+        <div class="row clearfix">
+          <div class="col-sm-3" ng-repeat="trigger in triggerItems">
+            <div class="box-img-uploaded">
+              <a class="{{trigger.cssClass}}">
+                <span class="btn-del-thumnail fa fa-trash-o" ng-click="deleteTrigger(trigger)"></span>
+                <span class="text" ng-if="trigger.type == 'keyword'">{{trigger.content}}</span>
+                <div class="image-thumbnail" ng-attr-title="{{trigger.messageError}}" style="background-image: url('{{trigger.contentBase64}}'); width: 100%;height:150px; background-size: contain; background-repeat: no-repeat; background-position: center;" ng-show="trigger.contentBase64"
+                    ng-if="trigger.type == 'image'">
+                </div>
+              </a>
+              <span ng-show="trigger.invalidImage" class="help-block" style="text-align:center; color: red;">
+              Invalid
+              <i class="fa fa-expand" title="Click here to reszie" style="color:black" ng-click="resizeImage(trigger)"></i>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="campaign.type === 'magazine'" class="text-center">
+        <p ng-show="isLoading" class="medium-font text-center">
+          <!-- <button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+          <br>
+          <br> -->
+          <!-- <i ng-hide="isWaitingTrigger" class="fa fa-print">
+          File is uploading
+        </i> -->
+          <div class="progress" ng-hide="isWaitingTrigger">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{percentProcess}}%">
+              {{percentProcess}}% Complete
+            </div>
+          </div>
+          <i ng-show="isWaitingTrigger" class="fa fa-print" style="font-size: 22px;">
+          Uploaded successfully. Training is in progress…
+        </i>
+        </p>
+        <div class="container-upload-trigger-pdf" ng-hide="isLoading">
+          <div class="row clearfix">
+            <div class="col-sm-4">
+              <img src="{{campaign.start_frame}}" width="100%;">
+              <div class="action-trigger-pdf" style="float:right">
+                <a ng-click="uploadPDF()">
+                  <i class="fa fa-cloud-upload"></i>
+                </a>
+                <a ng-click="deletePDF()">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="campaign.type === 'video'" class="text-center">
+        <div ng-show="isLoading" class="medium-font text-center">
+          <!-- <button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+          <br>
+          <br> -->
+          <!-- <i ng-hide="isWaitingTrigger" class="fa fa-print">
+          File is uploading
+        </i> -->
+          <div class="progress" ng-hide="isWaitingTrigger">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{percentProcess}}%">
+              {{percentProcess}}% Complete
+            </div>
+          </div>
+          <i ng-show="isWaitingTrigger" class="fa fa-print" style="font-size: 22px;">
+          Uploaded successfully. Training is in progress…
+        </i>
+        </div>
+        <div class="container-upload-trigger-pdf" ng-hide="isLoading">
+          <div class="row clearfix">
+            <div class="col-sm-7">
+              <div class="widget-trigger-pdf">
+                <video preload="auto" controls id="videoCampain" style="margin-top:0;" class="cp-video" ng-click="SetTimeCurrent(this)">
+                  <source ng-src="{{mySrc}}" type="video/mp4" />
+                  <source ng-src="{{mySrc}}" type="video/ogg" />
+                </video>
+                <!-- <div class="action-trigger-pdf">
+                  <a href="#">
+                    <i class="fa fa-cloud-upload"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div ng-show="(triggerItems.length > 0 || campaign.type === 'magazine' || campaign.type === 'video') && !isLoading" class="clearfix">
+    <button class="btn-cancle" ng-click="previousStep()">
+      <span class="icon-text">Cancel</span>
+    </button>
+    <button class="btn-next-step" ng-disabled="uploadInvalid || inCorrectFormat" ng-click="nextStep()">
+      <span ng-hide="isCreateTrigger" class="icon-text">Next</span>
+      <span ng-show="isCreateTrigger"><img src="content/images/preloader2.gif"</span>
+    </button>
+  </div>

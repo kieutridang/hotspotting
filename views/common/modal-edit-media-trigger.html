@@ -1,0 +1,72 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()">
+		<span>&times;</span>
+	</button>
+	<h1 class="modal-title heading-title" id="myModalLabel">Edit Trigger</h1>
+</div>
+<div class="modal-body">
+	<form name="updateTriggerForm" novalidate>
+		<div class="form-group" ng-class="{ 'has-error':  updateTriggerForm.isSubmitted && updateTriggerForm.url.$invalid  }">
+			<label for="input-BrandName">Url</label>
+			<input tpe="url" class="form-control" name="url" id="inputBrandName" ng-model="trigger.url" ng-required="true">
+			<span ng-show="(updateTriggerForm.isSubmitted ) && updateTriggerForm.url.$invalid && updateTriggerForm.url.$error.required" class="help-block">Please enter a url.</span>
+			<span ng-show="(updateTriggerForm.isSubmitted ) && updateTriggerForm.url.$invalid && updateTriggerForm.url.$error.url" class="help-block">Please enter a valid url.</span>
+		</div>
+	</form>
+	<div class="form-group" ng-if="trigger.type=='image'">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+				<div>
+					<label for="input-image">Page</label>
+					<div class="image-review" style="background-image: url('{{trigger.image_url}}')">
+					</div>
+					<br>
+					<input type="file" class="no-background add-image-btn trigger-campaign-image" trigger="trigger">
+				</div>
+			</div>
+			<!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div class="add-media-file-container">
+					<label class="">
+						<img class="magazine-bg" src="/images/magazine-bg.png">
+						<span class="add-file-content">
+							<img src="/images/add-file.png"><br>
+							<p>Drag and drop to add a PDF or use the <i class="glyphicon glyphicon-plus"></i> button</p>
+							<p class="file-name" ng-bind="trigger.file_name" ng-show="trigger.file_name"></p>
+							<div class="note">
+								<p>Maximum</p>
+								<p>Filesize: 250Mb</p>
+							</div>
+						</span>
+						<input type="file" id="media-file" name="file" accept="image/*" class="hidden" onchange="angular.element(this).scope().fileNameChanged(this)"  />
+					</label>
+				</div>
+			</div>-->
+		</div>
+	</div>
+
+	<div class="form-group" ng-if="trigger.type=='keyword'">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div>
+					<label for="input-image">Keyword</label>
+					<input value="" class="form-control" name="name" ng-model="trigger.content">
+				</div>
+				<span class="error">{{messageError}}</span>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="modal-footer">
+	<div class="submit-btn-group">
+		<div class="row">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-custom pull-left" ng-click="updateTrigger(updateTriggerForm)"
+					ng-disabled="updateTriggerForm.isProcessing" ng-class="{ 'loading' : updateTriggerForm.isProcessing}" >
+					<span class="icon-text">Submit</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

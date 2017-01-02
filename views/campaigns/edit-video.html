@@ -1,0 +1,230 @@
+<div class="margazine-ingestor-page">
+<!--   <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a ui-sref="home.dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a ui-sref="home.accounts" class="">Create Campaigns</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a class="active" >Video Ingestor</a>
+      </li>
+    </ul>
+  </div> -->
+  <h3 class="page-title ">Video Ingestor</h3>
+  <div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 add-video-page">
+			<div class="wrapper-col clearfix">
+				<div class="left-col">
+					<div class="row">
+						<div class="form-group col-xs-9">
+							<label>Video name</label>
+							<input type="text" class="form-control" disabled ng-model="campaignVideo.title">
+						</div>
+						<div class="form-group col-xs-3 length-video">
+							<label>Length of video</label>
+							<input type="text" class="form-control" ng-model="timeOutVideo" ng-disabled="true">
+						</div>
+					</div>
+					<div class="form-group label-status clearfix">
+						<label class="title">Status legend:</label>
+						<ul>
+							<li>
+								<span class="label label-success">
+									<i class="fa fa-check"></i> Successfully trained
+								</span>
+							</li>
+							<li ng-if="errorStatus == true">
+								<span class="label label-danger">
+									<i class="fa fa-times"></i> Cannot be trained
+								</span>
+							</li>
+							<li ng-if="trainingInProgress">
+								<span class="label label-primary">
+									<i class="fa fa-circle"></i> Training in progress
+								</span>
+							</li>
+						</ul>
+            <div class="pull-right" ng-show="showNavigationFrame">
+              <a class="btn btn-default btn-style" ng-click="playBack()">
+                <span class="icon-text">Play review</span>
+              </a>
+            </div>
+            <div class="pull-right" ng-hide="showNavigationFrame">
+              <a class="btn btn-default btn-style" ng-click="stopPlayBack()">
+                <span class="icon-text">Stop review</span>
+              </a>
+            </div>
+					</div>
+					<div class="progress-upload" ng-show="trainingInProgress">
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+								<span>Tranning in progress.....</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="content-second content-second-edit" style="height: auto; max-width: 100%">
+						<div class="add-file add-video" style="padding: 0">
+							<div ng-if="currentSet && showNavigationFrame" class="" style="current-set">{{currentSet}}</div>
+							<div class="container-video">
+								<div class="container slider" style="padding: 0;margin: 0;">
+									<video preload="auto" controls id="videoCampain" style="margin-top:0;" class="cp-video" ng-click="SetTimeCurrent(this)">
+										<source ng-src="{{mySrc}}" type="video/mp4" />
+									</video>
+
+									<div class="nav" id="navFrame" ng-if="listFrame.length > 0" ng-show="showNavigationFrame">
+										<ul style="width: {{listFrame.length * 150 + listFrame.length*2}}px; ">
+											<li ng-repeat="frame in listFrame"
+												ng-class="{'active': isActive($index) || currentSet == frame.id}"
+												ng-click="selectFrame($index, frame)"
+												uib-popover-template="dynamicPopover.templateUrl"
+												popover-title="URL for frameset"
+												popover-append-to-body="true"
+												popover-is-open="frame.popover.isShowPopover"
+												popover-trigger="click"
+												popover-placement="top"
+												popover-popup-delay="0"
+												ns-popover-timeout="2000">
+												<a>
+													<div class="frame-second">{{getCurrentTimeFrame(frame.id)}}</div>
+													<img ng-src="{{frame.src}}" alt="{{frame.id}}" title="{{frame.desc}}" />
+												</a>
+												<div ng-class="{'highlight-status': frame.status == 'active'}"></div>
+												<div ng-class="{'highlight-selected': frame.isSelected}"></div>
+											</li>
+										</ul>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="board-video">
+							<img  src="/content/images/board-video.png" />
+						</div>
+					</div>
+					<div class="list-group-action">
+          <div class="button-actions clearfix">
+		        <div class="pull-right">
+		          <a class="btn btn-default btn-style" ng-click="clearAllSelected()">
+		            <span class="icon-text">Clear all selected</span>
+		          </a>
+		        </div>
+            <div class="pull-left">
+              <form name="formAssociate">
+                <label style="float: left; margin-right: 10px">From</label>
+                <input type="text" required name="inputFrom" class="form-control" ng-model="associateFrom" placeholder="HH:mm:ss" style="width:120px; float: left; height:35px;"
+                  ng-pattern="/^([0-2][0-9]):([0-6][0-9]):([0-6][0-9])$/">
+                <label style="float: left;margin-left: 10px;margin-right: 10px">To</label>
+                <input type="text" required name="inputTo" class="form-control" ng-model="associateTo" placeholder="HH:mm:ss" style="width:120px; float: left; margin-right: 20px; height:35px"
+                  ng-pattern="/^([0-2][0-9]):([0-6][0-9]):([0-6][0-9])$/">
+                <button ng-disabled="formAssociate.inputFrom.$invalid || formAssociate.inputTo.$invalid || formAssociate.inputFrom.$error.required || formAssociate.inputTo.$error.required || isMaxLength"
+                  class="btn btn-default btn-style" ng-click="associateProductManual()">
+                  <span class="icon-text">Associate product</span>
+                </button>
+              </form>
+            </div>
+				  </div>
+          <label style="margin-top: 20px; width: 100%">Timeline
+  	        <div class="pull-right">
+              <a class="btn btn-default btn-style" ng-click="zoomTimeLine(-0.2)">
+  	            <span class="icon-text">Zoom in</span>
+  	          </a>
+              <a class="btn btn-default btn-style" ng-click="zoomTimeLine(0.2)">
+  	            <span class="icon-text">Zoom out</span>
+  	          </a>
+  	          <a class="btn btn-default btn-style" ng-click="moveTimeLine(0.2)">
+  	            <span class="icon-text">Move left</span>
+  	          </a>
+              <a class="btn btn-default btn-style" ng-click="moveTimeLine(-0.2)">
+  	            <span class="icon-text">Move right</span>
+  	          </a>
+  	        </div>
+          </label>
+          <div id="visualization" style="position: relative;  width: 100%;  overflow: hidden;">
+            <div id="columnTimeLine" style="width: 2px; height: 100%; position: absolute; z-index: 100; border: 1px solid red;"></div>
+          </div>
+          <!-- <div id="visualization">
+          </div> -->
+					<div class="form-group ">
+						<label>Main Video URL</label>
+						<input type="text" class="form-control" disabled ng-model="campaignVideo.url">
+					</div>
+				</div>
+				<div class="right-col">
+					<div class="w-phone">
+						<div class="phone-list-item">
+							<iframe ng-show="productSelecteds.length === 0 && showNavigationFrame" ng-src="{{trustSrc(currentFrameUrl)}}" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+              <div class="media" ng-repeat="product in productSelecteds | orderBy:predicate:reverse">
+                <div class="media-left">
+                  <a>
+                    <div class="product-thumb-mobile" style="background-image: url({{product.image_url || 'images/no_image.png'}}); ">
+
+                    </div>
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{product.title}}</h4>
+                  <div class="p-price">{{product.currency_display + product.price}}</div>
+                </div>
+              </div>
+						</div>
+					</div>
+					<div class="phone-status">
+						<label class="title">Timeline legend:</label>
+						<ul>
+							<li>
+								<span class="label label-first">
+									<i class="fa fa-square"></i> Frame selection
+								</span>
+							</li>
+							<li>
+								<span class="label label-second">
+									<i class="fa fa-square"></i> Frame trained successfull
+								</span>
+							</li>
+							<li>
+								<span class="label label-third">
+									<i class="fa fa-square-o"></i> Unselected (trigger main url)
+								</span>
+							</li>
+						</ul>
+						<hr />
+						<div class="note-footer">
+							<i class="fa fa-arrow-left"></i><i class="fa fa-arrow-right"></i> Navigate frame by frame with arrow keys
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+
+
+<script type="text/ng-template" id="editUrlTemplateUrl.html">
+	<div class="triangle"></div>
+	<div class="popover-tpl">
+		<form ng-attr-name="{{frame.popover.formName}}" novalidate>
+			<div class="form-group" ng-class2="{ 'has-error':  frame.popover.form.isSubmitted && updateFrameRangeURLForm.url.$invalid  }">
+				<div class="input-group">
+					<input type="url" style="min-width: 140px" class="form-control" name="url" ng-model="frame.url" ng-change="changeFrameUrl(frame)"
+						   placeholder="Frame range URL" ng-required="true">
+					<span class="btn input-group-addon" ng-disabled="frame.popover.isProcessing" ng-class="{ 'loading' : frame.popover.isProcessing}" ng-click="createTriggerMediaUrl(frame.popover.form,frame,$event)">
+						<i class="fa fa-floppy-o"></i>
+					</span>
+					<span class="btn input-group-addon" ng-disabled="frame.popover.isProcessing" ng-click="removeTriggerMediaUrl(frame.popover.form,frame,$event); ">
+						<i class="fa fa-remove"></i>
+					</span>
+					<span class="btn input-group-addon" ng-if="statusListTrigger" ng-click="associateProduct(frame.popover.form,frame,$event);">
+						Associate
+					</span>
+				</div>				
+			</div>
+		</form>
+	</div>
+</script>

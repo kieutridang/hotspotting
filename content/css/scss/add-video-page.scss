@@ -1,0 +1,592 @@
+.add-video-page {
+
+	.heading-title {
+		text-transform: capitalize;
+	}
+
+	.wrapper-col {
+		float: left;
+		padding-right: 250px;
+		position: relative;
+		padding-bottom: 20px;
+		width: 100%;
+
+		.fa-floppy-o {
+			font-size: 24px;
+			color: #999;
+		}
+
+		.length-video {
+			label {
+				min-width: 180px;
+			}
+		}
+
+		canvas {
+			max-width: 100%;
+			max-height: 100%;
+			position: absolute;
+		}
+
+		.content-second {
+			width: 100%;
+		    height: 440px;
+		    border: 8px solid #000;
+		    position: relative;
+		    margin-bottom: 50px;
+		    max-width: 740px;
+
+			.closeX {
+				display: none;
+				width: 10px;
+				height: 10px;
+				background-color: white;
+				position: absolute;
+				z-index: 1;
+			}
+
+			.rectangle {
+					position: absolute;
+					border-style: dotted;
+					z-index: 1;
+			}
+
+			.rectangleX1 {
+				position: absolute;
+				overflow: hidden;
+				z-index: 1;
+				.rectangleX {
+					position: absolute;
+					background-size: contain;
+					background-repeat:no-repeat;
+					z-index: 2;
+				}
+			}
+
+			.add-video {
+				padding: 20px 0;
+				position: relative;
+
+				.add-button{
+
+					.wrapper-button{
+						width: 280px;
+					    height: 170px;
+					    background-color: #33a1cd;
+					    color: #fff;
+					    font-size: 60px;
+					    padding-top: 45px;
+					}
+
+					.wrapper-bg{
+						background-color: #33a1cd;
+						width: 200px;
+						height: 15px;
+						border-radius: 15px;
+						margin: 5px auto 0;
+					}
+
+
+				    .icon-plus{
+				    	cursor: pointer;
+				    }
+				}
+
+
+				img {
+					max-width: 100%;
+				}
+
+				.drop-zone {
+					position: absolute;
+					top: 0px;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 1;
+				}
+
+				.add-file-content {
+					position: absolute;
+					top: 0px;
+					left: 0;
+					width: 100%;
+					text-align: center;
+					margin-top: 55px;
+					padding-left: 20px;
+					padding-right: 20px;
+					z-index: 2;
+
+					.file-name {
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-size: 14px;
+						margin-bottom: 5px;
+					}
+
+					.progress-upload {
+						margin: 0 30px;
+					}
+					.progress{
+						margin-bottom: 10px;
+					}
+				}
+			}
+			.note {
+				border-left: none;
+				padding: 0;
+
+				p{
+					span{
+					 	font-size: 20px;
+					}
+				}
+			}
+
+			.board-video{
+				position: absolute;
+				bottom: -40px;
+				width: 100%;
+				text-align: center;
+
+				img{
+					max-width: 100%;
+				}
+			}
+		}
+
+		.label-status {
+			margin-top: 0;
+
+			.title {
+				float: left;
+				font-weight: 300;
+				font-size: 14px;
+			}
+
+			ul {
+				float: left;
+				list-style: none;
+				padding-left: 20px;
+
+				li {
+					float: left;
+
+					.label {
+						background: none;
+						font-size: 14px;
+						font-weight: 300;
+
+						&.label-success {
+							color: #5cb85c;
+						}
+
+						&.label-danger {
+							color: #d9534f;
+						}
+
+						&.label-primary {
+							color: #337ab7;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.right-col {
+		float: left;
+		width: 221px;
+		position: absolute;
+		right: 0px;
+		top: 0;
+	}
+	.current-set{
+		position: absolute; top: 0; right: 0; background-color: #fff; color: #ccc; width: 100px; height: 100px; z-index: 10000
+	}
+
+	.w-phone {
+		position: relative;
+		display: inline-block;
+		background-image: url(../images/iphone6_blank.png);
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		width: 224px;
+		height: 456px;
+		margin-top: 90px;
+
+		.phone-list-item {
+			position: absolute;
+			left: 15px;
+			right: 14px;
+			top: 56px;
+			height: 346px;
+			overflow: hidden;
+
+			iframe {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+
+	.phone-status {
+		margin-top: 20px;
+		padding: 0 10px;
+
+		hr {
+			margin: 10px 0;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+
+			li {
+				.label {
+					color: #333;
+					font-size: 12px;
+					font-weight: 300;
+
+					i {
+						font-size: 16px;
+						margin-right: 3px;
+						color: yellow
+					}
+
+					&.label-second {
+						i {
+							color: rgba(255,255,0, 0.3);
+						}
+					}
+				}
+
+				&:last-child{
+					i {
+						background: #fff;
+						color: #333
+					}
+				}
+			}
+		}
+
+		.note-footer {
+			font-size: 12px;
+		}
+	}
+
+
+
+	.arrow {
+		cursor: pointer;
+		display: block;
+		height: 64px;
+		margin-top: -35px;
+		outline: medium none;
+		position: absolute;
+		top: 50%;
+		width: 64px;
+		z-index: 5;
+	}
+
+	.arrow.prev {
+		background-image: url("../images/prev.png");
+		left: 20px;
+		opacity: 0.2;
+		transition: all 0.2s linear 0s;
+	}
+
+	.arrow.next {
+		background-image: url("../images/next.png");
+		opacity: 0.2;
+		right: 20px;
+		transition: all 0.2s linear 0s;
+	}
+
+	.arrow.prev:hover {
+		opacity: 1;
+	}
+
+	.arrow.next:hover {
+		opacity: 1;
+	}
+	.ico-zoom{
+	  width: 20px;
+	  height: 20px;
+	  background-image: url(/content/images/ico-zoom.png);
+	  background-repeat: no-repeat;
+	  display: block;
+		float: left;
+	  margin:auto;
+	}
+	.ico-zoom-in{
+	  background-position:0 0;
+	}
+	.ico-zoom-out{
+	  background-position:0 -20px;
+	}
+	.ico-move-right{
+		background-position:0 -40px;
+	}
+	.ico-move-left{
+		background-position:0 -60px;
+	}
+	.navigationTimeline {
+		position:absolute;
+		bottom: 35px;
+		display: block;
+		height: 110px;
+		left: 0;
+		right: 0;
+		text-align: center;
+		z-index: 15;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.navigationTimeline ul {
+		height: 100px;
+		padding: 0;
+		margin-bottom: 0;
+	}
+
+	.navigationTimeline li {
+		border: 1px solid #AAAAAA;
+		border-radius: 5px;
+		cursor: pointer;
+		display: block;
+		height: 107px;
+		margin: 0 1px;
+		position: relative;
+		width: 150px;
+		float: left;
+
+		img {
+			max-height: 100%;
+		}
+
+		.frame-second {
+			background-color: #fff;
+			border-radius: 5px 5px 0 0;
+			text-decoration: none;
+			color: #333;
+			height: 20%;
+			line-height: 140%;
+		}
+
+		a {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.navigationTimeline li.active {
+		border: 1px solid #FFFFFF;
+	}
+
+	.navigationTimeline li img {
+		width: 100%;
+	}
+
+	.slider {
+		border-radius: 5px;
+		position: relative;
+		width: 100%;
+		padding: 8px;
+		-moz-perspective: 1000px;
+		-ms-perspective: 1000px;
+		-o-perspective: 1000px;
+		perspective: 1000px;
+
+		.cp-video {
+			width: 100%;
+			margin-top: 20px;
+		}
+	}
+
+	.slide {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.slide.ng-hide-add {
+		opacity: 1;
+		-webkit-transition: 1s linear all;
+		-moz-transition: 1s linear all;
+		-o-transition: 1s linear all;
+		transition: 1s linear all;
+	}
+
+	.slide.ng-hide-add.ng-hide-add-active {
+		opacity: 0;
+	}
+
+	.slide.ng-hide-remove {
+		-webkit-transition: 1s linear all;
+		-moz-transition: 1s linear all;
+		-o-transition: 1s linear all;
+		transition: 1s linear all;
+		display: block !important;
+		opacity: 0;
+	}
+
+	.slide, .slide.ng-hide-remove.ng-hide-remove-active {
+		opacity: 1;
+	}
+
+	.nicescroll-rails {
+	}
+
+	.highlight-selected {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: yellow;
+		opacity: 0.6;
+	}
+
+	.highlight-status {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: yellow;
+		opacity: 0.3;
+	}
+}
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+  display: none;
+  max-width: 400px;
+  padding: 1px;
+  text-align: left;
+  white-space: normal;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+}
+.modal-associate-product{
+	width: 100%;
+	.modal-dialog{
+		min-width: 80%;
+	}
+}
+
+@media (max-width: 1201px) {
+
+	.add-video-page {
+		.wrapper-col {
+			padding-right: 0;
+		}
+
+		.right-col {
+			float: none;
+			width: 221px;
+			position: static;
+		}
+	}
+}
+
+
+@media (max-width: 993px) {
+
+	.add-video-page {
+		.wrapper-col {
+			padding-right: 0;
+		}
+
+		.right-col {
+			float: none;
+			width: 221px;
+			position: static;
+		}
+	}
+}
+
+
+@media (max-width: 769px) {
+
+	.add-video-page .wrapper-col .content-second .add-video .add-file-content {
+		margin-top: 45px;
+
+		label{
+			img {
+				height:100px;
+				width:auto;
+			}
+		}
+	}
+}
+
+
+.add-video-page .w-phone {
+  position: relative;
+  display: inline-block;
+  background-image: url(../images/iphone6_blank.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 224px;
+  height: 456px;
+  margin-top: 20px; }
+  .add-video-page .w-phone .phone-list-item {
+    position: absolute;
+    left: 15px;
+    right: 14px;
+    top: 56px;
+    max-height: 346px;
+    overflow-y: auto; }
+    .add-video-page .w-phone .phone-list-item .media {
+      border-bottom: 1px solid #f3f3f3;
+      padding: 5px 0;
+      margin-top: 0; }
+      .add-video-page .w-phone .phone-list-item .media .product-thumb-mobile {
+        width: 40px;
+        height: 40px;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat; }
+      .add-video-page .w-phone .phone-list-item .media .media-left {
+        padding-right: 5px; }
+      .add-video-page .w-phone .phone-list-item .media .media-body {
+        margin-bottom: 0;
+        vertical-align: middle; }
+        .add-video-page .w-phone .phone-list-item .media .media-body .media-heading {
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 10px;
+          margin: 0;
+          padding: 0; }
+        .add-video-page .w-phone .phone-list-item .media .media-body .p-price {
+          color: #fcca28;
+          font-size: 10px; }
+      .add-video-page .w-phone .phone-list-item .media .media-right {
+        padding-left: 5px;
+        min-width: 55px;
+        vertical-align: middle; }
+        .add-video-page .w-phone .phone-list-item .media .media-right .icon-info,
+        .add-video-page .w-phone .phone-list-item .media .media-right .icon-cart {
+          background-image: url(../images/phone-cart-icon.jpg);
+          height: 22px;
+          width: 22px;
+          background-size: 100%;
+          display: inline-block; }
+        .add-video-page .w-phone .phone-list-item .media .media-right .icon-info {
+          background-image: url(../images/phone-info-icon.jpg); }

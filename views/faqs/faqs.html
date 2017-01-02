@@ -1,0 +1,81 @@
+<!-- <div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a class="active">FAQs</a>
+    </li>
+  </ul>
+</div> -->
+<h3 class="page-title"> FAQs </h3>
+
+<div class="page-faqs">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="content">
+
+        <uib-accordion close-others="true">
+          <uib-accordion-group is-open="status1.open">
+            <uib-accordion-heading>
+              Question 1: I'm interested in trying these tools. What technology do I need to have to get started?
+              <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status1.open, 'glyphicon-chevron-right': !status1.open}"></i>
+            </uib-accordion-heading>
+            Answer: You don’t need anything other than digital content that you can upload to our website.
+          </uib-accordion-group>
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              Question 2: What kind of objects do you recognize?
+              <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+
+            Answer: Most types of objects can be identified with our Image Recognition technology.<br/>
+            Image recognition can be performed on objects such as:<br/><br/>
+
+            a. CD/DVD and book covers<br/>
+            b. Newspapers and magazines<br/>
+            c. Logos and branding<br/>
+            d. Posters Packaged goods<br/><br/>
+
+            Generic objects lacking unique distinctive features, or objects that don't have markings such as a blank
+            wall, are not suitable for image recognition.
+
+          </uib-accordion-group>
+          <uib-accordion-group is-open="faq.status" ng-repeat="faq in faqs">
+            <uib-accordion-heading>
+              {{faq.question}}
+              <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': faq.status, 'glyphicon-chevron-right': !faq.status}"></i>
+            </uib-accordion-heading>
+            <div ng-bind-html="faq.answer" class="des-newlines"></div>
+
+          </uib-accordion-group>
+        </uib-accordion>
+
+
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">CREATE NEW QUESTION & ANSWER</div>
+        <div class="panel-body">
+          <form ng-submit="createFAQ()">
+            <div class="form-group">
+              <label for="questionTitle">Question</label>
+              <input type="text" class="form-control" id="questionTitle" ng-model="faq.question">
+            </div>
+            <div class="form-group">
+              <label for="questionAnswer">Answer</label>
+              <textarea class="form-control" id="questionAnswer" ng-model="faq.answer" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom">Submit</button>
+          </form>
+        </div>
+      </div>
+
+    
+
+    </div>
+  </div>
+</div>

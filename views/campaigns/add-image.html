@@ -1,0 +1,109 @@
+<div class="container-fluid">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="new-image-campaign">
+		<h1 class="heading-title">
+			Image Ingestor
+		</h1>
+
+		<div class="page-intro">
+
+		</div>
+		<!--   <div class="main-page">
+			<h3 class="msg"><i class="glyphicon glyphicon-user"></i><br>You have not added any Account</h3>
+
+		  </div> -->
+
+		<div class="wrapper-campaign-detail">
+			<div class="row">
+				<div class="col-md-5 col-sm-12">
+					<div class="campaign-detail grey-box">
+						<h3>
+							1. Campaign Details
+							<span class="help"><!-- Help --></span>
+						</h3>
+
+						<div class="inner-box ">
+							<fieldset class="input-group">
+								<label for="campaign-title">Campaign Title</label>
+								<input class="form-control" type="text" name="campaign-title" id="campaign-title"
+									   placeholder="Name Your Campaign"
+									   ng-model="model.title"
+									   ng-change="onCampaignDetailTitleChange()">
+							</fieldset>
+
+							<fieldset class="input-group">
+								<label for="target-url">Target URL</label>
+								<input class="form-control"
+									   type="text" name="target-url" id="target-url" placeholder="Landing Page"
+									   ng-model="model.url"
+									   ng-change="checkInputUrl()"
+									   ng-model-options="{debounce:1000}">
+								<img id="urlLoadingGif" ng-show="model.isUrlChecking" src="/content/images/loading3d.gif">
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				<!-- campaign-detail -->
+
+				<div class="col-md-7 col-sm-12">
+					<div class="trigger-box grey-box" ng-show="model.canShowTriggerBox" ng-class="{ 'has-error': validationImage || invalidImage}">
+						<h3>
+							2. Triggers
+							<span class="help"><!-- Help --></span>
+							<span ng-show="invalidImage" class="help-block">Invalid image. Please select again.</span>
+							<span ng-show="validationImage" class="help-block">Size image is too small(640x480).</span>
+						</h3>
+						<input type="file" id="uploadHelper" class="ng-hide" onchange="angular.element(this).scope().setFile(this)"
+							   accept="image/*">
+						<div class="inner-box">
+							<div>
+								<div class="item" ng-repeat="trigger in triggerItems">
+									<div class="wrapper">
+										<a class="thumbnail vertical-align {{trigger.cssClass}}">
+											<span class="btn-del" ng-click="deleteTrigger(trigger)"></span>
+											<span class="text" ng-if="trigger.type == 'keyword'">{{trigger.content}}</span>
+											<div class="image-thumbnail" ng-attr-title="{{trigger.messageError}}" style="background-image: url('{{trigger.contentBase64}}')" ng-show="trigger.contentBase64" ng-if="trigger.type == 'image'"></div>
+										</a>
+									</div>
+									<!-- <span ng-show="trigger.invalidImage" class="help-block" style="margin: 0; text-align: center; font-size: 15px;">Invalid</span> -->
+									<!-- <span ng-show="trigger.validationImage" class="help-block" style="margin: 0; text-align: center;">Invalid  <a ng-click="resizeImage(trigger)">Click here to resize</a></span> -->
+									<span ng-show="trigger.validationImage || trigger.invalidImage" class="help-block" style="margin: 0; text-align: center;">Invalid  <i ng-show="!trigger.invalidImage" class="fa fa-expand" title="Click here to reszie" style="color:black; " ng-click="resizeImage(trigger)"></i></span>
+
+								</div>
+
+								<div id="addTriggersBtnGroup" class="item ">
+									<div class="wrapper">
+										<div class="btn-group btn-group-addtrigger ">
+											<button class="btn btn-default btn-lg dropdown-toggle" ng-click="triggerUpload()" type="button" data-toggle="dropdown">
+												<span class="glyphicon glyphicon-plus"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- trigger-box -->
+			</div>
+			<!-- iphone -->
+			<div class="wrapper-iphone">
+				<div class="iphone-box" ng-show="model.canShowTriggerBox">
+					<iframe ng-src="{{trustSrc(model.fullURL)}}"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<a href="#" class="btn btn-custom-v1" ng-click="changeAccount()">
+				<span class="icon-change-v1"></span>
+				<span class="icon-text">Change Account</span>
+			</a>
+			<button type="button" class="btn btn-custom-v1"
+					ng-show="model.canShowTriggerBox"
+					ng-disabled="isProcessing || !canSubmit || validationImage || invalidImage" ng-class="{ 'loading' : isProcessing}"
+					ng-click="onSubmitTrigger()">
+				Submit
+			</button>
+		</div>
+	</div>
+	<div class="container" data-ng-include="'views/common/modal-keyword.html'"></div>
+</div>

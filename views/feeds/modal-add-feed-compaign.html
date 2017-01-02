@@ -1,0 +1,83 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="closeModal()">
+		<span>&times;</span>
+	</button>
+	<h1 class="modal-title heading-title" id="myModalLabel">Edit Feeds</h1>
+</div>
+<div class="modal-body">
+	<div class="container-list-campaign feedList">
+		<table cellspacing="0" cellpadding="0" border="0" id="tableBodyScroll" class="table">
+			<thead>
+				<tr>
+					<td>
+						<label class="uppercase">campaign name <i class="fa fa-long-arrow-down"></i></label>
+						<div class="widget-text-box">
+							<input type="text" placeholder="Search name" ng-model="searchName" ng-change="searchTypeCampaign(false)"/>
+						</div>
+					</td>
+					<td>
+						<label class="uppercase">type</label>
+						<select name="selectType" ng-model="searchType" ng-change="searchTypeCampaign(true)">
+		                    <option value=""></option>
+		                    <option ng-repeat="option in dataTypes2" value="{{option.id}}">{{option.name}}</option>
+		                </select>
+					</td>
+					<td>
+						<label class="uppercase">create</label>
+					</td>
+					<td>
+						<label class="uppercase">feeds</label>
+						<div class="checkbox-ios-feed" style="margin-top:0px">
+								<input type="checkbox" value="None" id="allFeeds" name="check" ng-change="setAllFeed()" ng-model="isAllfeed" ng-true-value="'1'" ng-false-value="'0'"/>
+								<label for="allFeeds"></label>
+								<div class="for-inactive"></div>
+							</div>
+					</td>
+				</tr>
+			</thead>
+				<tbody id="tableBody">
+						<!-- <tr ng-repeat="campaign in listCampaignsAll.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:{title: searchName} | filter: {type: searchType} | filter: {status: searchStatus} | filter:{ is_feed: 0 }" > -->
+						<tr ng-repeat="campaign in listCampaignsAll" >
+							<td>
+								<label>{{campaign.title}}</label>
+							</td>
+							<td>
+								<i ng-if="campaign.type === 'magazine'" class="fa fa-print"></i>
+								<i ng-if="campaign.type === 'video'" class="fa fa-video-camera"></i>
+								<i ng-if="campaign.type === 'image'" class="fa fa-picture-o"></i>
+								<label>{{campaign.type}}</label>
+							</td>
+							<td>
+								<label>{{campaign.created_at}}</label>
+							</td>
+							<!-- <td>
+								<label>{{campaign.no_triggers}}</label>
+							</td> -->
+							<td>
+								<div class="checkbox-ios-feed" style="margin-top:0px">
+		                <input type="checkbox" value="None" id="{{campaign.id}}" name="check" ng-model="campaign.is_feed" ng-true-value="'1'" ng-false-value="'0'"/>
+		                <label for="{{campaign.id}}"></label>
+		                <div class="for-inactive"></div>
+									</div>
+							</td>
+						</tr>
+				</tbody>
+		</table>
+		<!-- <div class="text-center">
+			<uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+		</div> -->
+	</div>
+</div>
+
+<div class="modal-footer">
+	<div class="submit-btn-group">
+		<div class="row">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-custom pull-left" ng-click="updateFeeds()" ng-class="{ 'loading' : isProcessing}">
+					<span ng-show="!isLoading"class="icon-text">Save</span>
+					<img ng-show="isLoading" src="/content/images/preloader2.gif"></img>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

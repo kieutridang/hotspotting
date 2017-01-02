@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12 chart-info">
+    <div class="wrapper">
+      <div class="chart-title">
+          <span class="icon">
+            <span class="icon-equalizer "></span>
+          </span>
+        <span class="text">My Top Product</span>
+      </div>
+      <div class="content">
+        <div class="wrapper">
+          <highchart config="chartActivityConfig"></highchart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12 chart-info">
+    <div class="wrapper">
+      <div class="chart-title">
+          <span class="icon">
+            <span class="icon-rocket"></span>
+          </span>
+        <span class="text">My Campaigns</span>
+      </div>
+      <div class="content">
+        <div class="wrapper">
+          <highchart config="chartMyCampaignConfig"></highchart>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12 chart-info">
+    <div class="wrapper">
+      <div class="chart-title">
+          <span class="icon">
+            <span class="icon-diamond "></span>
+          </span>
+        <span class="text">Most Recent</span>
+      </div>
+      <div class="content trigger-container">
+        <div class="wrapper">
+          <div ng-if="analytics.last_trigger_images.length > 0 ">
+            <img ng-src="{{analytics.last_trigger_images[0].trigger_image}}" class="img-responsive"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12 chart-info">
+    <div class="wrapper">
+      <div class="chart-title">
+          <span class="icon">
+            <span class="fa fa-clock-o"></span>
+          </span>
+        <span class="text">Total Revenue</span>
+      </div>
+      <div class="content">
+        <div class="wrapper">
+          <highchart config="chartMostActivityConfig"></highchart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

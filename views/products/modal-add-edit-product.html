@@ -1,0 +1,103 @@
+<div class="modal-content">
+  <form ng-submit="saveProduct(form)" name="form" novalidate>
+    <div class="modal-header">
+
+      <!-- <h1 class="modal-title" id="myModalLabel">{{product.id?'Edit':'Create'}} Product</h1> -->
+      <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-weight: 100;"></button>
+      <h3 class="modal-title medium-font" id="myModalLabel">Product Details</h1>
+    </div>
+    <div class="modal-body">
+      <div class="pd-edit-left col-sm-6">
+        <div class="form-group pd-edit-item">
+          <label for="input-BrandName">Product name</label>
+          <input placeholder="Product's title" class="form-control" name="title" id="inputBrandName" ng-model="product.title" ng-required="true" ng-disabled="viewOnly">
+          <span ng-show="form.$submitted && form.title.$invalid && form.title.$error.required" class="help-block">Please enter a product name.</span>
+        </div>
+        <div class="form-group pd-edit-item">
+          <label for="input-BrandName">Description</label>
+          <textarea class="form-control" rows="3" ng-model="product.desc" name="description" ng-required="true" ng-disabled="viewOnly"></textarea>
+          <span ng-show="form.$submitted && form.description.$invalid && form.description.$error.required" class="help-block">Please enter a description.</span>
+        </div>
+
+        <div class="pd-edit-haft">
+          <fieldset style="padding-left: 0px;" class="form-group pd-edit-item">
+            <label for="formGroupExampleInput">Price</label>
+            <input type="text" class="form-control product-price" name="price" id="formGroupExampleInput" ng-model="product.price" ng-required="true" ng-disabled="viewOnly">
+            <div>$</div>
+          </fieldset>
+          <div style="clear: both"></div>
+          <span ng-show="form.$submitted && form.price.$invalid && form.price.$error.required" class="help-block">Please enter a price.</span>
+        </div>
+        <fieldset class="form-group pd-edit-item">
+          <label for="formGroupExampleInput">Product URL</label>
+          <input type="text" name="url" class="form-control" id="formGroupExampleInput" placeholder="Product URL" ng-model="product.url" ng-required="true" ng-disabled="viewOnly">
+          <span ng-show="form.$submitted && form.url.$invalid && form.url.$error.required" class="help-block">Please enter a valid url.</span>
+        </fieldset>
+<!--               <fieldset style="padding: 0px" class="form-group pd-edit-item">
+        <label class="block-display" for="formGroupExampleInput">Status</label>
+          <div style="display:flex;">
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active" ng-model="product.status" ng-checked="true">
+              Active
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" ng-model="product.inactive">
+              Inactive
+            </label>
+          </div>
+        </fieldset> -->
+        <!-- <div class="checkbox-modal">
+          <div class="row clearfix">
+            <div class="col-sm-6">
+              <p class="capitalize">linked to campaign</p>
+              <div class="checkbox-ios">
+                <input type="checkbox" value="None" id="linkcampaign" name="check" checked />
+                <label for="linkcampaign"></label>
+                <div class="for-inactive"></div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <p class="capitalize">main product</p>
+              <div class="checkbox-ios">
+                <input type="checkbox" value="None" id="mainproduct" name="check" checked />
+                <label for="mainproduct"></label>
+                <div class="for-inactive"></div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="pd-edit-left col-sm-6">
+        <div class="image-modal-edit">
+          <span class="uploadImageProduct" ng-hide="viewOnly">
+            <i class="fa fa-cloud-upload "></i>
+          </span>
+          <input class="product-image" id="productImageModal" type="file" onchange="angular.element(this).scope().setFile(this)"accept="image/*"/>
+          <img class="pd-edit-image" ng-src="{{product.image_url || 'content/images/no_image.png'}}" height="300px"/>
+        </div>
+        <p class="font-13 txt-grey" ng-hide="viewOnly">Product photo should have min 640 x 480 px</p>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="form-group submit-btn-group pull-right">
+        <div class="btn-group btn-group-icon" role="group" ng-if="!viewOnly">
+          <button type="button" class="btn-cancel-modal" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+            <span>Cancel</span>
+          </button>
+          <button class="btn-save-modal" type="submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}" >
+            <span>{{product.id ? 'Save': 'Add'}}</span>
+          </button>
+
+        </div>
+
+        <div class="btn-group btn-group-icon" role="group" ng-if="viewOnly" ng-if="viewOnly">
+          <button type="button" class="btn-save-modal" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+            <span>OK</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

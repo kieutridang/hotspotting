@@ -1,0 +1,106 @@
+$ld-width : 84%;
+$ld-margin-botom : 24px;
+$ld-btn-red : #d13d2f;
+$ld-btn-blue-b : #3a5695;
+$ld-btn-blue : #177cb4;
+$ld-btn-blue-l : #177cb4;
+$ld-cyan : #29c5f6;
+$ld-black : #363636;
+$ld-grey: #e0e5e8;
+$ld-grey-white: #fafafa;
+$ld-text-menu-active : #ffffff;
+$ld-text-menu : #9b9b9b;
+$ld-text-white: #ffffff;
+$ld-btn-red-b: #fa4a4a;
+$tb-border: #e2e5e9;
+
+$color-blue: #135a78; // like bacground nav-bar
+$color-white: #fff;
+$color-active: #f37540; // like button
+$color-not-active: #a7b9c3;
+$color-normal: #9a9a9a; // like normal text
+$color-black: #363636;
+$color-bg: #f7f7f7; // like background
+$color-blue-transparent: #2b6b86; // like search on top
+$color-gray :#b8b8b8;
+
+$ld-orange: #f37640;
+$ld-blue: #01364c;
+
+$border-radius: 4px;
+$border-color : #e4e4e4;
+$zIndexPopup: 10000;
+$dark-blue : #33a1cd;
+$dark-blue2 : #2981a4;
+$border-gray: #f0f0f1;
+
+
+
+// hotspotting color
+$color-highlight: #1e2225;
+$color-highlight-faint: #e5f6fb;
+$color-highlight-dare: #1fb1de;
+$color-highlight-dare-v2: #008bc1;
+$color-highlight-dare-v3: #00a6da;
+$color-faint-v1: #e0f4fb;
+$color-dare-v1: #00528d;
+$color-gray-a: #e1e1e1;
+$color-text-default: #fff;
+$color-white: #fff;
+$color-active-default: #6fd0d9;
+$color-text-dash-a: #010101;
+$color-bg-c: #cccccc;
+
+
+
+@mixin animation($s,$style: null){
+  @if ($style == null){
+    $style: ease;
+  }
+
+  -webkit-transition: all $s ease;
+  -moz-transition: all $s ease;
+  -ms-transition: all $s ease;
+  transition: all $s ease;
+}
+
+
+@mixin border($b){
+  -webkit-border-radius: $b;
+  -moz-border-radius: $b;
+  -ms-border-radius: $b;
+  border-radius: $b;
+}
+
+@mixin corner-border($tl,$tr,$bl,$br){
+  -webkit-border-top-left-radius: $tl;
+  -moz-border-top-left-radius: $tl;
+  -ms-border-top-left-radius: $tl;
+  border-top-left-radius: $tl;
+  -webkit-border-top-right-radius: $tr;
+  -moz-border-top-right-radius: $tr;
+  -ms-border-top-right-radius: $tr;
+  border-top-right-radius: $tr;
+  -webkit-border-bottom-left-radius: $bl;
+  -moz-border-bottom-left-radius: $bl;
+  -ms-border-bottom-left-radius: $bl;
+  border-bottom-left-radius: $bl;
+  -webkit-border-bottom-right-radius: $br;
+  -moz-border-bottom-right-radius: $br;
+  -ms-border-bottom-right-radius: $br;
+  border-bottom-right-radius: $br;
+}
+
+@mixin buttonhover($url,$color){
+  .icon{ background: url($url) no-repeat right top; }
+    background: $color;
+    color: #fff;
+}
+
+@mixin no_show(){
+  background: transparent;
+  border: none;
+  &:focus{
+    border: none; outline: none;
+  }
+}

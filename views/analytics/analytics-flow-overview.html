@@ -1,0 +1,67 @@
+<div class="row m-bottom-20">
+	<div class="col-md-12 clearfix">
+		<div class="title-sub clearfix">
+		    Screen Flow Overview
+		</div>
+
+		<ul id="basic-chart-source" class="hidden">
+        <li>
+            {{mainFollowOverview.caption}}<br/>
+            {{mainFollowOverview.description}}
+            <ul>
+                <li ng-repeat="item in renderFollow" class="retired">
+                  <span class="count">{{item.count | number: 0}}%</span> <br/>
+                  <span class="name">{{item.name}}</span>
+                  <span class="dimensions hidden">{{item.dimensions}}</span>
+                  <span class="metrics hidden">{{item.metrics}}</span>
+                  <span class="conditions hidden">{{item.conditions}}</span>
+
+                  <ul ng-if="item.subSecond.length > 0">
+                      <li ng-repeat="itemSecond in item.subSecond">
+                          <span class="count">{{itemSecond.count | number: 0}}%</span> <br/>
+                          <span class="name">{{itemSecond.name}}</span>
+                          <span class="dimensions hidden">{{itemSecond.dimensions}}</span>
+                          <span class="metrics hidden">{{itemSecond.metrics}}</span>
+                          <span class="conditions hidden">{{itemSecond.conditions}}</span>
+
+                          <ul ng-if="itemSecond.subThird.length > 0">
+                              <li ng-repeat="itemThird in itemSecond.subThird">
+                                  <span class="count">{{itemThird.count | number: 0}}%</span> <br/>
+                                  <span class="name">{{itemThird.name}}</span>
+                                  <span class="dimensions hidden">{{itemThird.dimensions}}</span>
+                                  <span class="metrics hidden">{{itemThird.metrics}}</span>
+                                  <span class="conditions hidden">{{itemThird.conditions}}</span>
+
+                                  <ul ng-if="itemThird.subFour.length > 0">
+                                      <li ng-repeat="itemFour in itemThird.subFour">
+                                          <span class="count">{{itemFour.count | number: 0}}%</span> <br/>
+                                          <span class="name">{{itemFour.name}}</span>
+                                          <span class="dimensions hidden">{{itemFour.dimensions}}</span>
+                                          <span class="metrics hidden">{{itemFour.metrics}}</span>
+                                          <span class="conditions hidden">{{itemFour.conditions}}</span>
+
+                                          <ul ng-if="itemFour.subFive.length > 0">
+                                              <li ng-repeat="itemFive in itemFour.subFive">
+                                                  <span class="count">{{itemFive.count | number: 0}}%</span> <br/>
+                                                  <span class="name">{{itemFive.name}}</span>
+                                                  <span class="dimensions hidden">{{itemFive.dimensions}}</span>
+                                                  <span class="metrics hidden">{{itemFive.metrics}}</span>
+                                                  <span class="conditions hidden">{{itemFive.conditions}}</span>
+                                              </li>
+                                          </ul>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>        
+                      </li>
+                  </ul>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="chart">
+    </div>
+	</div>
+
+</div>

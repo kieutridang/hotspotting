@@ -1,0 +1,37 @@
+<div class="row m-bottom-20">
+	<div class="col-md-12 clearfix">
+		<div class="title-sub clearfix">
+			<div class="pull-left">
+		        Total Occurrences
+		    </div>
+		    <div class="pull-right">
+			    <button class="btn btn-success" ng-click="exportToCSVFile()" ng-disabled="!occurrences || occurrences.length==0">Export to CSV file</a>
+	        </div>
+		</div>
+		<div class="tmpl-no-data" ng-show="!occurrences || occurrences.length==0">
+		    No data for occurrences.
+		</div>
+	</div>
+	<div class="clearfix" ng-hide="!occurrences || occurrences.length==0">
+	  <div class="col-md-12">
+	        <table class="table table-bordered"> 
+	            <tr>
+	              <th>Screen</th>
+	              <th>Count</th>
+	              <th>%</th>
+	            <tr>
+	            <tr ng-repeat="occ in newOccurrences">
+	              <td>
+	                {{occ.event_name}}
+	              </td>
+	              <td>
+	                {{occ.occurrences}}
+	              </td>
+	              <td>
+	                  {{occ.percent | number:2}}%
+	              </td>
+	            </tr>
+	        </table>
+	  </div>
+	</div>
+</div>

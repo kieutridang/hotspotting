@@ -1,0 +1,174 @@
+// TODO: change darker grey
+$grey-border: #eee;
+$height-box: 456px;
+
+.vis-delete {
+  background: url("/content/images/delete.png") no-repeat center !important;
+}
+
+.grey-box {
+	width: 30%;
+	height: $height-box;
+	display: inline-block;
+	vertical-align: top;
+	border: 10px solid $grey-border;
+	border-radius: 5px;
+	margin-bottom: 15px;
+
+	h3 {
+		background-color: $grey-border;
+		margin: 0;
+		padding: 10px 0;
+	}
+
+	.help {
+		background-image: url(../images/faqs.png);
+		display: inline-block;
+		float: right;
+		height: 18px;
+		width: 18px;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: center 0;
+		cursor: pointer;
+	}
+
+	.inner-box {
+		padding: 10px 20px;
+	}
+}
+
+.campaign-detail {
+	margin-right: 15px;
+
+	.input-group {
+		margin-bottom: 15px;
+	}
+
+	input.form-control[type=text] {
+		border-radius: 8px;
+	}
+
+	label.error {
+		padding-top: 10px;
+		display: block;
+	}
+}
+
+.trigger-box {
+	* {
+		box-sizing: border-box;
+	}
+
+	width: 40%;
+
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+
+	.inner-box {
+		padding: 0;
+		margin: 0;
+	}
+
+	.item {
+		width: 32.7%;
+		height: 130px;
+		display: inline-block;
+		border-right: 1px solid $grey-border;
+		border-bottom: 1px solid $grey-border;
+		margin: 0;
+		padding: 20px;
+
+		.thumb {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+			background-repeat: no-repeat;
+			background-size: contain;
+			// TODO: demo image -> remove me
+			background-image: url(../images/gender_icon_male.png);
+		}
+
+		.btn-del {
+			background-image: url(../images/bin@2x.png);
+			display: inline-block;
+			float: right;
+			height: 32px;
+			width: 32px;
+			background-size: cover;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+		}
+
+		.btn-group-addtrigger {
+			width: 100%;
+			height: 100%;
+
+			button.dropdown-toggle {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.wrapper {
+			height: 100%;
+		}
+
+
+		.thumbnail {
+			&.keyword-trigger {
+				display: table;
+				width: 100%;
+				height: 100%;
+			}
+
+			&.image-trigger, &.keyword-trigger {
+				border: none;
+				box-shadow: none;
+				overflow: hidden;
+				text-decoration: none;
+
+				.btn-del {
+					top: 10px;
+					right: 10px;
+				}
+			}
+
+			&:hover {
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+				-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+				transition: all .2s ease-in-out;
+			}
+
+			> img, .a > img {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			&.keyword-trigger span.text {
+				display: table-cell;
+				vertical-align: middle;
+				height: 100%;
+				text-align: center;
+				background-color: #eee;
+				text-align: center;
+			}
+		}
+
+		img.trigger-thumbnail {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+.form-group {
+	margin-top: 15px;
+}

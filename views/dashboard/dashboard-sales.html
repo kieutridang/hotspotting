@@ -1,0 +1,274 @@
+<div class="dashboard-content-sales" ng-show="isScans !== true">
+    <div class="charts-container">
+        <div class="row clearfix line-chart-group">
+            <div class="col-sm-12">
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_total_revenue | kmNumber:0:'$' }}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="totalRevenues"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_total_revenue >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_total_revenue | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_total_revenue >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Total Revenue</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_transactions | kmNumber:1 }}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="transactions"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_transactions >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_transactions | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_transactions >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Transaction</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_avg_revenue_per_sale | kmNumber:2:'$' }}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="avgRevenuePerSale"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_avg_revenue_per_sale >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_avg_revenue_per_sale | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_avg_revenue_per_sale >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">AVG REVENUE / SALE</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_sales_vs_scans}}%</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="saleAndScans"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_sales_vs_scans >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_sales_vs_scans | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_sales_vs_scans >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Sales vs Scans</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="settingSales.totalRevenue">
+        <div class="col-sm-12">
+            <div class="chart-container">
+                <div ng-if="isLoading === false">
+                    <highchart config="totalRevenuesChart"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="settingSales.conversion">
+        <div class="col-sm-12">
+            <div class="chart-container">
+                <div ng-if="isLoading === false">
+                    <highchart config="conversionChart"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6" ng-show="settingSales.daytimeSales">
+            <div class="chart-container">
+                <div ng-if="isLoading === false">
+                    <highchart config="daytimesSalesChart"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6" ng-show="settingSales.daytimeTransactions">
+            <div class="chart-container">
+                <div ng-if="isLoading === false">
+                    <highchart config="daytimesTransactionsChart"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="settingSales.demographic">
+        <div class="col-sm-12">
+            <div class="chart-container">
+                <div class="row" ng-if="isLoading === false">
+                    <highchart class="col-sm-3" config="ageSalePie"></highchart>
+                    <highchart class="col-sm-3" config="genderSalePie"></highchart>
+                    <highchart class="col-sm-3" config="countrySalePie"></highchart>
+                    <highchart class="col-sm-3" config="deviceSalePie"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="settingSales.topProducts">
+        <div class="col-sm-12" >
+            <div class="chart-container">
+                <div class="box-dashboard-main" ng-if="isLoading === false">
+                    <div class="clearfix">
+                        <h4 class="title-dash-board-main medium-font uppercase pull-left">top products</h4>
+                    </div>
+                    <div class="list-top-products clearfix" ng-show="isLoading === false">
+                        <div class="widget-top-products" ng-repeat="product in topProducts">
+                            <div class="box-top-products">
+                                <div class="frame-top-products" style="background-image:url({{product.product_image}})"></div>
+                                <p class="name-top-product font-11 capitalize">
+                                    {{product.product_title}}
+                                </p>
+                            </div>
+                            <div class="clearfix">
+                                <span class="medium-font font-13">{{product.no_sales}}</span>
+                                <span class="medium-font font-13 pull-right"
+                                      ng-class="product.growth_percent >= 0 ? 'increase' : 'decrease'"
+                                      ng-show="product.growth_percent !== 0">{{product.growth_percent}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

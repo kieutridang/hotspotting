@@ -1,0 +1,130 @@
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <h1 class="heading-title">Upload videos</h1>
+
+  <div class="page-intro">
+    <p>Click on the account that you want to work with. </p>
+  </div>
+
+  <div class="add-account-v1">
+    <div class="row row-gutter-10">
+      <div class="col-md-5">
+        <div class="media-asset-box grey-box">
+          <div class="btns clearfix">
+            <a class="image-assets btn " ng-class="{'active': typeCampaign==1}" ui-sref="app.campaign({brandId: brandId, type: 1})">
+                <div>
+                    <icon></icon>
+                    <text>Image<br/>assets</text>
+                </div>
+            </a>
+            <a class="print-assets btn">
+                <div>
+                    <icon></icon>
+                    <text>Print<br/>assets</text>
+                </div>
+                
+            </a>
+            <a class="video-assets btn last " ng-class="{'active': typeCampaign==2}" ui-sref="app.campaignVideo({brandId: brandId, type: 2})">
+                <div>
+                    <icon></icon>
+                    <text>Video<br/>assets</text>
+                </div>
+            </a>
+          </div>
+
+          <div class="campaign-info">
+            Campaigns <span class="label label-default">{{campaignList.length}}</span>
+            <span ng-if="totalTriggers == 0">No.of Triggers</span>
+            <span ng-if="totalTriggers > 0">{{totalTriggers}} Trigger<e ng-hide="totalTriggers == 1">s</e></span>
+          </div>
+
+          <div class="new-image-campaign" ui-sref="app.campaignAddVideo({brandId: brandId})">
+            New Video Campaign
+            <span class="btn-add glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          </div>
+          <div class="campaign-wrapper">
+            <div id="tableHead">
+              <table class="table" id="tHead">
+                  <colgroup>
+                      <col class="colOne"></col>
+                      <col class="colTwo"></col>
+                      <col class="colThree"></col>
+                  </colgroup>
+                  <th>Name</th>
+                  <th class="text-center">Total</th>
+                  <th class="text-center">Action</th>
+              </table>
+            </div>
+          <div id="tableBodyScroll">
+              <table class="table" id="tableBody">
+                  <colgroup>
+                    <col class="colOne"></col>
+                    <col class="colTwo"></col>
+                    <col class="colThree"></col>
+                  </colgroup>
+                  <tbody>
+                    <tr ng-repeat="c in campaignList" ng-class="{active: currentCampaign.id == c.id}" ng-click="onSelectCampaign(c)">
+                      <td>
+                        {{c.title}}
+                      </td>
+                      <td class="text-center">
+                        <span class="label label-primary">{{c.no_triggers}}</span>
+                      </td>
+                      <td class="text-center">
+                        <a class="edit display-ib" ng-click="confirmDeleteProduct(product)">
+                          <span class="icon-delete"></span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- media-asset-box -->
+      <div class="col-md-7">
+        <div class="trigger-box-item grey-box">
+           <input type="file" id="uploadHelper" class="ng-hide" onchange="angular.element(this).scope().setFile(this)"
+                   accept="image/*">
+          <ul  >
+            <li ng-repeat="t in triggerList">
+              <div class="item">
+                <span class="title clearfix">
+                  {{t.type}} 
+                  <span class="pull-right">
+                    <a class="delete edit display-ib" ng-click="confirmDeleteTrigger(t)">
+                      <span class="icon-delete"></span>
+                    </a>
+                  </span>
+                </span>
+                <div class="thumb" style="background-image: url({{t.image_url}})" ng-if="t.type == 'image'"></div>
+                <span class="thumb keyword" ng-if="t.type == 'keyword'">{{t.content}}</span>
+                <div class="link clearfix">
+                  <a href="{{t.url}}" target="_blank"><span class="truncate">{{t.url}}<span></a>
+                </div>
+
+                <span class="status">
+                  <span class="pull-left">Status:</span><span class="label label-default pull-left" ng-class="t.status"></span>
+                  <span class="btn pull-right" ng-click="editTrigger(t)">Edit</span>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- trigger-box-item -->
+    </div>
+    <div class="hidden">
+         <div class="form-group">
+            <button type="button" class="btn btn-custom-v1" data-toggle="modal" data-target="#modalAccount">
+                 <span class="icon-change-v1"></span>
+                 <span class="icon-text">Add Account</span>
+            </button>
+          </div>
+    </div>
+  </div>
+
+
+</div>

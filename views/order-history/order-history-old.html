@@ -1,0 +1,120 @@
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a ui-sref="home.orderHistory" class="active">Orders History</a>
+    </li>
+  </ul>
+</div>
+<!-- END PAGE HEADER-->
+<h3 class="page-title">Orders History </h3>
+<!-- Section Top Buttons -->
+<div class="orders-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!--     <div data-ng-include="'views/dashboard/dashboard-section-summary.html' "></div> -->
+
+        <div class="wrapper-col">
+          <div class="p-top clearfix">
+
+            <div class="clearfix row order-filter">
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>From Date</label>
+                <input date-range-picker="" name="daterange6" id="daterange6" class="form-control date-picker ng-pristine ng-valid ng-isolate-scope ng-touched" type="text" ng-model="fromDate" value="" options="{singleDatePicker: true}" required="">
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>To Date</label>
+                <input date-range-picker="" name="daterange6" id="daterange6" class="form-control date-picker ng-pristine ng-valid ng-isolate-scope ng-touched" type="text" ng-model="toDate" options="{singleDatePicker: true}" required="">
+              </div>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="display-block">&nbsp;</label>
+                <div class="btn-group btn-group-icon pull-left" role="group" ng-click="searchOrder()" >
+                  <span class="icon btn">
+                    <span class="glyphicon glyphicon-search "></span>
+                  </span>
+                  <div class="btn text">
+                    Search
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="main-page">
+              <div id="tableHead">
+                <table class="table" id="tHead">
+                  <colgroup>
+                    <col class="colOne"></col>
+                    <col class="colTwo"></col>
+                    <col class="colThree"></col>
+                    <col class="colFourth"></col>
+                    <col class="colFive"></col>
+                    <col class="colSix"></col>
+                  </colgroup>
+                  <th>Phone OS</th>
+                  <th>
+                    Phone Type
+                  </th>
+                  <th>
+                    Total Amount
+                  </th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </table>
+              </div>
+              <div id="tableBodyScroll">
+                <table class="table" id="tableBody">
+                  <colgroup>
+                    <col class="colOne"></col>
+                    <col class="colTwo"></col>
+                    <col class="colThree"></col>
+                    <col class="colFourth"></col>
+                    <col class="colFive"></col>
+                    <col class="colSix"></col>
+                  </colgroup>
+                  <tr ng-repeat="pd in pOrders | orderBy:predicate:reverse" ng-class="{'selected': pd.selected}">
+                    <td>
+                      {{pd.phone_os}}
+                    </td>
+                    <td>
+                      {{pd.phone_type}}
+                    </td>
+                    <td>
+                      <div class="price">{{pd.currency}} {{pd.total_amount}}</div>
+                    </td>
+                    <td>
+                      {{pd.status}}
+                    </td>
+                    <td>
+                      {{pd.created_at}} {{updated_at}}
+                    </td>
+                    <td>
+                      <a ng-click="getDetailOrder(pd)">Details</a>
+                    </td>
+                  </tr>
+                  <tr ng-if="!loadingOpts.isLoading  && pOrders.length == 0">
+                    <td class="text-center" col-span="5">
+                      No item in order list.
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

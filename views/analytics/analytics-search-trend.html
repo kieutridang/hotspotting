@@ -1,0 +1,15 @@
+
+<div class="col-md-6 col-xs-12">
+	<div class="portlet light bordered radius no-margin" >
+		<div class="title-sub">
+			Search Trend
+		</div>
+		<div class="container-analytics" >
+			<highchart id="chartTrends" config="chartTrendsConfig"  height="400" ng-if="analytics.trends.length > 0"></highchart>
+			 <div class="tmpl-no-data" ng-hide="analytics.trends && analytics.trends.length > 0">
+		     No data for search trend.
+		    </div>
+		</div>
+	</div>
+</div>
+

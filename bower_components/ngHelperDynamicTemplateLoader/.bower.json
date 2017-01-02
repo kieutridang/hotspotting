@@ -1,0 +1,41 @@
+{
+  "name": "ngHelperDynamicTemplateLoader",
+  "main": [
+    "ngHelperDynamicTemplateLoader.js",
+    "ngHelperDynamicTemplateLoaderCachingStrategies.js"
+  ],
+  "version": "0.1.3",
+  "homepage": "https://github.com/ngHelper/ngHelperDynamicTemplateLoader",
+  "authors": [
+    "dei79 <dirk.eisenberg@gmail.com>"
+  ],
+  "description": "This simples allows to apply different startegies ot load templates without caching.",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "template",
+    "service",
+    "interceptor",
+    "caching"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2 <1.4"
+  },
+  "_release": "0.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.3",
+    "commit": "5f9c05ea911dc9ad8f43593589cca7d47daf791c"
+  },
+  "_source": "https://github.com/ngHelper/ngHelperDynamicTemplateLoader.git",
+  "_target": "~0.1.3",
+  "_originalSource": "ng-helper-dynamic-template-loader"
+}

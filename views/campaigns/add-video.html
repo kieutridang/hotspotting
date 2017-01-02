@@ -1,0 +1,170 @@
+<div class="margazine-ingestor-page">
+<!--   <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a ui-sref="home.dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a ui-sref="home.accounts" class="">Create Campaigns</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a class="active" >Video Ingestor</a>
+      </li>
+    </ul>
+  </div> -->
+
+  <h3 class="page-title ">Video Ingestor</h3>
+
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 add-video-page">
+		<div class="wrapper-col">
+			<form name="addVideoCampaignForm" role="form" novalidate nv-file-drop="" uploader="uploader">
+				<div class="left-col">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Choose Account</label>
+
+							<div class="btn-group btn-group-custom-v1" uib-dropdown>
+								<button type="button" class="btn col-md-12" uib-dropdown-toggle>
+									{{brandSel.name}}  <span class="glyphicon glyphicon-chevron-down"></span>
+								</button>
+								<ul uib-dropdown-menu role="menu" class="dropdown-menu-v1">
+									<li role="menuitem" ng-repeat="brand in brands" ng-click="selectBrand(brand)">
+										<a>{{brand.name}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="form-group col-md-6 length-video" ng-class="{ 'has-error':  ( addVideoCampaignForm.$submitted || addVideoCampaignForm.videoName.$touched ) && addVideoCampaignForm.videoName.$invalid  }">
+							<label>Video name</label>
+							<input type="text" class="form-control" ng-model="campaignModel.title" name="videoName" placeholder="Video Name" ng-required="true">
+							<span ng-show="(addVideoCampaignForm.$submitted || addVideoCampaignForm.videoName.$touched ) && addVideoCampaignForm.videoName.$invalid && addVideoCampaignForm.videoName.$error.required" class="help-block">Please enter a video name.</span>
+						</div>
+					</div>
+					<div class="form-group label-status clearfix" >
+						<label class="title" ng-if="isProcessing || errorStatus">Status legend:</label>
+						<ul>
+							<li ng-if="errorStatus && !isProcessing">
+								<span class="label label-danger">
+									<i class="fa fa-times"></i> Cannot be trained
+								</span>
+							</li>
+							<li ng-if="uploadFileItem.progress <= 100 && isProcessing">
+								<span class="label label-primary">
+									<i class="fa fa-circle"></i> Training in progress
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-md-12" ng-class="{ 'has-error':  addVideoCampaignForm.$submitted  && !uploadFileItem }">
+							<div class="content-second">
+								<div class="drop-zone" nv-file-over="" uploader="uploader">
+									<div class="add-file add-video">
+										<div class="add-file-content">
+											<label class="">
+												<div class="add-button">
+													<div class="wrapper-button">
+														<span class="icon-plus icons"></span>
+													</div>
+													<div class="wrapper-bg"></div>
+												</div>
+
+												<input id="media-file" class="hide" type="file" nv-file-select="" name="content" uploader="uploader" accept="video/mp4,video/x-m4v,video/*" />
+											</label>
+											<p>Click <span class="icon-plus icons"></span> to add new video ingestor.</p>
+
+											<div class="file-name" ng-bind="uploadFileItem.file.name" title="{{uploadFileItem.file.name}}"></div>
+											<div class="progress-upload" ng-show="uploadFileItem.progress > 0">
+												<div class="progress">
+													<div class="progress-bar progress-bar-info progress-bar-striped" ng-class="{'progress-bar-success' : uploadFileItem.progress == 100}" role="progressbar" aria-valuenow="{{progressPercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadFileItem.progress}}%;">
+														<span ng-if="uploadFileItem.progress < 100">Uploading... {{uploadFileItem.progress}}%</span>
+														<span ng-if="uploadFileItem.progress == 100">Processing.....</span>
+													</div>
+												</div>
+											</div>
+											<div class="note">
+												<p ng-class="{'error': errorSize}">
+													Maximum Filesize: <br/>
+													<span>250Mb</span>
+												</p>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="board-video">
+									<img  src="/content/images/board-video.png" />
+								</div>
+							</div>
+							<span ng-show="addVideoCampaignForm.$submitted  && !uploadFileItem " class="help-block">Please select a file video.</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-class="{ 'has-error':  (addVideoCampaignForm.$submitted || addVideoCampaignForm.campaignUrl.$touched ) && addVideoCampaignForm.campaignUrl.$invalid  }">
+							<div class="form-group">
+								<label>Main Video URL</label>
+								<input type="url" name="campaignUrl" ng-model="campaignModel.url" placeholder="Campaign URL" class="form-control"
+									   ng-blur="changeFrameUrl(campaignModel.url)" ng-required="true">
+								<span ng-show="(addVideoCampaignForm.$submitted || addVideoCampaignForm.campaignUrl.$touched ) && addVideoCampaignForm.campaignUrl.$invalid && addVideoCampaignForm.campaignUrl.$error.required" class="help-block">Please enter a url.</span>
+								<span ng-show="(addVideoCampaignForm.$submitted || addVideoCampaignForm.campaignUrl.$touched ) && addVideoCampaignForm.campaignUrl.$invalid && addVideoCampaignForm.campaignUrl.$error.url" class="help-block">Please enter a valid url.</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+							<div class="form-group">
+                <div class="btn-group btn-group-icon" role="group" ng-disabled="isProcessing" ng-click="createVideoCampaign(addVideoCampaignForm)">
+                  <span class="icon btn">
+                    <span class="fa fa-check-circle-o"></span>
+                  </span>
+                  <button class="btn text" type="submit" ng-class="{ 'loading' : isProcessing}">
+                    Submit
+                  </button>
+                </div>
+
+              </div>
+						</div>
+					</div>
+
+				</div>
+				<!-- <div class="right-col">
+					<div class="w-phone">
+						<div class="phone-list-item">
+							<iframe ng-src="{{trustSrc(campaignModel.url)}}" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+						</div>
+					</div>
+					<div class="phone-status">
+						<label class="title">Timeline legend:</label>
+						<ul>
+							<li>
+								<span class="label label-first">
+									<i class="fa fa-square"></i> Frame selection
+								</span>
+							</li>
+							<li>
+								<span class="label label-second">
+									<i class="fa fa-square"></i> Frame trained successfull
+								</span>
+							</li>
+							<li>
+								<span class="label label-third">
+									<i class="fa fa-square-o"></i> Unselected (trigger main url)
+								</span>
+							</li>
+						</ul>
+						<hr />
+						<div class="note-footer">
+							<i class="fa fa-arrow-left"></i><i class="fa fa-arrow-right"></i> Navigate frame by frame with arrow keys
+						</div>
+					</div>
+
+				</div> -->
+			</form>
+		</div>
+	</div>
+</div>
+</div>

@@ -1,0 +1,144 @@
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a ui-sref="home.products" class="active">User Profile</a>
+    </li>
+  </ul>
+</div>
+<!-- END PAGE HEADER-->
+<h3 class="page-title">User Profile</h3>
+
+<div class="page-profile">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="content ">
+          <div class="media name-info">
+            <div class="media-left">
+              <label class="">
+                <img class="media-object user-avatar img-circle" ng-src="{{userInfo.profile_picture || 'content/images/icon-user.png'}}" alt="..." height="90">
+
+              </label>
+            </div>
+            <div class="media-body media-middle" ng-show="!isEditUserInfo">
+              <h4 class="media-heading">
+                <span>{{userInfo.first_name}}</span> <span>{{userInfo.last_name}}</span>
+								<span class="cirle-bg " style="position: relative">
+									<i class="fa fa-pencil"></i>
+									<input class="profile-image " type="file" ng-model="userInfo.profile_picture" ng-change="imageChanged()" profile="userInfo"
+                         style="position: absolute; top: 0; left: 0; right:0; bottom: 0; opacity: 0"/>
+								</span>
+              </h4>
+              <p><span>{{userInfo.company}}</span>
+              <p>
+            </div>
+          </div>
+          <div class="edit-user-info" ng-show="isEditUserInfo">
+            <form name="updateNameForm" class="form-horizontal form-special" role="form" novalidate ng-submit="updateName(updateNameForm)">
+              <div class="modal-body">
+                <label class="title">Name:</label>
+                <div class="form-group" ng-class="{ 'has-error':  ( updateNameForm.$submitted || updateNameForm.firstName.$touched ) && updateNameForm.firstName.$invalid  }">
+                  <label class="col-sm-3 control-label">First Name:</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="editUserInfo.first_name" name="firstName" ng-required="true">
+                    <span ng-show="(updateNameForm.$submitted || updateNameForm.firstName.$touched ) && updateNameForm.firstName.$invalid && updateNameForm.firstName.$error.required" class="help-block">Please enter first name.</span>
+                  </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error':  ( updateNameForm.$submitted || updateNameForm.lastName.$touched ) && updateNameForm.lastName.$invalid  }">
+                  <label class="col-sm-3 control-label">Last Name:</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="editUserInfo.last_name" name="lastName" ng-required="true">
+                    <span ng-show="(updateNameForm.$submitted || updateNameForm.lastName.$touched ) && updateNameForm.lastName.$invalid && updateNameForm.lastName.$error.required" class="help-block">Please enter last name.</span>
+                  </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error':  ( updateNameForm.$submitted || updateNameForm.companyName.$touched ) && updateNameForm.companyName.$invalid  }">
+                  <label class="col-sm-3 control-label">Company:</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="editUserInfo.company" name="companyName" ng-required="true">
+                    <span ng-show="(updateNameForm.$submitted || updateNameForm.companyName.$touched ) && updateNameForm.companyName.$invalid && updateNameForm.companyName.$error.required" class="help-block">Please enter company.</span>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="modal-footer">
+                <div class="btn-group btn-group-icon pull-left" role="group" >
+            <span class="icon btn">
+              <span class="fa fa-check-circle-o"></span>
+            </span>
+                  <button class="btn text" type="submit" ng-disabled="isProcessing2" ng-class="{ 'loading' : isProcessing2}">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <div class="other-info">
+            <form name="updateUserForm" class="form-horizontal form-special" role="form" novalidate ng-submit="updateProfile(updateUserForm)">
+              <div class="modal-body">
+                <label class="title">Basic infomation:</label>
+                <div class="form-group" ng-class="{ 'has-error':  ( updateUserForm.$submitted || updateUserForm.address.$touched ) && updateUserForm.address.$invalid  }">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Address:</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="userInfo.address" name="address" ng-required="true">
+                    <span ng-show="(updateUserForm.$submitted || updateUserForm.address.$touched ) && updateUserForm.address.$invalid && updateUserForm.address.$error.required" class="help-block">Please enter address.</span>
+                  </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error':  ( updateUserForm.$submitted || updateUserForm.phoneNumber.$touched ) && updateUserForm.phoneNumber.$invalid  }">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Phone:</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="userInfo.phone_number" name="phoneNumber" ng-required="true">
+                    <span ng-show="(updateUserForm.$submitted || updateUserForm.phoneNumber.$touched ) && updateUserForm.phoneNumber.$invalid && updateUserForm.phoneNumber.$error.required" class="help-block">Please enter phone number.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Email:</label>
+                  <div class="col-sm-7">
+                    <input type="email" class="form-control" ng-model="userInfo.email" disabled>
+                  </div>
+                </div>
+                <label class="title">Password:</label>
+
+
+                <div class="form-group" ng-class="{ 'has-error':  ( updateUserForm.$submitted || updateUserForm.oldPassword.$touched ) && updateUserForm.oldPassword.$invalid  }">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Current Password:</label>
+                  <div class="col-sm-7">
+                    <input type="password" class="form-control" ng-model="userInfo.old_password" name="oldPassword" ng-required="true">
+                    <span ng-show="(updateUserForm.$submitted || updateUserForm.oldPassword.$touched ) && updateUserForm.oldPassword.$invalid && updateUserForm.oldPassword.$error.required" class="help-block">Please enter old password.</span>
+                  </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error':  ( updateUserForm.$submitted || updateUserForm.newPassword.$touched ) && updateUserForm.newPassword.$invalid  }">
+                  <label for="inputEmail3" class="col-sm-3 control-label">New password:</label>
+                  <div class="col-sm-7">
+                    <input type="password" class="form-control" ng-model="userInfo.new_password" name="newPassword" ng-required="true" ng-minlength="8">
+                    <span ng-show="(updateUserForm.$submitted || updateUserForm.newPassword.$touched ) && updateUserForm.newPassword.$invalid && updateUserForm.newPassword.$error.required" class="help-block">Please enter new password.</span>
+                    <span ng-show="(updateUserForm.$submitted || updateUserForm.newPassword.$touched ) && updateUserForm.newPassword.$invalid && updateUserForm.newPassword.$error.minlength" class="help-block">The new password must be at least 8 characters.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="btn-group btn-group-icon pull-left" role="group">
+            <span class="icon btn">
+              <span class="fa fa-check-circle-o"></span>
+            </span>
+                  <button class="btn text" type="submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}">
+                    Submit
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

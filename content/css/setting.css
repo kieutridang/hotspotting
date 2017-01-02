@@ -1,0 +1,69 @@
+.page-profile .name-info {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee; }
+  .page-profile .name-info .media-heading {
+    font-size: 25px; }
+    .page-profile .name-info .media-heading .cirle-bg {
+      background: #8f989e;
+      color: #fff;
+      display: inline-block;
+      border-radius: 50%;
+      width: 32px;
+      height: 30px;
+      text-align: center;
+      cursor: pointer; }
+      .page-profile .name-info .media-heading .cirle-bg i {
+        font-size: 20px;
+        margin-top: -2px; }
+  .page-profile .name-info p {
+    font-size: 18px;
+    color: #8f989e; }
+
+.form-special .control-label {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  color: #888; }
+.form-special .title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: 500; }
+.form-special .form-control {
+  height: 44px;
+  font-size: 16px; }
+
+.btn-custom-v1 {
+  min-height: 44px; }
+  .btn-custom-v1 .icon-save {
+    background-image: url(../images/ic_save.png);
+    height: 23px;
+    width: 21px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+    margin: auto;
+    margin-right: 5px; }
+
+.advanced-globe .m2s-globe-land-top {
+  fill: #8BC34A;
+  stroke-width: 0.5;
+  stroke: #FFF; }
+.advanced-globe .m2s-globe-water {
+  fill: #0277BD; }
+.advanced-globe .m2s-globe-points.nicePlaces {
+  fill: #FF9800; }
+.advanced-globe .m2s-globe-points.uglyPlaces {
+  fill: #757575; }
+.advanced-globe .m2s-globe-points.aliens {
+  fill: #9C27B0;
+  stroke-width: 3px;
+  stroke: #D81B60; }
+.advanced-globe .m2s-globe-points#ultraId-1 {
+  fill: #009688;
+  stroke: #009688;
+  stroke-width: 30; }
+
+/*# sourceMappingURL=setting.css.map */

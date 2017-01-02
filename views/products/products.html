@@ -1,0 +1,230 @@
+<!-- END PAGE HEADER-->
+<h3 class="page-title"> Manage Products </h3>
+<div class="products-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="wrapper-col">
+                    <div class="p-top clearfix">
+
+                        <!-- <div class="clearfix row product-filter">
+                          <div class="col-sm-12" ng-show="campaigns.length > 0">
+                            <label>Choose Campaign</label>
+                            <div class="btn-group btn-group-custom-v1" uib-dropdown>
+                              <button id="btn-append-to-body" type="button" class="btn" uib-dropdown-toggle>
+                                {{campaignSel.title}} <span class="glyphicon glyphicon-chevron-down"></span>
+                              </button>
+                              <ul uib-dropdown-menu role="menu" class="dropdown-menu-v1">
+                                <li role="menuitem" ng-click="selectCampaign(campaign);" ng-repeat="campaign in campaigns"><a>{{campaign.title}}</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                        </div> -->
+                        <div class="main-page">
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <!-- <div class="">
+                                      <div class="btn-group btn-group-icon" role="group" ng-click="createProduct()">
+                                      <span class="icon btn">
+                                         <span class="icon-social-dropbox"></span>
+                                      </span>
+                                        <span class="text btn">Add Product</span>
+                                      </div>
+                                    </div> -->
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="font-13 margin-0 line-h-30 medium-font text-right">6,038,461 products</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="search-product-img-link">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <input type="text" placeholder="Type in name to search"
+                                                       ng-model="searchTitleProduct" ng-change="searchProductCMS()"/>
+                                                <i class="fa fa-search"></i>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input type="text" placeholder="Type in branch to search"
+                                                       ng-model="searchBrand" ng-change="searchProductCMS()"/>
+                                                <i class="fa fa-search"></i>
+                                            </div>
+                                        </div>
+                                        <div class="widget-list-products"
+                                             ng-class="{'block':searchTitleProduct.length > 2}" id="productCMSScroll">
+                                            <ul>
+                                                <li class="clearfix" ng-repeat="product in productsCMS">
+                                                    <div class="photo-product-amazon photo-center pull-left"
+                                                         style="background-image:url({{product.image || product.medium_image}})"></div>
+                                                    <div class="name-product-amazon capitalize">
+                                                        <p class="margin-0">{{product.name}}</p>
+                                                        <p class="margin-0 medium-font font-13">{{product.category[0] ||
+                                                            ''}}</p>
+                                                        <p class="margin-0 medium-font font-13">{{product.price_min}}
+                                                            <span>{{product.currency}}</span></p>
+                                                    </div>
+                                                    <span class="btn-add-product-amazon" ng-if="!product.isLoading"
+                                                          ng-click="createProductFromCMS(product)">Add</span>
+                                                    <span class="btn-add-product-amazon" ng-if="product.isLoading"><img
+                                                        src="/content/images/preloader2.gif"/></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tableHead">
+                                <table class="table" id="tHead">
+                                    <colgroup>
+                                        <col class="colOne"></col>
+                                        <col class="colTwo"></col>
+                                        <col class="colThree"></col>
+                                        <col class="colFourth"></col>
+                                        <col class="colFive"></col>
+                                        <!-- <col class="colSix"></col> -->
+                                    </colgroup>
+
+                                    <th class="text-center">
+                                        <div class="checkbox-custom">
+                                            <input ng-model="isCheckedAllItems" type="checkbox"
+                                                   ng-change="toogleCheckAll()">
+                                            <label></label>
+                                        </div>
+                                    </th>
+                                    <th class="text-center">Thumb</th>
+                                    <th class="infomations">
+                                        <a href="#" ng-click="order('title')"
+                                           ng-class="{'active': predicate == 'title'}">
+                                            Item's Information
+                                            <span ng-show="predicate == 'title'" class="fa fa-caret-down"></span>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="#" ng-click="order('price')"
+                                           ng-class="{'active': predicate == 'price'}">
+                                            Price
+                                            <span ng-show="predicate == 'price'" class="fa fa-caret-down"></span>
+                                        </a>
+                                    </th>
+                                    <!-- <th>
+                                      Type
+                                    </th> -->
+                                    <th class="text-center">Settings
+                                    </th>
+                                </table>
+                            </div>
+                            <div id="tableBodyScroll">
+                                <table class="table" id="tableBody">
+                                    <colgroup>
+                                        <col class="colOne"></col>
+                                        <col class="colTwo"></col>
+                                        <col class="colThree"></col>
+                                        <col class="colFourth"></col>
+                                        <col class="colFive"></col>
+                                        <!-- <col class="colSix"></col> -->
+                                    </colgroup>
+                                    <tr ng-repeat="product in products" ng-class="{'selected': product.selected}">
+                                        <td class="text-center">
+                                            <div class="checkbox-custom">
+                                                <input ng-model="product.selected" type="checkbox"
+                                                       ng-change="checkedProduct()">
+                                                <label></label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="product-thumbnail"
+                                                 style="background-image: url({{product.image_url || 'images/no_image.png'}});">
+                                            </div>
+                                            <!-- <img  ng-src="{{product.image_url || 'images/no_image.png'}}" width="100" /> -->
+                                        </td>
+                                        <td>
+                                            <div class="detail">
+                                                <div class="title">
+                                                    {{product.title}}
+                                                </div>
+                                                <div class="content">
+                                                    <p read-more content="{{product.desc}}"
+                                                       more-text="view more..."></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="price text-center">{{product.currency_display +
+                                                product.price}}
+                                            </div>
+                                        </td>
+                                        <!-- <td>
+                                          <div class="custom-checkbox-v2" ng-if="product.selected">
+                                            <div class="checkbox">
+                                              <input type="checkbox" name="typeSelected"
+                                                     ng-click="handleTypeSelected(product)"
+                                                     ng-checked="product.typeSelected"
+                                                     id="nameTypeProduct-{{product.id}}">
+
+                                              <label for="nameTypeProduct-{{product.id}}">
+                                                Main
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </td> -->
+                                        <td class="text-center">
+                                            <a class="edit display-ib" ng-click="editProduct(product)">
+                                                <span class="icon-setup fa fa-cog"></span>
+                                            </a>
+                                            <a class="edit display-ib" ng-click="confirmDeleteProduct(product)">
+                                                <span class="icon-delete fa fa-trash-o"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="button-actions clearfix">
+                            <div class="">
+                                <div class="btn-group btn-group-icon" role="group"
+                                     ng-click="popupConfirmDeleteSelected()" ng-if="productIds.length > 0">
+                                    <span class="text btn">Delete selected</span>
+                                </div>
+                                <!-- <div class="btn-group btn-group-icon" role="group" aria-label="..." ng-click="associateCampaign()">
+                                  <span class="icon btn">
+                                    <span class="fa fa-check-circle-o"></span>
+                                  </span>
+                                  <span class="text btn">Submit</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-col">
+                        <div class="w-phone">
+                            <div class="phone-list-item">
+                                <div class="media" ng-repeat="product in products | orderBy:predicate:reverse"
+                                     ng-if="product.selected">
+                                    <div class="media-left">
+                                        <a>
+                                            <div class="product-thumb-mobile"
+                                                 style="background-image: url({{product.image_url || 'images/no_image.png'}}); ">
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{product.title}}</h4>
+                                        <div class="p-price">{{product.currency_display + product.price}}</div>
+                                    </div>
+                                    <div class="media-right">
+                                        <a><span class="icon-info"></span></a>
+                                        <a><span class="icon-cart"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

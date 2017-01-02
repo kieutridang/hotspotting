@@ -1,0 +1,93 @@
+<div class="header-campaign">
+	<div class="row clearfix">
+		<div class="col-sm-6 col-xs-6">
+		  <div class="new-page-title clearfix">
+		  	<h4 class="capitalize medium-font pull-left">Products</h4>
+		  	<span class="medium-font ng-binding">(4)</span>
+		  </div>
+		</div>
+		<div class="col-sm-6 col-xs-6">
+			<a href="#/brands/97/create-campaign-set-trigger" class="btn-create-new-campaigns capitalize">+ create new product</a>
+		</div>
+	</div>
+</div>
+<div class="container-list-campaign">
+	<table cellpadding="0" cellspacing="0" border="0">
+		<thead>
+			<tr>
+				<td>
+					<label class="uppercase">image</label>
+				</td>
+				<td>
+					<label class="uppercase">product name
+						<i class="fa fa-long-arrow-down"></i>
+					</label>
+					<div class="widget-text-box">
+		              	<span class="ico-search-table ico-search"></span>
+		              	<input type="text" placeholder="Search" >
+		          	</div>
+				</td>
+				<td>
+					<label class="uppercase">brand</label>
+					<select>
+						<option>All</option>
+					</select>
+				</td>
+				<td>
+					<label class="uppercase">category</label>
+					<select>
+						<option>All</option>
+					</select>
+				</td>
+				<td>
+					<label class="uppercase">store links</label>
+				</td>
+				<td>
+					<label class="uppercase">linked media content</label>
+				</td>
+				<td>
+					<label class="uppercase">date added</label>
+					<select>
+						<option>All</option>
+					</select>
+				</td>
+				<td>
+					<label class="uppercase">action</label>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in products">
+				<td>
+					<div class="box-photo-product photo-center" style="background-image:url({{product.image_url}});"></div>
+				</td>
+				<td>
+					<label class="over-text">{{product.title}}</label>
+				</td>
+				<td>
+					<label class="over-text"></label>
+				</td>
+				<td>
+					<label class="over-text"></label>
+				</td>
+				<td>
+					<label class="over-text">4</label>
+				</td>
+				<td>
+					<label class="over-text">6</label>
+				</td>
+				<td>
+					<label class="over-text">2016-03-22</label>
+				</td>
+				<td>
+		          <a class="btn-action-table">
+		            <i class="icon-note icons"></i>
+		          </a>
+		          <a class="btn-action-table btn-delete-campaign">
+		            <span class="icon-delete fa fa-trash-o"></span>
+		          </a>
+		        </td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,64 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="close()" style="font-weight: 100;"></button>
+    <h1 class="modal-title" id="myModalLabel">{{product.id?'Edit':'Create'}} Product</h1>
+  </div>
+  <div class="modal-body">
+  	<div class="pd-edit-left col-md-5 col-sm-5">
+		<img class="pd-edit-image" ng-src="{{product.image_url || '/images/no_image.png'}}"/>
+		<input class="product-image" type="file" ng-model="product.image" ng-change="imageChanged()" product="product"/>
+		<button class="btn btn-default change-image-btn">
+    	<span class="glyphicon glyphicon-pencil"></span>
+    	Change Image
+    </button>
+	</div>
+	<div class="pd-edit-left col-md-7 col-sm-7">
+	    <div class="form-group pd-edit-item">
+	    	<label for="input-BrandName">Title</label>
+	        <input placeholder="Product's title" class="form-control" name="name" id="inputBrandName" ng-model="product.title">
+	    </div>
+	    <div class="form-group pd-edit-item">
+	    	<label for="input-BrandName">Descriptions</label>
+	        <textarea class="form-control" rows="3" ng-model="product.desc"></textarea>
+	    </div>
+
+	    <div class="pd-edit-haft">
+			<fieldset style="padding-left: 0px;" class="form-group pd-edit-item col-md-6">
+				<label for="formGroupExampleInput">Price</label>
+				<input type="text" class="form-control product-price" id="formGroupExampleInput"  ng-model="product.price">
+        <div>$</div>
+			</fieldset>
+			<fieldset style="padding: 0px" class="form-group pd-edit-item col-md-6">
+				<label class="block-display" for="formGroupExampleInput" style="margin-bottom: 14px;">Status</label>
+        <div style="display:flex;">
+  				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active" ng-model="product.status"> Active
+  				</label>
+  				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" ng-model="product.inactive"> Inactive
+  				</label>
+        </div>
+			</fieldset>
+			<div style="clear: both"></div>
+		</div>
+		<fieldset class="form-group pd-edit-item">
+			<label for="formGroupExampleInput">Product's URL</label>
+			<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Product URL"  ng-model="product.url">
+		</fieldset>
+	</div>
+	<div style="clear: both;"></div>
+  </div>
+
+  <div class="modal-footer">
+  	<div class="form-group submit-btn-group">
+
+      <div class="btn-group btn-group-icon" role="group" ng-click="saveProduct()">
+                  <span class="icon btn">
+                    <span class="fa fa-check-circle-o"></span>
+                  </span>
+        <span class="text btn">{{product.id ? 'Save': 'Add'}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,154 @@
+<div class="page-analytics">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-title v1">
+                REPORTING
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6">
+            <div data-ng-include="'views/analytics/analytics-filter.html'"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="Summary" class="portlet light bordered radius">
+                <div class="title-sub">SUMMARY</div>
+                <highchart id="chartSummary" config="summaryChart"></highchart>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="total-revenue" class="portlet light bordered radius">
+                <div class="title-sub">TOTAL REVENUE <span class="txt-grey">($)</span></div>
+                <highchart config="totalRevenue"></highchart>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="daytime-sales" class="portlet light bordered radius">
+                <div class="title-sub">DAYTIME SALES <span class="txt-grey">($)</span></div>
+                <highchart config="datetimeSales"></highchart>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="daytime-transactions" class="portlet light bordered radius">
+                <div class="title-sub">DAYTIME TRANSACTIONS</div>
+                <highchart config="datetimeTransactions"></highchart>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 text-right">
+        <div class="total-interactions">
+            <span class="title">Total Interactions:</span>
+            <span class="total">{{querryList.results.length || 0}}</span>
+        </div>
+    </div>
+    <div class="list-tabs clearfix">
+        <a ng-click="setTab(1)" ng-class="{'active': curTab==1}">Search by Location</a>
+        <a ng-click="setTab(2)" ng-class="{'active': curTab==2}">Search by Brand/Trigger</a>
+        <a ng-click="setTab(3)" ng-class="{'active': curTab==3}">Usage by App</a>
+    </div>
+
+    <div ng-class="{'hidden-tab': curTab != 1}">
+        <div class="row">
+            <div data-ng-include="'views/analytics/analytics-top-5-countries.html'"></div>
+        </div>
+    </div>
+
+    <div ng-class="{'hidden-tab': curTab != 2}">
+        <div class="row m-bottom-20">
+            <div data-ng-include="'views/analytics/analytics-search-trend.html'"></div>
+            <div data-ng-include="'views/analytics/analytics-weekday-searches.html'"></div>
+        </div>
+
+        <div data-ng-include="'views/analytics/analytics-top-5-image-keyword-triggers.html'"></div>
+    </div>
+
+    <div ng-class="{'hidden-tab': curTab != 3}">
+        <div data-ng-include="'views/analytics/analytics-engagement.html'"></div>
+
+        <div data-ng-include="'views/analytics/analytics-total-occurrences.html'"></div>
+
+        <div class="row m-bottom-20" ng-if="mainFollowOverview">
+            <div class="col-md-12 clearfix">
+                <div class="title-sub clearfix">
+                    Screen Flow Overview
+                </div>
+
+                <ul id="basic-chart-source" class="hidden">
+                    <li>
+                        {{mainFollowOverview.caption}}<br/>
+                        {{mainFollowOverview.description}}
+                        <ul>
+                            <li ng-repeat="item in renderFollow" class="retired">
+                                <span class="count">{{item.count | number: 0}}%</span> <br/>
+                                <span class="name">{{item.name}}</span>
+                                <span class="dimensions hidden">{{item.dimensions}}</span>
+                                <span class="metrics hidden">{{item.metrics}}</span>
+                                <span class="conditions hidden">{{item.conditions}}</span>
+
+                                <ul ng-if="item.subSecond.length > 0">
+                                    <li ng-repeat="itemSecond in item.subSecond">
+                                        <span class="count">{{itemSecond.count | number: 0}}%</span> <br/>
+                                        <span class="name">{{itemSecond.name}}</span>
+                                        <span class="dimensions hidden">{{itemSecond.dimensions}}</span>
+                                        <span class="metrics hidden">{{itemSecond.metrics}}</span>
+                                        <span class="conditions hidden">{{itemSecond.conditions}}</span>
+
+                                        <ul ng-if="itemSecond.subThird.length > 0">
+                                            <li ng-repeat="itemThird in itemSecond.subThird">
+                                                <span class="count">{{itemThird.count | number: 0}}%</span> <br/>
+                                                <span class="name">{{itemThird.name}}</span>
+                                                <span class="dimensions hidden">{{itemThird.dimensions}}</span>
+                                                <span class="metrics hidden">{{itemThird.metrics}}</span>
+                                                <span class="conditions hidden">{{itemThird.conditions}}</span>
+
+                                                <ul ng-if="itemThird.subFour.length > 0">
+                                                    <li ng-repeat="itemFour in itemThird.subFour">
+                                                        <span class="count">{{itemFour.count | number: 0}}%</span> <br/>
+                                                        <span class="name">{{itemFour.name}}</span>
+                                                        <span class="dimensions hidden">{{itemFour.dimensions}}</span>
+                                                        <span class="metrics hidden">{{itemFour.metrics}}</span>
+                                                        <span class="conditions hidden">{{itemFour.conditions}}</span>
+
+                                                        <ul ng-if="itemFour.subFive.length > 0">
+                                                            <li ng-repeat="itemFive in itemFour.subFive">
+                                                                <span
+                                                                    class="count">{{itemFive.count | number: 0}}%</span>
+                                                                <br/>
+                                                                <span class="name">{{itemFive.name}}</span>
+                                                                <span
+                                                                    class="dimensions hidden">{{itemFive.dimensions}}</span>
+                                                                <span class="metrics hidden">{{itemFive.metrics}}</span>
+                                                                <span
+                                                                    class="conditions hidden">{{itemFive.conditions}}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="chart" ng-if="screenFollow">
+                </div>
+                <div class="tmpl-no-data" ng-hide="screenFollow">
+                    No data for screen flow overview.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+

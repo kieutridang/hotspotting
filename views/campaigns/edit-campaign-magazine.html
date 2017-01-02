@@ -1,0 +1,263 @@
+<div class="container-create-campaign">
+  <div class="header-campaign">
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12">
+<!--           <ul class="new-page-breadcrumb">
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Home</a>
+              <i>/</i>
+            </li>
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Campaign</a>
+              <i>/</i>
+            </li>
+          </ul> -->
+          <div class="new-page-title clearfix">
+            <h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+          </div>
+          <div class="navigation-create-campaign clearfix">
+            <a class="active">
+              <span>1</span>
+              <label class="uppercase">set trigger</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a>
+              <span>2</span>
+              <label class="uppercase">link products</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a>
+              <span>3</span>
+              <label class="uppercase">campaign details</label>
+              <div class="line-bottom"></div>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-content-campaign">
+    <div class="container-upload-trigger">
+      <span class="medium-font uppercase margin-0">UPLOADED triggers
+        <span class="note-upload-img uppercase" ng-show="triggerItems.length > 0">({{magazine.length}} {{magazine.type}}<span ng-show="triggerItems.length > 1">s</span>)
+      </span>
+      <div class="left-col">
+        <img src="{{magazine.image_url}}"/>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="triggerItems.length > 0" class="clearfix">
+    <button class="btn-cancle" ng-click="previousStep()">
+      <span class="icon-text">Cancel</span>
+    </button>
+    <button class="btn-next-step" ng-disabled="uploadInvalid || inCorrectFormat" ng-click="nextStep()">
+      <span class="icon-text">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
+<!-- <div class="margazine-ingestor-page">
+  <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a ui-sref="home.dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a ui-sref="home.accounts" class="">Create Campaigns</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a class="active" >Ad + Print Ingestor</a>
+      </li>
+    </ul>
+  </div>
+
+  <h3 class="page-title ">Ad + Print Ingestor</h3>
+
+
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 add-video-page edit-media-file-page">
+		<div class="wrapper-col">
+			<header class="row media-header">
+				<div class="form-group col-md-6  col-sm-4 col-xs-12" ng-class="{ 'has-error':  updateCampainNameForm.isSubmitted && updateCampainNameForm.title.$invalid  }">
+					<label>Magazine Name</label>
+					<input type="text" class="form-control" name="title" readOnly="" ng-model="campaign.title" placeholder="Magazine Name">
+				</div>
+				<div class="form-group col-md-3 col-sm-4 col-xs-6">
+					<label>Number of pages</label>
+					<div class="input-group">
+						<div class="total-pages form-control" ng-bind="campaign.totalPages"></div>
+					</div>
+				</div>
+				<div class="form-group col-md-3 col-sm-4 col-xs-6">
+					<label>Show Page</label>
+					<div class="input-group">
+						<input type="number" value="1" max="{{campaign.totalPages}}" min="1" ng-model="page"
+							   keypress-enter="changePage()"
+							   class="form-control">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="changePage()">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</header>
+
+
+			<div class="left-col">
+				<div class="media-body row">
+					<div class="flipbook-viewport">
+						<div class="container">
+							<div class="flipbook">
+								<div ng-style="{'background-image': 'url(' + frame.src + ')' }" ng-repeat="frame in frameList"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer class="row media-footer">
+					<form name="updateLeftPageUrlForm" novalidate>
+						<div class="form-group col-md-6 col-xs-12" ng-class="{ 'has-error':  updateLeftPageUrlForm.isSubmitted && updateLeftPageUrlForm.leftPageUrl.$invalid  }">
+							<div class="input-group">
+								<input type="url" class="form-control" name="leftPageUrl" ng-model="leftPageUrl" placeholder="Left page URL" ng-required="true">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="updateTrigger(updateLeftPageUrlForm,'leftPageUrl')"
+											ng-disabled="updateLeftPageUrlForm.isProcessing" ng-class="{ 'loading' : updateLeftPageUrlForm.isProcessing}">
+										<span class="fa fa-floppy-o"></span>
+									</button>
+								</span>
+							</div>
+							<span ng-show="(updateLeftPageUrlForm.isSubmitted ) && updateLeftPageUrlForm.leftPageUrl.$invalid && updateLeftPageUrlForm.leftPageUrl.$error.required" class="help-block">Please enter a url.</span>
+							<span ng-show="(updateLeftPageUrlForm.isSubmitted ) && updateLeftPageUrlForm.leftPageUrl.$invalid && updateLeftPageUrlForm.leftPageUrl.$error.url" class="help-block">Please enter a valid url.</span>
+						</div>
+					</form>
+					<form name="updateRightPageUrlForm" novalidate ng-show="rightPageNumber">
+						<div class="form-group col-md-6 col-xs-12" ng-class="{ 'has-error':  updateRightPageUrlForm.isSubmitted && updateRightPageUrlForm.leftPageUrl.$invalid  }">
+							<div class="input-group">
+								<input type="url" class="form-control" name="rightPageUrl" ng-model="rightPageUrl" placeholder="Right page URL" ng-required="true">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="updateTrigger(updateRightPageUrlForm,'rightPageUrl')"
+											ng-disabled="updateRightPageUrlForm.isProcessing" ng-class="{ 'loading' : updateRightPageUrlForm.isProcessing}">
+										<span class="fa fa-floppy-o"></span>
+									</button>
+								</span>
+							</div>
+							<span ng-show="(updateRightPageUrlForm.isSubmitted ) && updateRightPageUrlForm.leftPageUrl.$invalid && updateRightPageUrlForm.leftPageUrl.$error.required" class="help-block">Please enter a url.</span>
+							<span ng-show="(updateRightPageUrlForm.isSubmitted ) && updateRightPageUrlForm.leftPageUrl.$invalid && updateRightPageUrlForm.leftPageUrl.$error.url" class="help-block">Please enter a valid url.</span>
+						</div>
+					</form>
+				</footer>
+			</div>
+			<div class="right-col">
+				<div class="preview">
+					<div class="draggable-wrapper">
+						<img class="cover-image" ng-if="coverImage" ng-src="{{coverImage}}" />
+					</div>
+					<div class="helptext print">Drag this mobile device over the magazine to show the webpage</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+
+<!
+<div class="container-fluid">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 add-video-page edit-media-file-page">
+		<h1 class="heading-title">
+			Ad +Print Ingestor
+		</h1>
+		<div class="wrapper-col">
+			<header class="row media-header">
+				<div class="form-group col-md-6  col-sm-4 col-xs-12" ng-class="{ 'has-error':  updateCampainNameForm.isSubmitted && updateCampainNameForm.title.$invalid  }">
+					<label>Magazine Name</label>
+					<input type="text" class="form-control" name="title" readOnly="" ng-model="campaign.title" placeholder="Magazine Name">
+				</div>
+				<div class="form-group col-md-3 col-sm-4 col-xs-6">
+					<label>Number of pages</label>
+					<div class="input-group">
+						<div class="total-pages form-control" ng-bind="campaign.totalPages"></div>
+					</div>
+				</div>
+				<div class="form-group col-md-3 col-sm-4 col-xs-6">
+					<label>Show Page</label>
+					<div class="input-group">
+						<input type="number" value="1" max="{{campaign.totalPages}}" min="1" ng-model="page"
+							   keypress-enter="changePage()"
+							   class="form-control">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="changePage()">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</header>
+
+
+			<div class="left-col">
+				<div class="media-body row">
+					<div class="flipbook-viewport">
+						<div class="container">
+							<div class="flipbook">
+								<div ng-style="{'background-image': 'url(' + frame.src + ')' }" ng-repeat="frame in frameList"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer class="row media-footer">
+					<form name="updateLeftPageUrlForm" novalidate>
+						<div class="form-group col-md-6 col-xs-12" ng-class="{ 'has-error':  updateLeftPageUrlForm.isSubmitted && updateLeftPageUrlForm.leftPageUrl.$invalid  }">
+							<div class="input-group">
+								<input type="url" class="form-control" name="leftPageUrl" ng-model="leftPageUrl" placeholder="Left page URL" ng-required="true">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="updateTrigger(updateLeftPageUrlForm,'leftPageUrl')"
+											ng-disabled="updateLeftPageUrlForm.isProcessing" ng-class="{ 'loading' : updateLeftPageUrlForm.isProcessing}">
+										<span class="fa fa-floppy-o"></span>
+									</button>
+								</span>
+							</div>
+							<span ng-show="(updateLeftPageUrlForm.isSubmitted ) && updateLeftPageUrlForm.leftPageUrl.$invalid && updateLeftPageUrlForm.leftPageUrl.$error.required" class="help-block">Please enter a url.</span>
+							<span ng-show="(updateLeftPageUrlForm.isSubmitted ) && updateLeftPageUrlForm.leftPageUrl.$invalid && updateLeftPageUrlForm.leftPageUrl.$error.url" class="help-block">Please enter a valid url.</span>
+						</div>
+					</form>
+					<form name="updateRightPageUrlForm" novalidate ng-show="rightPageNumber">
+						<div class="form-group col-md-6 col-xs-12" ng-class="{ 'has-error':  updateRightPageUrlForm.isSubmitted && updateRightPageUrlForm.leftPageUrl.$invalid  }">
+							<div class="input-group">
+								<input type="url" class="form-control" name="rightPageUrl" ng-model="rightPageUrl" placeholder="Right page URL" ng-required="true">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="updateTrigger(updateRightPageUrlForm,'rightPageUrl')"
+											ng-disabled="updateRightPageUrlForm.isProcessing" ng-class="{ 'loading' : updateRightPageUrlForm.isProcessing}">
+										<span class="fa fa-floppy-o"></span>
+									</button>
+								</span>
+							</div>
+							<span ng-show="(updateRightPageUrlForm.isSubmitted ) && updateRightPageUrlForm.leftPageUrl.$invalid && updateRightPageUrlForm.leftPageUrl.$error.required" class="help-block">Please enter a url.</span>
+							<span ng-show="(updateRightPageUrlForm.isSubmitted ) && updateRightPageUrlForm.leftPageUrl.$invalid && updateRightPageUrlForm.leftPageUrl.$error.url" class="help-block">Please enter a valid url.</span>
+						</div>
+					</form>
+				</footer>
+			</div>
+			<div class="right-col">
+				<div class="preview">
+					<div class="draggable-wrapper">
+						<img class="cover-image" ng-if="coverImage" ng-src="{{coverImage}}" />
+					</div>
+					<div class="helptext print">Drag this mobile device over the magazine to show the webpage</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+ -->

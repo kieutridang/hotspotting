@@ -1,0 +1,18 @@
+<div class="row analytics-filter text-right">
+    <div class="col-xs-12">
+        <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </button>
+          </span>
+            <input date-range-picker id="report-date-range-picker" name="report-date-range-picker" class="form-control date-picker" type="text"
+                   ng-model="dateRangeOptions.date" options="dateRangeOptions.opts" required/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="resetDateRange()">
+                RESET
+              </button>
+          </span>
+        </div>
+    </div>
+</div>

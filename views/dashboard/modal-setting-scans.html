@@ -1,0 +1,67 @@
+<div class="modal-content dashboard-settings-modal">
+    <form name="myForm">
+        <div class="modal-header">
+            <button type="button"
+                    class="close glyphicon glyphicon-remove"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    ng-click="close()" style="font-weight: 100;"></button>
+            <div class="modal-header-content">
+                <h4 class="pull-left">Scans Settings</h4>
+                <span class="label-text pull-right">min</span>
+                <div class="pull-right text-center">
+                    <input type="number"
+                           name="input"
+                           class="time-refreshing"
+                           ng-model="settings.timeRefreshing"
+                           min="1"
+                           ng-change="checkValueMinutes()" required>
+                    <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+                    <span class="error" ng-show="myForm.input.$error.number">Not valid number!</span>
+                    <span class="error" ng-show="!myForm.input.$error.number && !myForm.input.$error.required && !myForm.$valid">Min's Time Refresh is 1 !</span>
+                </div>
+                <span class="label-text pull-right">Refreshing time</span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="setting-widget clearfix">
+                <div class="setting-box">
+                    <button class="btn-setting" ng-click="changeSetting('activeUsers')" ng-class="{'active' : settings.activeUsers}">
+                        <i class="pull-right fa fa-check"></i>
+                        <i class="ico-dashboard ico-dashboard-scanstrend"></i>
+                        <p>Active Users</p>
+                    </button>
+                </div>
+                <div class="setting-box">
+                    <button class="btn-setting" ng-click="changeSetting('demographic')" ng-class="{'active' : settings.demographic}">
+                        <i class="pull-right fa fa-check"></i>
+                        <i class="ico-dashboard ico-dashboard-demographic"></i>
+                        <p>Demographic</p>
+                    </button>
+                </div>
+                <div class="setting-box">
+                    <button class="btn-setting" ng-click="changeSetting('campaigns')" ng-class="{'active' : settings.campaigns}">
+                        <i class="pull-right fa fa-check"></i>
+                        <i class="ico-dashboard ico-dashboard-campaign"></i>
+                        <p>Campaigns</p>
+                    </button>
+                </div>
+                <div class="setting-box">
+                    <button class="btn-setting" ng-click="changeSetting('topTriggers')" ng-class="{'active' : settings.topTriggers}">
+                        <i class="pull-right fa fa-check "></i>
+                        <i class="ico-dashboard ico-dashboard-top-triggers"></i>
+                        <p>Top Triggers</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group submit-btn-group">
+                <div class="btn-group btn-group-icon" role="group">
+                    <button class="btn-cancle medium-font" data-dismiss="modal" ng-click="close()">Cancel</button>
+                    <button ng-disabled="myForm.$invalid" class="btn-save medium-font" ng-click="save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

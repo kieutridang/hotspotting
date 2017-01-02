@@ -1,0 +1,357 @@
+<div class="dashboard-content-scans" ng-show="isScans === true">
+    <div class="charts-container">
+        <div class="row clearfix line-chart-group">
+            <div class="col-sm-12">
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_scans | kmNumber}}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="scans"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_scans >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_scans | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_scans >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label ng-if="selectOption === 1" class="title uppercase medium-font">scans this hour</label>
+                                    <label ng-if="selectOption === 168" class="title uppercase medium-font">scans this week</label>
+                                    <label ng-if="selectOption === 720" class="title uppercase medium-font">scans this month</label>
+                                    <label ng-if="selectOption === null" class="title uppercase medium-font">all scans</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_users | kmNumber}}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="activeUsers"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_users >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_users | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_users >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Active users</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_campaigns | kmNumber}}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="activeCampaigns"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_campaigns >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_campaigns | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_campaigns >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Active campaigns</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="line-chart-custom clearfix" ng-if="isLoading === false">
+                        <div class="line-chart-info">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <h5 class="headline">{{countdata.no_triggers | kmNumber}}</h5>
+                                </div>
+                                <div class="col-sm-5">
+                                    <highchart config="activeTriggers"></highchart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-chart-draw">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="pull-left percent medium-font"
+                                           ng-class="countdata.growth_percent_triggers >= 0 ? 'increase-color-text' : 'decrease-color-text'">
+                                        {{countdata.growth_percent_triggers | roundPercent}}%
+                                    </label>
+                                    <i class="pull-left ico-status fa fa-arrow-right" ng-class="countdata.growth_percent_triggers >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="title uppercase medium-font">Active triggers</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-chart-custom" ng-if="isLoading === true">
+                        <div class="table-center">
+                            <div class="table-cell-midle">
+                                <img src="/content/images/ico-loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="settingScans.activeUsers">
+        <div class="col-sm-12">
+            <div class="chart-container">
+                <div ng-if="isLoading === false">
+                    <highchart config="activeUsersChart"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="settingScans.demographic">
+        <div class="col-sm-12">
+            <div class="chart-container">
+                <div class="row" ng-if="isLoading === false">
+                    <highchart class="col-sm-3" config="ageScanPie"></highchart>
+                    <highchart class="col-sm-3" config="genderScanPie"></highchart>
+                    <highchart class="col-sm-3" config="countryScanPie"></highchart>
+                    <highchart class="col-sm-3" config="deviceScanPie"></highchart>
+                </div>
+                <div ng-if="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8" ng-show="settingScans.campaigns">
+            <div class="chart-container campaigns-chart">
+                <div class="row" ng-show="isLoading === false">
+                    <div class="col-sm-12">
+                        <h4 class="title">Campaigns</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="campaign-process-container">
+                                    <p class="font-13 uppercase group-title">Top</p>
+                                    <div class="campaign-bar-process" ng-repeat="campaign in topCampaigns">
+                                        <label class="mediaum-font capitalize campaign-title">{{campaign.campaign_title}}</label>
+                                        <div class="campaign-bar-percent">
+                                            <div class="campaign-percent percent-blue" style="width:{{campaign.percent}}%;">
+                                                <div class="relative">
+                                                    <div class="campaign-popup-info">
+                                                        <p class="txt-deep-grey margin-b-3 font-11 medium-font">
+                                                    <span ng-if="selectOption !== 1">
+                                                      <span>{{params.from_date}}</span>
+                                                      <span class="line-center">-</span>
+                                                      <span>{{params.to_date}}</span>
+                                                    </span>
+                                                            <span ng-if="selectOption === 1">{{nowDateLive}}</span>
+                                                        </p>
+                                                        <p class="font-11 medium-font txt-grey over-text capitalize">
+                                                            {{campaign.campaign_title}}
+                                                        </p>
+                                                        <p class="margin-0 clearfix">
+                                                            <span class="txt-white">{{campaign.no_searches}}</span>
+                                                            <span class="pull-right increase" ng-show="campaign.percent !== 0">{{campaign.percent}}%</span>
+                                                        </p>
+                                                    </div>
+                                                    <span class="arrow-popup"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="campaign-process-container">
+                                    <p class="font-13 uppercase group-title">Worst</p>
+                                    <div class="campaign-bar-process" ng-repeat="campaign in topWorstCampaigns">
+                                        <label class="mediaum-font capitalize campaign-title">{{campaign.campaign_title}}</label>
+                                        <div class="campaign-bar-percent">
+                                            <div class="campaign-percent percent-orange" style="width:{{campaign.percent}}%;">
+                                                <div class="relative">
+                                                    <div class="campaign-popup-info">
+                                                        <p class="txt-deep-grey margin-b-3 font-11 medium-font">
+                                                    <span ng-if="selectOption !== 1">
+                                                      <span>{{params.from_date}}</span>
+                                                      <span class="line-center">-</span>
+                                                      <span>{{params.to_date}}</span>
+                                                    </span>
+                                                            <span ng-if="selectOption === 1">{{nowDateLive}}</span>
+                                                        </p>
+                                                        <p class="font-11 medium-font txt-grey over-text capitalize">
+                                                            {{campaign.campaign_title}}
+                                                        </p>
+                                                        <p class="margin-0 clearfix">
+                                                            <span class="txt-white">{{campaign.no_searches}}</span>
+                                                            <span class="pull-right increase"
+                                                                  ng-show="campaign.percent !== 0">{{campaign.percent}}%</span>
+                                                        </p>
+                                                    </div>
+                                                    <span class="arrow-popup"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="campaign-detail-table">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                        <th>media formats</th>
+                                        <th>scans</th>
+                                        <th>% of total</th>
+                                        <th>growth</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in formatMedia">
+                                            <td class="uppercase">{{item.campaign_type}}</td>
+                                            <td>{{item.no_searches | kmNumber:1}}</td>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <span class="percent-number pull-left">{{item.percent}}%</span>
+                                                    <div class="percent-bar pull-left">
+                                                        <span style="width:{{item.percent}}%;"></span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="purll-left medium-font" ng-class="item.growth_percent >= 0 ? 'increase-color-text' : 'decrease-color-text'">{{item.growth_percent}}%</span>
+                                                <span class="pull-right fa fa-arrow-right" ng-class="item.growth_percent >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" ng-show="settingScans.topTriggers">
+            <div class="chart-container top-triggers-chart">
+                <div class="row" ng-show="isLoading === false">
+                    <div class="col-sm-12">
+                        <h4 class="title">Top Triggers</h4>
+                        <hr/>
+                        <div class="top-triggers clearfix">
+                            <div class="widget-top-trigger" ng-repeat="trigger in topTriggers">
+                                <div class="box-top-trigger">
+                                    <div class="frame-product-top-trigger" style="background-image:url({{trigger.trigger_image}})"></div>
+                                    <p class="margin-0 clearfix">
+                                        <span class="medium-font pull-left no-searches">{{trigger.no_searches}}</span>
+                                        <span class="pull-right fa fa-arrow-right" ng-class="trigger.percent >= 0 ? 'ico-status-increase' : 'ico-status-decrease'"></span>
+                                        <span class="medium-font pull-right status-indicator"
+                                              ng-class="trigger.percent >= 0 ? 'increase-color-text' : 'decrease-color-text'"
+                                              ng-show="trigger.percent !== 0">{{trigger.percent}}%</span>
+                                    </p>
+                                    <div class="popup-info-top-trigger">
+                                        <p class="txt-deep-grey margin-b-3 font-11 medium-font">
+                                    <span ng-if="selectOption !== 1">
+                                      <span>{{params.from_date}}</span>
+                                      <span class="line-center">-</span>
+                                      <span>{{params.to_date}}</span>
+                                    </span>
+                                            <span ng-if="selectOption === 1">{{nowDateLive}}</span>
+                                        <p class="font-11 medium-font txt-grey over-text capitalize">
+                                            {{trigger.campaign_title}}
+                                        </p>
+                                        <span class="arrow-top-trigger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="isLoading === true">
+                    <div class="table-center">
+                        <div class="table-cell-midle">
+                            <img src="/content/images/ico-loading.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

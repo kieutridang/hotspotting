@@ -1,0 +1,34 @@
+<!-- <div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a class="active">Notification</a>
+    </li>
+  </ul>
+</div> -->
+<h3 class="page-title"> Notification </h3>
+<div class="page-tutorials">
+	<div class="row">
+		<div class="col-md-12">
+<!-- 			 <div>Content coming soon </p>
+			 <a ui-sref="verifyemail({ email: 'test@a.com', verify_code: '123456abc' })" class="hidden">Test User Verify Email</a> -->
+       <div ng-show="$scope.success = false">Success</div>
+       <form name="pushmessageForm" ng-submit = "pushmessage()" promise-btn>
+            <div class="form-group" ng-class="{ 'has-error' : pushmessageForm.name.$invalid && !pushmessageForm.name.$pristine }">
+              
+              <label for="questionAnswer">Message</label>
+              <textarea type='text' class="form-control ng-pristine ng-valid ng-touched" id="questionAnswer" ng-model="message" name='message' rows="10" required ></textarea>
+            </div>
+            <button ng-disabled="pushmessageForm.$invalid" type="submit" class="btn btn-custom">
+              <span ng-show="SendButton == 'Sending'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+              {{SendButton}}
+            </button>
+       </form>
+
+		</div>
+	</div>
+</div>

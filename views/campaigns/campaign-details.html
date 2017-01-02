@@ -1,0 +1,185 @@
+<div class="container-create-campaign">
+  <div class="header-campaign">
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12">
+        <div class="new-page-title clearfix">
+          <h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+        </div>
+        <div class="navigation-create-campaign clearfix">
+          <a>
+            <span>1</span>
+            <label class="uppercase">set trigger</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a>
+            <span>2</span>
+            <label class="uppercase">link products</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a ng-if="campaign.custom">
+            <span>3</span>
+            <label class="uppercase">recipe</label>
+            <div class="line-bottom"></div>
+          </a>
+          <a class="active">
+            <span ng-if="campaign.custom">4</span>
+            <span ng-if="!campaign.custom">3</span>
+            <label class="uppercase">campaign details</label>
+            <div class="line-bottom"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--campaign detail -->
+  <div class="container-content-campaign">
+    <div class="container-campaign-detail">
+      <div class="row clearfix">
+        <div class="col-sm-7">
+          <p class="medium-font uppercase margin-0">{{campaign.type}} triggers</p>
+          <div class="row container-image-trigger clearfix">
+            <div class="col-xs-3 col-sm-6 col-md-6 col-lg-3 widget-image-trigger widget-image-trigger-large" ng-repeat="trigger in triggerItems" ng-show="campaign.type === 'image'">
+               <div class="box-image-trigger" style="background-image: url('{{trigger.contentBase64}}');" ng-show="trigger.contentBase64" ng-if="trigger.type == 'image'">
+               </div>
+            </div>
+            <div class="trigger-print" ng-show="campaign.type === 'magazine'">
+              <img src="{{currentFrame.image_url}}" style="max-height:100px; max-width:100px">
+              <div class="page-print-pdf">
+                <a ng-click="previousTrigger()" class="btn-left-pdf-page fa fa-arrow-circle-o-left" style="float:left;"></a>
+                <a ng-click="nextTrigger()" class="btn-right-pdf-page fa fa-arrow-circle-o-right" style="float:right;"></a>
+                <span class="line-h medium-font font-13 uppercase">page</span>
+                <span class="number-print-pdf medium-font">{{currentPage + 1}}</span>
+                <span class="line-h medium-font font-13 uppercase">of </span>
+                <span class="line-h medium-font font-13 uppercase">{{triggerItems.length}}</span>
+              </div>
+            </div>
+            <div class="trigger-print" ng-show="campaign.type === 'video'">
+              <video preload="auto" controls id="videoCampain" style="margin-top:0;" class="cp-video" ng-click="SetTimeCurrent(this)">
+                <source ng-src="{{mySrc}}" type="video/mp4" />
+                <source ng-src="{{mySrc}}" type="video/ogg" />
+              </video>
+              <div class="page-print-pdf" ng-show="dataTimeLine.length > 0">
+                <a ng-click="previousTrigger()" class="btn-left-pdf-page fa fa-arrow-circle-o-left" style="float:left;"></a>
+                <a ng-click="nextTrigger()" class="btn-right-pdf-page fa fa-arrow-circle-o-right" style="float:right;"></a>
+                <span class="line-h medium-font font-13 uppercase">section</span>
+                <span class="number-print-pdf medium-font">{{currentPage + 1}}</span>
+                <span class="line-h medium-font font-13 uppercase">of </span>
+                <span class="line-h medium-font font-13 uppercase">{{dataTimeLine.length}}</span>
+              </div>
+            </div>
+          </div>
+            <p class="capitalize">Campaign Title</p>
+            <form name="titleCampaign" ng-class="{ 'has-error' : titleCampaign.title.$invalid && !titleCampaign.title.$pristine }">
+              <p ng-show="!campaign.title" class="font-11 margin-0 txt-red">Require</p>
+              <input class="input-campaign-title margin-b-15" type="text" placeholder="Title" ng-model="campaign.title" name="title" required/>
+            </form>
+            <div ng-show="campaign.type === 'magazine'">
+              <p class="capitalize">Campaign URL</p>
+              <form name="url">
+                <input class="input-campaign-title margin-b-15" style ="border: 1px solid #a7b0bb;" type="text" placeholder="Campaign URL" ng-model="campaign.url" name="title"/>
+              </form>
+            </div>
+            <div ng-show="campaign.type === 'magazine'">
+              <p class="capitalize">Trigger URL</p>
+              <form name="url">
+                <input class="input-campaign-title margin-b-15" style ="background-color: #eaeef5;border: 1px solid #a7b0bb;" type="text" placeholder="Trigger URL" ng-model="currentFrame.url" name="title" disabled/>
+              </form>
+            </div>
+            <div ng-show="campaign.type === 'video'">
+              <p class="capitalize">Campaign URL</p>
+              <form name="url">
+                <input class="input-campaign-title margin-b-15" style ="border: 1px solid #a7b0bb;" type="text" placeholder="Section URL" ng-model="campaign.url" name="title"/>
+              </form>
+            </div>
+            <div ng-show="campaign.type === 'video'">
+              <p class="capitalize">Section URL</p>
+              <form name="url">
+                <input class="input-campaign-title margin-b-15" style ="background-color: #eaeef5;border: 1px solid #a7b0bb;" type="text" placeholder="Section URL" ng-model="currentFrame.url" name="title" disabled/>
+              </form>
+            </div>
+            <div ng-show="campaign.type === 'image'">
+              <p class="capitalize">Campaign URL</p>
+              <form name="url">
+                <input class="input-campaign-title margin-b-15" style ="border: 1px solid #a7b0bb;" type="text" placeholder="Campaign URL" ng-model="campaign.url" name="title"/>
+              </form>
+            </div>
+            <!-- <div class="row clearfix margin-b-15" ng-show="campaign.type === 'video'">
+              <div class="col-sm-6 col-xs-6">
+                <p class="capitalize">Video Name</p>
+                <form name="videoName">
+                  <input class="input-campaign-title margin-b-15" type="text" placeholder="Video Name" ng-model="campaign.videoName" name="videoName" required/>
+                </form>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <p class="capitalize">Duration (second)</p>
+                <form name="videoLength">
+                  <input class="input-campaign-title margin-b-15" type="text" placeholder="Title" ng-model="campaign.videoLength" name="videoLength" required/>
+                </form>
+              </div>
+            </div> -->
+            <div class="row clearfix margin-b-15">
+              <div class="col-sm-6 col-xs-6">
+                <p class="capitalize">Campaign type</p>
+                <div class="kind-campaign clearfix" ng-show="campaign.type === 'image'">
+                  <i class="fa fa-image"></i>
+                  <span>Image</span>
+                </div>
+                <div class="kind-campaign clearfix" ng-show="campaign.type === 'magazine'">
+                  <i class="fa fa-print"></i>
+                  <span>Magazine</span>
+                </div>
+                <div class="kind-campaign clearfix" ng-show="campaign.type === 'video'">
+                  <i class="fa fa-video-camera"></i>
+                  <span>Video</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+          <p class="medium-font uppercase margin-0 line-h">preview</p>
+          <div class="creen-phone-show">
+            <div class="main-screen-phone-show">
+              <div class="url-view-website-campaign" ng-show = "listSelectedProductsView.length == 0 && mainProduct.title == null">
+                <iframe ng-src="{{urltrigger}}" height="346" width="100%"></iframe>
+              </div>
+              <div class="widget-main-product" ng-show="mainProduct.image_url">
+                <div class="frame-main-product" style="background-image:url({{mainProduct.image_url}})"></div>
+                <p class="text-center txt-grey capitalize font-13">
+                  {{mainProduct.title}}
+                </p>
+                <div class="text-center margin-0">
+                  {{mainProduct.currency_display}}{{mainProduct.price}}
+                </div>
+              </div>
+              <div class="list-product-creen clearfix">
+                <div class="widget-product-sreen" ng-repeat="product in listSelectedProductsView">
+                  <div class="box-product-sreen">
+                    <div class="frame-box-product-small" style="background-image:url({{product.image_url}})"></div>
+                    <p class="text-center capitalize font-11">
+                      {{product.title}}
+                    </p>
+                    <div class="text-center font-12 margin-0">
+                      {{product.currency_display}}{{product.price}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- end campaign detail -->
+</div>
+<div class="clearfix">
+  <button class="btn-cancle" ng-click="previousStep()">
+    <span class="icon-text">Back</span>
+  </button>
+  <button class="btn-next-step" ng-click="save()" ng-disabled="titleCampaign.title.$error.required">
+    <span ng-hide="isProcessing" class="icon-text">Save</span>
+    <img ng-show="isProcessing" class="icon-text" src="content/images/preloader2.gif"/>
+  </button>
+</div>

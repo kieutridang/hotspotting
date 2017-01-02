@@ -1,0 +1,90 @@
+<div class="header-campaign">
+	<div class="row clearfix">
+		<div class="col-sm-12 col-xs-12">
+				<div class="new-page-title clearfix">
+					<h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+				</div>
+				<div class="navigation-create-campaign clearfix">
+					<a>
+						<span>1</span>
+						<label class="uppercase">set trigger</label>
+						<div class="line-bottom"></div>
+					</a>
+					<a>
+						<span>2</span>
+						<label class="uppercase">link products</label>
+						<div class="line-bottom"></div>
+					</a>
+					<a class="active">
+						<span>3</span>
+						<label class="uppercase">recipe</label>
+						<div class="line-bottom"></div>
+					</a>
+					<a>
+						<span>4</span>
+						<label class="uppercase">campaign details</label>
+						<div class="line-bottom"></div>
+					</a>
+				</div>
+		</div>
+	</div>
+</div>
+<div class="container-box-content container-content-campaign">
+	<div class="container-create-recipe">
+		<p class="margin-b-20 medium-font uppercase">recipe</p>
+		<div class="row clearfix">
+			<div class="col-sm-5 pull-left">
+				<label>Template</label>
+				<div class="list-template-recipe clearfix">
+					<div class="widget-template-recipe" ng-class="{'relative': template.template === 1}" ng-click="changeTemplate(1)">
+						<img src="/content/images/template-recipe-1.png" width="100%" />
+						<div class="mark-tempalate-choose" ng-show="template.template === 1">
+							<i class="fa fa-check"></i>
+						</div>
+					</div>
+					<div class="widget-template-recipe" ng-class="{'relative': template.template === 2}" ng-click="changeTemplate(2)">
+						<img src="/content/images/template-recipe-2.png" width="100%" />
+						<div class="mark-tempalate-choose" ng-show="template.template === 2">
+							<i class="fa fa-check"></i>
+						</div>
+					</div>
+					<div class="widget-template-recipe" ng-class="{'relative': template.template === 3}" ng-click="changeTemplate(3)">
+						<img src="/content/images/template-recipe-3.png" width="100%" />
+						<div class="mark-tempalate-choose" ng-show="template.template === 3">
+							<i class="fa fa-check"></i>
+						</div>
+					</div>
+				</div>
+				<label>ingredients</label>
+				<div class="box-line-ingredient" ng-repeat="line in recipe">
+					<p class="margin-0 font-13 line-h-30">{{line.text}}</p>
+					<div class="btn-remove-ingredient" ng-click="removeRecipeText($index)">
+						<i class="ico-remove"></i>
+					</div>
+				</div>
+				<div class="add-ingredient">
+					<input type="text" placeholder="Write ingredient..." ng-model="recipeText"/>
+					<a class="btn-add-ingredient" ng-click="addRecipeText()">Add ingredient</a>
+				</div>
+			</div>
+			<div class="col-sm-7 pull-left">
+				<label>Template choose</label>
+				<div class="container-template-choose photo-center" style="background-image:url(/content/images/template-recipe-{{template.template}}.png);">
+					<div class="recipeTable" style="height:300px;overflow-y:scroll;">
+						<p class="content-ingredient text-center" ng-repeat="line in recipe">
+							{{line.text}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix">
+	<button class="btn-cancle" ng-click="previousStep()">
+		<span class="icon-text">Cancel</span>
+	</button>
+	<button class="btn-next-step" ng-click="nextStep()">
+		<span class="icon-text">Next</span>
+	</button>
+</div>

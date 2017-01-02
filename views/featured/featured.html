@@ -1,0 +1,101 @@
+<div class="header-campaign">
+    <div class="new-page-title clearfix">
+        <h4 class="capitalize medium-font">Featured</h4>
+    </div>
+</div>
+<div class="container-featured-overview">
+  <h4 class="title-container">featured overview</h4>
+  <div class="widget-photo-feature-top relative">
+    <!-- <img src="{{featurePannel.images[0]}}"/>
+    <div class="description-planner uppercase">
+      <p class="uppercase font-13 medium-font margin-0">{{featurePannel.description}}</p>
+    </div>
+    <div class="btn-setting-featured-overview" ng-click="editFeature()">
+      <i class="fa fa-gear"></i>
+    </div> -->
+    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <uib-slide ng-repeat="image in featurePannel.images" index="$index" ng-if="featurePannel.images.length > 0">
+        <img ng-src="{{image}}" style="margin:auto;height:300px !important;"/>
+      </uib-slide>
+    </uib-carousel>
+    <div class="description-planner uppercase" ng-hide="featurePannel.description === '' && featurePannel.images.length === 0">
+      <p class="uppercase font-13 medium-font margin-0">{{featurePannel.description}}</p>
+    </div>
+    <div class="btn-setting-featured-overview" ng-click="editFeature()">
+      <i class="fa fa-gear"></i>
+    </div>
+  </div>
+  <div class="clearfix row">
+    <div class="col-sm-4">
+      <h4 class="title-container">featured products</h4>
+      <div class="widget-featured-products">
+        <div class="featured-product" data-drop="true" data-jqyoui-options ng-model="list1" jqyoui-droppable="{onDrop: onDrop($index, pro)}" jqyoui-draggable="{onStop: onStop($index, pro)}" data-drag="true" data-jqyoui-options ng-repeat="pro in listProductSelected | orderBy:'position'">
+          <div class="product-box">
+            <div class="action-featured-product">
+              <div class="table-center">
+                <div class="table-cell-midle">
+                  <a class="btn-link-img-trigger" ng-click="unLinkProduct(pro)"><i class="ico-remove-w"></i></a>
+                  <a href="#" class="btn-view-detail-featured font-12 text-center" ng-click="viewDetail(pro)">View detail</a>
+                </div>
+              </div>
+            </div>
+            <div class="product-images" style="background-image:url({{pro.image_url}});"></div>
+            <p class="text-center font-12 medium-font product-title uppercase margin-0 over-text">{{pro.title}}</p>
+            <p class="text-center medium-font product-price margin-0 txt-yellow">{{pro.currency_display}}{{pro.price}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <h4 class="title-container">product detail</h4>
+      <div class="row clearfix">
+        <div class="col-sm-4">
+          <div class="image-product-detail photo-center" style="background-image:url({{productDetail.image_url}})"></div>
+        </div>
+        <div class="col-sm-8">
+          <div class="information-product">
+            <div class="title-product">
+              <p class="uppercase medium-font font-18">{{productDetail.title}}</p>
+            </div>
+            <label class="medium-font font-13">Description</label>
+            <p class="font-13">{{productDetail.desc}}</p>
+            <label class="medium-font font-13">Price</label>
+            <p class="price margin-0 medium-font font-17">{{productDetail.currency_display}}{{productDetail.price}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <h4 class="title-container pull-left">list product</h4>
+        <input type="text" ng-change="scrollLeft()" class="input-search-amazon pull-right" placeholder="Search" ng-model="search.title"/>
+      </div>
+      <div class="container-list-product-featured">
+        <div class="list-img-to-link clearfix scrollbarJQuery" tabindex="0">
+          <div class="widget-img-to-link box-product-video ng-scope" ng-repeat="pro in products | filter:search">
+            <div class="box-img-to-link">
+              <div class="frame-product" style="background-image:url({{pro.image_url}});"></div>
+              <p class="name-product-link capitalize ng-binding">{{pro.title}}</p>
+              <div class="action-img-link">
+                <a ng-if="!pro.selected" class="btn-link-img-trigger" ng-click="linkProduct(pro)">Link</a>
+                <a ng-if="pro.selected" class="btn-link-img-trigger" ng-click="unLinkProduct(pro)">Unlink</a>
+                <a href="#" class="btn-view-detail-featured font-12 text-center" ng-click="viewDetail(pro)">View detail</a>
+              </div>
+              <span class="checked-product-link fa fa-check-circle"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="button-actions clearfix">
+  <div class="">
+    <div class="btn-group btn-group-icon" ng-click="associateCampaign()">
+      <span class="icon btn">
+        <span class="fa fa-check-circle-o"></span>
+      </span>
+      <span ng-if="!isLoading" class="text btn">Submit</span>
+      <span ng-if="isLoading" class="text btn"><img src="/content/images/preloader2.gif"</span>
+    </div>
+  </div>
+</div>

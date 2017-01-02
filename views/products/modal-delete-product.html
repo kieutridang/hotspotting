@@ -1,0 +1,86 @@
+<div class="modal-content">
+  <form ng-submit="saveProduct(form)" name="form" novalidate>
+    <div class="modal-header">
+<!--       <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-weight: 100;"></button> -->
+      <!-- <h1 class="modal-title" id="myModalLabel">{{product.id?'Edit':'Create'}} Product</h1> -->
+      <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-weight: 100;"></button>
+      <h3 class="modal-title medium-font" id="myModalLabel">Do you want to delete this product ?</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row clearfix">
+      <div class="pd-edit-left col-sm-6">
+        <div class="widget-image-to-delete">
+          <div class="row clearfix">
+            <div class="col-sm-5 col-xs-5">
+              <img class="pd-edit-image" ng-src="{{product.image_url || 'content/images/no_image.png'}}" width="100%"/>
+            </div>
+            <div class="col-sm-7 col-xs-7">
+              <p class="margin-0 medium-font">{{product.title}}</p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-group pd-edit-item">
+          <label for="input-BrandName">Product name</label>
+          <input placeholder="Product's title" class="form-control" name="title" id="inputBrandName" ng-model="product.title" ng-required="true">
+          <span ng-show="form.$submitted && form.title.$invalid && form.title.$error.required" class="help-block">Please enter a product name.</span>
+        </div>
+        <div class="form-group pd-edit-item">
+          <label for="input-BrandName">Description</label>
+          <textarea class="form-control" rows="3" ng-model="product.desc" name="description" ng-required="true"></textarea>
+          <span ng-show="form.$submitted && form.description.$invalid && form.description.$error.required" class="help-block">Please enter a description.</span>
+        </div>
+
+        <div class="pd-edit-haft">
+          <fieldset style="padding-left: 0px;" class="form-group pd-edit-item col-md-6">
+            <label for="formGroupExampleInput">Price</label>
+            <input type="text" class="form-control product-price" name="price" id="formGroupExampleInput" ng-model="product.price" ng-required="true">
+            <div>$</div>
+          </fieldset>
+          <div style="clear: both"></div>
+          <span ng-show="form.$submitted && form.price.$invalid && form.price.$error.required" class="help-block">Please enter a price.</span>
+        </div>
+        <fieldset class="form-group pd-edit-item">
+          <label for="formGroupExampleInput">Product's URL</label>
+          <input type="text" name="url" class="form-control" id="formGroupExampleInput" placeholder="Product URL" ng-model="product.url" ng-required="true">
+          <span ng-show="form.$submitted && form.url.$invalid && form.url.$error.required" class="help-block">Please enter a valid url.</span>
+        </fieldset> -->
+      </div>
+      <div class="pd-edit-left col-sm-6">
+            <p class="margin-0">This will delete product from our database and this cannot be undone</p>
+        <!-- <i class="fa fa-cloud-upload fa-2 uploadImageProduct">
+        </i>
+        <input class="product-image" id="productImageModal" type="file" onchange="angular.element(this).scope().setFile(this)"accept="image/*"/>
+        <img class="pd-edit-image" ng-src="{{product.image_url || 'content/images/no_image.png'}}" height="300px"/> -->
+      </div>
+<!--       <div style="clear: both;"></div>
+      <fieldset style="padding: 0px" class="form-group pd-edit-item col-md-6">
+        <label class="block-display" for="formGroupExampleInput" style="margin-bottom: 14px;">Status</label>
+        <div style="display:flex;">
+          <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active" ng-model="product.status" ng-checked="true">
+            Active
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" ng-model="product.inactive">
+            Inactive
+          </label>
+        </div>
+      </fieldset> -->
+    </div>
+    </div>
+    <div class="modal-footer">
+      <div class="form-group submit-btn-group pull-right">
+        <div class="btn-group btn-group-icon" role="group" >
+          <button type="button" class="btn-cancel-modal" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+            <span>Cancle</span>
+          </button>
+          <button class="btn-delete-modal-product" ng-click="deteteProduct()">
+            <span>Delete</span>
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+</div>

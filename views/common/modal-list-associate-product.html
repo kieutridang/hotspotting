@@ -1,0 +1,130 @@
+<!-- Section Top Buttons -->
+<div class="modal-header" style="border-bottom: 0; padding-bottom: 0;">
+  <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-weight: 100;"></button>
+</div>
+
+<div class="products-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="wrapper-col wrapper-col-popup">
+      <div class="p-top clearfix">
+        
+        <div class="main-page">
+          <div id="tableHead">
+            <table class="table" id="tHead">
+                <colgroup>
+                    <col class="colOne"></col>
+                    <col class="colTwo"></col>
+                    <col class="colThree"></col>
+                    <col class="colFourth"></col>
+                    <col class="colFive"></col>
+                    <col class="colSix"></col>
+                </colgroup>
+                <th class="text-center">
+                    <div class="checkbox-custom">
+                      <input ng-model="isCheckedAllItems" type="checkbox" ng-change="toogleCheckAll()">
+                      <label></label>
+                    </div>
+                </th>
+                <th class="text-center">Thumb</th>
+                <th class="infomations"> 
+                  <a href="#" ng-click="order('title')" ng-class="{'active': predicate == 'title'}">
+                    Item's Information
+                    <span ng-show="predicate == 'title'" class="fa fa-caret-down"></span>
+                  </a>
+                </th>
+                <th>
+                  <a href="#" ng-click="order('price')" ng-class="{'active': predicate == 'price'}">
+                    Price
+                    <span ng-show="predicate == 'price'" class="fa fa-caret-down"></span>
+                  </a>
+                </th>
+                <th>
+                  Type
+                </th>
+                <th class="text-center">Settings</th>
+            </table>
+          </div>
+          <div id="tableBodyScroll">
+              <table class="table" id="tableBody">
+                  <colgroup>
+                    <col class="colOne"></col>
+                    <col class="colTwo"></col>
+                    <col class="colThree"></col>
+                    <col class="colFourth"></col>
+                    <col class="colFive"></col>
+                    <col class="colSix"></col>
+                  </colgroup>
+                  <tr ng-repeat="product in products | orderBy:predicate:reverse" ng-class="{'selected': product.selected}">
+                    <td class="text-center">
+                      <div class="checkbox-custom">
+                        <input ng-model="product.selected" type="checkbox" ng-change="checkedProduct()">
+                        <label></label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="product-thumbnail" style="background-image: url({{product.image_url || 'images/no_image.png'}});">
+                      </div>
+                      <!-- <img  ng-src="{{product.image_url || 'images/no_image.png'}}" width="100" /> -->
+                    </td>
+                    <td>
+                      <div class="detail">
+                        <div class="title">
+                          {{product.title}}
+                        </div>
+                        <div class="content">
+                           <p read-more content="{{product.desc}}" more-text="view more..."></p>
+                        </div>
+                      </div>
+                    </td>
+                    <td >
+                      <div class="price">{{product.currency_display + product.price}}</div>
+                    </td>
+                    <td>
+                        <div class="custom-checkbox-v2" ng-if="product.selected">
+                          <div class="checkbox">
+                              <input type="checkbox" name="typeSelected" 
+                              ng-click="handleTypeSelected(product)"
+                              ng-checked="product.typeSelected" 
+                              id="nameTypeProduct-{{product.id}}" >
+
+                              <label for="nameTypeProduct-{{product.id}}">
+                                  Main
+                                  
+                              </label>
+                          </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                       <a class="edit display-ib" ng-click="editProduct(product)">
+                        <span class="icon-setup"></span>
+                      </a>
+                       <a class="edit display-ib" ng-click="confirmDeleteProduct(product)">
+                        <span class="icon-delete"></span>
+                      </a>
+                    </td>
+                  </tr>
+              </table>
+          </div>
+
+        </div>
+        
+      <div class="button-actions clearfix">
+        <div class="pull-right">
+          <a class="btn btn-default btn-style" ng-click="popupConfirmDeleteSelected()" ng-if="productIds.length > 0">
+            <span class="icon-text">DELETE SELECTED</span>
+          </a>
+          <a class="btn btn-default btn-style" ng-click="associateTrigger()">
+            <span class="icon-text">SUBMIT</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

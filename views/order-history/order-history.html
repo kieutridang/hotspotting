@@ -1,0 +1,100 @@
+<!-- END PAGE HEADER-->
+<div class="header-campaign">
+    <div class="row clearfix">
+        <div class="col-sm-6 col-xs-6">
+            <ul class="new-page-breadcrumb">
+            </ul>
+            <div class="new-page-title clearfix">
+                <h4 class="capitalize medium-font pull-left">order history</h4>
+                <span class="medium-font">({{pOrders.length}})</span>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-6">
+            <!-- <label disabled class="btn-create-new-campaigns capitalize">+ add new order</label> -->
+            <label class="btn-create-new-campaigns capitalize" csv-header="getHeaderCVS()" aria-hidden="true" ng-csv="listOrdersCVS"> Export to CSV</label>
+        </div>
+    </div>
+</div>
+<div class="container-list-campaign">
+    <table cellspacing="0" cellpadding="0" border="0" class="table">
+        <thead>
+        <tr>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('id')">order no <i ng-show="currentSortBy === 'id'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                <div class="widget-text-box">
+                    <span class="ico-search-table ico-search"></span>
+                    <input type="text" placeholder="Search" ng-model="searchOrderNo" ng-change="searchOptions()" />
+                </div>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('date')">date <i ng-show="currentSortBy === 'date'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                <div class="widget-text-box">
+                    <select name="repeatSelect" id="repeatSelect" ng-model="dateSelect" ng-change="searchOptions()">
+                        <option value="">Select all</option>
+                        <option ng-repeat="option in dateOptions" value="{{option.date | momentjs: 'DD/MM/YYYY'}}">{{option.date | momentjs: 'DD/MM/YYYY'}}</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('shipping_name', true)">buyer name <i ng-show="currentSortBy === 'shipping_name'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+                <div class="widget-text-box">
+                    <span class="ico-search-table ico-search"></span>
+                    <input type="text" placeholder="Search name" ng-model="searchName" ng-change="searchOptions()"/>
+                </div>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('shipping_address', true)">shipping address <i ng-show="currentSortBy === 'shipping_address'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('total_amount')">total amount <i ng-show="currentSortBy === 'total_amount'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('products.length')">total item(s) <i ng-show="currentSortBy === 'products.length'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+            </td>
+            <td>
+                <label class="uppercase pointer-hover" ng-click="orderBy('process_status')">status <i ng-show="currentSortBy === 'process_status'" ng-class="{'fa fa-long-arrow-up': currentSortAsc, 'fa fa-long-arrow-down': !currentSortAsc}"></i></label>
+            </td>
+            <td>
+                <label class="uppercase">actions</label>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "order in pOrders.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+            <td>
+                <label>{{order.id}}</label>
+            </td>
+            <td>
+                <label>{{order.date | momentjs: 'DD/MM/YYYY'}}</label>
+            </td>
+            <td>
+                <label>{{order.shipping_name}}</label>
+            </td>
+            <td>
+                <label>{{order.shipping_address}}</label>
+            </td>
+            <td>
+                <label>${{order.total_amount | number:2}}</label>
+            </td>
+            <td>
+                <label>{{order.products.length}}</label>
+            </td>
+            <td>
+                <span class="status-order status-order-{{order.process_status}}">{{order.process_status}}</span>
+            </td>
+            <td class="txt-center">
+                <a class="btn-action-table" ng-click="getDetailOrder(order)">
+                    <i class="icon-note icons"></i>
+                </a>
+                <!-- <a class="btn-action-table btn-delete-campaign">
+                  <span class="icon-delete fa fa-trash-o"></span>
+                </a> -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="10" ng-change="pageChanged()" rotate="false" class="pagination-sm" boundary-links="true"></uib-pagination>
+    </div>
+</div>
+

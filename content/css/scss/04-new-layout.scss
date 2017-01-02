@@ -1,0 +1,147 @@
+﻿@import 'mixin/_mixin.scss';
+
+/* page header*/
+.page-header.navbar {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 60px;
+  min-height: 60px;
+  background-image: none;
+  .page-logo {
+    float: left;
+    display: block;
+    width: auto;
+    padding-left: 12px;
+    padding-right: 20px;
+    .logo-default {
+      margin: 12px 0 0;
+      height: 36px;
+    }
+
+    > a {
+      display: inline-block;
+      float: left;
+      padding-right: 10px;
+    }
+  }
+
+  .menu-toggler.sidebar-toggler {
+    margin: 16px 0 0;
+    display: none;
+  }
+
+  .top-menu {
+    .navbar-nav {
+      padding: 0;
+      margin-right: 0px;
+      display: block;
+      > li.dropdown {
+        margin: 0;
+        padding: 0 4px;
+        height: 60px;
+        display: inline-block;
+      }
+      > li.dropdown-user .dropdown-toggle {
+        padding: 20px 6px 19px 8px;
+      }
+
+    }
+
+    .dropdown-quick-sidebar-toggler > .dropdown-toggle {
+      padding: 20px 10px 20px !important;
+    }
+  }
+
+  .menu-toggler.sidebar-toggler {
+    margin: 20px 0 0;
+  }
+
+}
+
+.page-sidebar .page-sidebar-menu > li.active.open > a, .page-sidebar .page-sidebar-menu > li.active > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a {
+  background-color: $dark-blue;
+}
+
+.page-content-wrapper .page-content {
+  overflow: hidden;
+  margin-left: 200px;
+  background-color:#f7f9fd;
+}
+
+@media (max-width: 767px) {
+  /* 767px */
+  /* Page content */
+  .page-content-wrapper .page-content {
+    padding: 20px !important;
+  }
+}
+
+.page-content-white .page-title {
+  margin: 0;
+  padding: 20px 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.page-bar .page-breadcrumb > li > a,
+.page-bar .page-breadcrumb > li > span {
+  &.active {
+    font-weight: bold;
+  }
+
+}
+
+.page-bar .page-breadcrumb .fa.fa-home {
+  display: none;
+}
+
+.page-header-fixed {
+  .page-container {
+    margin-top: 60px;
+  }
+}
+.fixed-layout-header {
+  .page-header {
+    display: none;
+  }
+  .page-container {
+    margin-top: 0px;
+  }
+}
+
+.fixed-layout-bar {
+  .page-content {
+    left: 0px !important;
+  }
+}
+
+.portlet{
+  &.light{
+    &.bordered{
+      &.radius{
+        border-radius: 5px!important;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .page-sidebar-wrapper{
+    .page-sidebar{
+      position: fixed;
+      z-index: 1;
+      width: 200px;
+    }
+  }
+
+  .page-content-wrapper{
+    .page-content{
+      position: absolute;
+      z-index: 2;
+      left: 200px;
+      margin-left: 0;
+      right: 0;
+    }
+  }
+}

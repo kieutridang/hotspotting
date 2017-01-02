@@ -1,0 +1,304 @@
+<div class="container-create-campaign">
+  <div class="header-campaign">
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12">
+<!--           <ul class="new-page-breadcrumb">
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Home</a>
+              <i>/</i>
+            </li>
+            <li>
+              <a class="medium-font" ui-sref="home.dashboard">Campaign</a>
+              <i>/</i>
+            </li>
+          </ul> -->
+          <div class="new-page-title clearfix">
+            <h4 class="capitalize medium-font pull-left">create new Campaign</h4>
+          </div>
+          <div class="navigation-create-campaign clearfix">
+            <a>
+              <span>1</span>
+              <label class="uppercase">set trigger</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a class="active">
+              <span>2</span>
+              <label class="uppercase">link products</label>
+              <div class="line-bottom"></div>
+            </a>
+            <a>
+              <span>3</span>
+              <label class="uppercase">campaign details</label>
+              <div class="line-bottom"></div>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-content-campaign">
+    <div class="widget-link-products">
+
+        <!--IMAGE-->
+        <div class="row clearfix" ng-show="campaign.type === 'image'">
+          <div class="col-sm-4">
+            <p class="medium-font uppercase margin-0 line-h">image triggers <span class="medium-font uppercase txt-grey">({{triggerItems.length}})</span></p>
+            <div class="row container-image-trigger clearfix">
+              <div class="col-xs-3 col-sm-6 col-md-6 col-lg-3 widget-image-trigger" ng-repeat="trigger in triggerItems">
+                 <img class="box-image-trigger" src="{{trigger.contentBase64}}" ng-show="trigger.contentBase64" ng-if="trigger.type == 'image'">
+                 </img>
+              </div>
+              <div class="widget-image-trigger">
+                <div class="table-center">
+                  <div class="table-cell-midle">
+                    <span class="medium-font font-13 txt-blue">{{totalTriggerVideo}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-hide="setURL">
+              <p class="medium-font uppercase margin-0">link product to campaign <span class="medium-font uppercase txt-grey">({{currentFrame.products.length}})</span></p>
+              <div class="widget-product-linked clearfix">
+                <p class="txt-grey font-13 margin-0" ng-hide="currentFrame.products.length > 0">
+                    Choose products from list on the right
+                  </p>
+                <div class="grid-product-linked" ng-repeat="product in currentFrame.products">
+                  <div class="box-product-linked" ng-class="{'main': product.type === 'main'}" style="background-image:url({{product.image_url}});" ng-click="viewProductDetail(product, $event)">
+                    <span class="box-quantity-products" ng-if="product.quantity > 1">x{{product.quantity}}</span>
+                    <div class="action-product-linked">
+                      <div class="table-center">
+                        <div class="table-cell-midle">
+                          <a ng-click="setMainProduct(product, $event)" ng-show="product.type !== 'main'" tooltip-placement="top" uib-tooltip="Set main product">
+                            <i class="fa fa-heart-o"></i>
+                          </a>
+                          <a ng-show="product.type === 'main'">
+                            <i class="fa fa-heart"></i>
+                          </a>
+                          <a ng-click="unSelectProductToLink(product, $event)">
+                            <i class="fa fa-times-circle-o"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="medium-font uppercase">Set Trigger URL <span class="medium-font uppercase txt-grey"></span></p>
+              <input type="text" name="url" class="form-control" placeholder="Trigger URL" ng-required="true" ng-model="currentFrame.url">
+              <div class="clearfix margin-t-10"></div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="row clearfix">
+              <div class="col-sm-6">
+                <p class="medium-font uppercase margin-0 line-h">all products <span class="medium-font uppercase txt-grey">({{filtered.length}})</span></p>
+              </div>
+              <div class="col-sm-6">
+                <div class="search-product-img-link">
+                  <input type="text" placeholder="Search product" ng-model="searchTitle"/>
+                  <i class="fa fa-search"></i>
+                </div>
+              </div>
+            </div>
+            <div class="list-img-to-link clearfix scrollbarJQuery">
+              <div class="widget-img-to-link" ng-repeat="product in filtered = (listAllProducts | filter:{title: searchTitle})">
+                <div class="box-img-to-link" ng-class="{'checked': product.isSelected}" ng-click="viewProductDetail(product, $event)">
+                  <div class="frame-product" style="background-image:url({{product.image_url}});"></diV>
+                  <p class="name-product-link capitalize">{{product.title}}</p>
+                  <div class="action-img-link">
+                    <a class="btn-link-img-trigger" ng-hide="product.isSelected" ng-click="selectProductToLink(product, $event)">Link</a>
+                    <a class="btn-link-img-trigger" ng-show="product.isSelected" ng-click="unSelectProductToLink(product, $event)">Unlink</a>
+                    <div class="quantity-product-choose clearfix text-center">
+                      <a ng-click="subQuantity(product, $event)">
+                        <i class="fa fa-minus"></i>
+                      </a>
+                      <input type="text" class="quantity-product" ng-model="product.quantity"/>
+                      <a ng-click="plusQuantity(product, $event)">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                    <div class="clearfix text-center">
+                      <a ng-click="showProductDetail(product, $event)">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a ng-click="deleteProduct(product, $event)">
+                        <i class="fa fa-trash-o"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <span class="checked-product-link"><i class="fa fa-check"></i></span>
+                </div>
+              </div>
+            </div>
+              <div class="widget-add-product">
+                  <div class="row clearfix">
+                      <div class="col-sm-3">
+                          <a href="mailto:info@hotspotting.com?Subject=Adding%20Product%20Request" target="_top" class="btn-add-product">add new product</a>
+                      </div>
+                      <div class="col-sm-4">
+                          <a target="_top" class="btn-add-product" ng-click="showAddProductDB = !showAddProductDB">add product from DB</a>
+                      </div>
+                      <div class="col-sm-5">
+                          <div class="add-product-to-db">
+                              <input type="text" placeholder="Add product from database" ng-show="showAddProductDB" ng-model="searchTitleProduct" ng-change="searchProductCMS()"/>
+                              <div class="widget-list-products" ng-show="showAddProductDB" ng-class="{'block':searchTitleProduct.length > 2}" id="productCMSScroll">
+                                  <ul>
+                                      <li class="clearfix" ng-repeat = "product in productsCMS">
+                                          <div class="photo-product-amazon photo-center pull-left" style="background-image:url({{product.image || product.medium_image}})"></div>
+                                          <div class="name-product-amazon capitalize">
+                                              <p class="margin-0">{{product.name}}</p>
+                                              <p class="margin-0 medium-font font-13">{{product.category[0] || ''}}</p>
+                                              <p class="margin-0 medium-font font-13">{{product.price_min}} <span>{{product.currency}}</span></p>
+                                          </div>
+                                          <span class="btn-add-product-amazon" ng-if="!product.isLoading" ng-click="createProductFromCMS(product)">Add</span>
+                                          <span class="btn-add-product-amazon" ng-if="product.isLoading"><img src="/content/images/preloader2.gif"/></span>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+            <!-- <div style="margin-top:50px;">
+              <p class="medium-font uppercase" style="margin-top:-3px; margin-bottom:3px;">Set Trigger URL <span class="medium-font uppercase txt-grey"></span></p>
+              <input type="text" name="url" class="form-control" placeholder="Trigger URL" ng-model="campaign.url">
+            </div> -->
+          </div>
+        </div>
+
+
+        <!-- PDF-->
+        <div class="row clearfix" ng-show="campaign.type === 'magazine'">
+          <div class="col-sm-4">
+            <p class="medium-font uppercase margin-0">print trigger</p>
+            <div class="trigger-print">
+              <img src="{{currentFrame.image_url}}" width="100%;">
+              <div class="page-print-pdf">
+                <a ng-click="previousTrigger()" class="btn-left-pdf-page fa fa-arrow-circle-o-left"></a>
+                <a ng-click="nextTrigger()" class="btn-right-pdf-page fa fa-arrow-circle-o-right"></a>
+                <span class="line-h medium-font font-13 uppercase">page</span>
+                <span class="number-print-pdf medium-font">{{currentPage + 1}}</span>
+                <span class="line-h medium-font font-13 uppercase">of </span>
+                <span class="line-h medium-font font-13 uppercase">{{triggerItems.length}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <p class="medium-font uppercase margin-0">link product to page {{currentPage + 1}} <span class="medium-font uppercase txt-grey">({{currentFrame.products.length}})</span></p>
+            <div class="linked-product-pdf clearfix">
+              <div class="clearfix widget-linked-pdf" ng-repeat="product in currentFrame.products">
+                <div class="box-linked-pdf" style="background-image:url({{product.image_url}});" ng-class="{'main': product.type === 'main'}" ng-click="viewProductDetail(product, $event)">
+                  <span ng-if="product.quantity > 1" class="box-quantity-products">x{{product.quantity}}</span>
+                  <!-- <img src="{{product.image_url}}" width="100%;" height="50"> -->
+                  <div class="action-product-linked">
+                    <div class="table-center">
+                      <div class="table-cell-midle">
+                        <a ng-click="setMainProduct(product, $event)" ng-show="product.type !== 'main'" tooltip-placement="top" uib-tooltip="Set main product">
+                          <i class="fa fa-heart-o"></i>
+                        </a>
+                        <a ng-show="product.type === 'main'">
+                          <i class="fa fa-heart"></i>
+                        </a>
+                        <a ng-click="unSelectProductToLink(product, $event)">
+                          <i class="fa fa-times-circle-o"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="medium-font uppercase" style="margin-top:-3px; margin-bottom:3px;">Set Trigger URL <span class="medium-font uppercase txt-grey"></span></p>
+            <input type="text" name="url" class="form-control" placeholder="Trigger URL" ng-model="currentFrame.url"/>
+          </div>
+          <div class="col-sm-6">
+            <div class="row clearfix">
+              <div class="col-sm-6">
+                <p class="medium-font uppercase margin-0">all products <span class="medium-font uppercase txt-grey">({{filtered.length}})</span></p>
+              </div>
+              <div class="col-sm-6">
+                <div class="search-product-img-link">
+                  <input type="text" placeholder="Search product" ng-model="searchTitle"/>
+                  <i class="fa fa-search"></i>
+                </div>
+              </div>
+            </div>
+            <div class="list-img-to-link product-list-pdf-row clearfix scrollbarJQuery">
+              <div class="widget-img-to-link" ng-repeat="product in filtered = (listAllProducts | filter:{title: searchTitle})">
+                <div class="box-img-to-link" ng-class="{'checked': product.isSelected}" ng-click="viewProductDetail(product, $event)">
+                  <div class="frame-product" style="background-image:url({{product.image_url}});"></diV>
+                  <p class="name-product-link capitalize">{{product.title}}</p>
+                  <div class="action-img-link">
+                    <a class="btn-link-img-trigger" ng-hide="product.isSelected" ng-click="selectProductToLink(product, $event)">Link</a>
+                    <a class="btn-link-img-trigger" ng-show="product.isSelected" ng-click="unSelectProductToLink(product, $event)">Unlink</a>
+                    <div class="quantity-product-choose clearfix text-center">
+                      <a ng-click="subQuantity(product, $event)">
+                        <i class="fa fa-minus"></i>
+                      </a>
+                      <input type="text" class="quantity-product" ng-model="product.quantity"/>
+                      <a ng-click="plusQuantity(product, $event)">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                    <div class="clearfix text-center">
+                      <a ng-click="showProductDetail(product, $event)">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a ng-click="deleteProduct(product, $event)">
+                        <i class="fa fa-trash-o"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <span class="checked-product-link fa fa-check"></span>
+                </div>
+              </div>
+            </div>
+              <div class="widget-add-product">
+                  <div class="row clearfix">
+                      <div class="col-sm-3">
+                          <a href="mailto:info@hotspotting.com?Subject=Adding%20Product%20Request" target="_top" class="btn-add-product">add new product</a>
+                      </div>
+                      <div class="col-sm-4">
+                          <a target="_top" class="btn-add-product" ng-click="showAddProductDB = !showAddProductDB">add product from DB</a>
+                      </div>
+                      <div class="col-sm-5">
+                          <div class="add-product-to-db">
+                              <input type="text" placeholder="Add product from database" ng-show="showAddProductDB" ng-model="searchTitleProduct" ng-change="searchProductCMS()"/>
+                              <div class="widget-list-products" ng-show="showAddProductDB" ng-class="{'block':searchTitleProduct.length > 2}" id="productCMSScroll1">
+                                  <ul>
+                                      <li class="clearfix" ng-repeat = "product in productsCMS">
+                                          <div class="photo-product-amazon photo-center pull-left" style="background-image:url({{product.image || product.medium_image}})"></div>
+                                          <div class="name-product-amazon capitalize">
+                                              <p class="margin-0">{{product.name}}</p>
+                                              <p class="margin-0 medium-font font-13">{{product.category[0] || ''}}</p>
+                                              <p class="margin-0 medium-font font-13">{{product.price_min}} <span>{{product.currency}}</span></p>
+                                          </div>
+                                          <span class="btn-add-product-amazon" ng-if="!product.isLoading" ng-click="createProductFromCMS(product)">Add</span>
+                                          <span class="btn-add-product-amazon" ng-if="product.isLoading"><img src="/content/images/preloader2.gif"/></span>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <button class="btn-cancle" ng-click="previousStep()">
+      <span class="icon-text">Back</span>
+    </button>
+    <button class="btn-next-step" ng-disabled="currentFrame.length === 0" ng-click="nextStep()">
+      <span class="icon-text">Next</span>
+    </button>
+  </div>
+</div>

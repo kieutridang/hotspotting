@@ -1,0 +1,14 @@
+<div class="modal-body">
+  <button type="button" class="close" ng-click="closeModal()"><span>&times;</span></button>
+  <div class="form-group">
+    <div class="text-center">
+        <img src="/content/images/ic/ic_success.png" width="64" ng-if="status">
+        <img src="/content/images/ic/ic_error.png" width="64" ng-if="!status">
+         <h4 class="message">
+            {{message}}
+         </h4>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,183 @@
+<div class="margazine-ingestor-page">
+<!--   <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a ui-sref="home.dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a ui-sref="home.accounts" class="">Create Campaigns</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a class="active" >Ad + Print Ingestor</a>
+      </li>
+    </ul>
+  </div> -->
+  <!-- END PAGE HEADER-->
+  <h3 class="page-title ">Ad + Print Ingestor</h3>
+  <div class="campaign-wrapper">
+    <form name="editPrintFileForm" role="form" novalidate>
+
+      <div class="campaign-detail">
+        <h3>
+          1. Campaign Details
+          <span class="icons icon-question" style="font-size: 20px;"></span>
+        </h3>
+        <form>
+          <div class="row">
+            <div class="form-group col-md-6 col-xs-6">
+              <label for="campaign-title">Choose Account</label>
+              <div class="btn-group btn-group-custom-v1" uib-dropdown>
+                <button type="button" class="btn col-md-12" uib-dropdown-toggle>
+                  {{brandSel.name}} <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <ul uib-dropdown-menu role="menu" class="dropdown-menu-v1">
+                  <li role="menuitem" ng-repeat="brand in brands" ng-click="selectBrand(brand)">
+                    <a>{{brand.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-group col-md-6 col-xs-6" ng-class="{ 'has-error':  ( editPrintFileForm.$submitted || editPrintFileForm.magazineName.$touched ) && editPrintFileForm.magazineName.$invalid  }">
+              <label for="target-url">Margazine Name</label>
+              <input type="text" class="form-control" ng-model="campaignModel.name" name="magazineName" placeholder="Magazine Name" ng-required="true">
+                <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.magazineName.$touched ) && editPrintFileForm.magazineName.$invalid && editPrintFileForm.magazineName.$error.required" class="help-block">Please enter name.</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="campaign-triggers">
+        <h3>
+          2. Triggers
+          <span class="icons icon-question" style="font-size: 20px;"></span>
+        </h3>
+          <div class="add-file add-media-file-container">
+
+            <img class="magazine-bg" src="content/images/magazine-bg.png" width="280">
+
+            <label class="file-content">
+              <span class="add-file-content">
+                <span class="title">PRINT + AD</span>
+                <i class="icon-plus icons"></i><br>
+                <p class="note-media">Drag and drop to add a PDF or use the <span class="icon-plus icons"></span> button</p>
+                <p class="file-name" ng-bind="campaignModel.file_name" ng-show="campaignModel.file_name"></p>
+              </span>
+              <input type="file" id="media-file" name="file" accept="application/pdf" class="hidden" onchange="angular.element(this).scope().fileNameChanged(this)"/>
+            </label>
+
+             <div class="note-size">
+                <p>Maximum filesize:</p>
+                <p class="size">250Mb</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" ng-class="{ 'has-error':  (editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid  }">
+          <div class="form-group">
+            <label for="campaignUrl">Insert URL here</label>
+            <input type="url" name="campaignUrl" ng-model="campaignModel.url" placeholder="Campaign URL" class="form-control" ng-required="true">
+            <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid && editPrintFileForm.campaignUrl.$error.required" class="help-block">Please enter a url.</span>
+            <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid && editPrintFileForm.campaignUrl.$error.url" class="help-block">Please enter a valid url.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="btn-group btn-group-icon pull-left" role="group" ng-click="createPrintFileCampaign(editPrintFileForm)" style="margin-top: 20px;">
+          <span class="icon btn">
+            <span class="glyphicon glyphicon-check "></span>
+          </span>
+          <button class="btn text" type="submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+<!--
+<div class="container-fluid">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 add-video-page add-media-file-page">
+    <h1 class="heading-title">
+      Ad +Print Ingestor
+    </h1>
+    <div class="wrapper-col">
+      <form name="editPrintFileForm" role="form" novalidate>
+        <div class="left-col">
+          <div class="row">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label>Choose Account</label>
+
+              <div class="btn-group btn-group-custom-v1" uib-dropdown>
+                <button type="button" class="btn col-md-12" uib-dropdown-toggle>
+                  {{brandSel.name}} <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <ul uib-dropdown-menu role="menu" class="dropdown-menu-v1">
+                  <li role="menuitem" ng-repeat="brand in brands" ng-click="selectBrand(brand)">
+                    <a>{{brand.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12" ng-class="{ 'has-error':  ( editPrintFileForm.$submitted || editPrintFileForm.magazineName.$touched ) && editPrintFileForm.magazineName.$invalid  }">
+              <label>Magazine Name</label>
+              <input type="text" class="form-control" ng-model="campaignModel.name" name="magazineName" placeholder="Magazine Name" ng-required="true">
+              <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.magazineName.$touched ) && editPrintFileForm.magazineName.$invalid && editPrintFileForm.magazineName.$error.required" class="help-block">Please enter name.</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 add-file add-media-file-container">
+              <label class="">
+                <img class="magazine-bg" src="content/images/magazine-bg.png">
+								<span class="add-file-content">
+									<img src="content/images/add-file.png"><br>
+									<p>Drag and drop to add a PDF or use the <i class="glyphicon glyphicon-plus"></i> button</p>
+									<p class="file-name" ng-bind="campaignModel.file_name" ng-show="campaignModel.file_name"></p>
+								</span>
+                <div class="note">
+                  <p>Maximum</p>
+                  <p>Filesize: 250Mb</p>
+                </div>
+
+                <input type="file" id="media-file" name="file" accept="application/pdf" class="hidden" onchange="angular.element(this).scope().fileNameChanged(this)"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" ng-class="{ 'has-error':  (editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid  }">
+              <div class="form-group">
+                <label for="campaignUrl">Insert URL here</label>
+                <input type="url" name="campaignUrl" ng-model="campaignModel.url" placeholder="Campaign URL" class="form-control" ng-required="true">
+                <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid && editPrintFileForm.campaignUrl.$error.required" class="help-block">Please enter a url.</span>
+                <span ng-show="(editPrintFileForm.$submitted || editPrintFileForm.campaignUrl.$touched ) && editPrintFileForm.campaignUrl.$invalid && editPrintFileForm.campaignUrl.$error.url" class="help-block">Please enter a valid url.</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <div class="btn-group btn-group-icon" role="group" ng-click="createPrintFileCampaign(editPrintFileForm)">
+                  <span class="icon btn">
+                    <span class="fa fa-check-circle-o"></span>
+                  </span>
+                  <button class="btn text" type="submit" ng-disabled="isProcessing" ng-class="{ 'loading' : isProcessing}">
+                    Submit
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div> -->

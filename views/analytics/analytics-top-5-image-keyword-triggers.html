@@ -1,0 +1,45 @@
+<div class="row ">
+	<div class="col-md-6">
+		<div class="portlet light bordered radius">
+			<div class="title-sub">
+				Top 5 Image Triggers
+			</div>
+			<div id="top5Image" style="width: 100%; margin: 0 auto">
+			   	<div class="top-5-list" ng-show="analytics.top_trigger_images.length > 0">
+			      <div class="list-group">
+			        <div class="list-group-item" ng-repeat="item in analytics.top_trigger_images track by $index">
+			          <div class="campaign-thumbnail" ng-style="{'background-image': 'url(' + item.trigger_image + ')'}"></div>
+			          <div class="campaign-title"> {{item.campaign_title}} </div>
+			          <div class="campaign-badge"> {{$index+1}} </div>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="tmpl-no-data" ng-hide="analytics.top_trigger_images.length > 0">
+			     No data for top 5 image triggers.
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div data-ng-include="'views/analytics/analytics-gender-age.html'" ></div> 
+	<!-- <div class="col-md-6">
+		<div class="portlet light bordered radius">
+			<div class="title-sub">
+				Top 5 Keywords
+			</div>
+			<div id="top5Keyword" style="width: 100%; ">
+			    <div class="top-5-list" ng-show="analytics.top_trigger_keywords.length > 0">
+			      <div class="list-group">
+			        <div class="list-group-item" ng-repeat="item in analytics.top_trigger_keywords track by $index">
+			          <div class="campaign-badge">{{$index+1}}</div>
+			          <a class="campaign-title" ng-href="{{item.url}}">{{item.trigger_keyword}}</a>
+			        </div>
+
+			      </div>
+			    </div>
+			    <div class="tmpl-no-data" ng-hide="analytics.top_trigger_keywords.length > 0">
+			     	No data for top 5 keywords.
+			    </div>
+			</div>
+		</div>
+	</div> -->
+</div>

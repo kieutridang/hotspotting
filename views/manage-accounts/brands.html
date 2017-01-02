@@ -1,0 +1,67 @@
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a ui-sref="home.dashboard">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a ui-sref="home.accounts" class="active">Accounts</a>
+    </li>
+  </ul>
+</div>
+<!-- END PAGE HEADER-->
+<div class="page-title widget-add-account">
+  Accounts
+  <small>Click on the account that you want to work with.</small>
+  <div class="btn-group btn-group-icon pull-right btn-add-account-campaigns" role="group" ui-sref="login.signUp">
+      <span class="icon btn">
+        <span class="glyphicon glyphicon-refresh "></span>
+      </span>
+    <div class="btn text">
+      Add Account
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row clearfix">
+      <div id="PageBrand">
+        <div class="container-campaigns">
+          <h3 class="msg" ng-if="brandsList.length==0">
+            <i class="glyphicon glyphicon-user"></i><br>You have not added any
+            Account
+          </h3>
+          <div id="brandPickerPanel" ng-if="brandsList.length > 0">
+            <div id="logosContainer" class="row-flex brand-logos">
+              <div class="row clearfix">
+                <div class="item-flex-25 col-sm-4" ng-repeat="brand in brandsList">
+                    <div class="widget-campaigns" ng-click="showBrandDetails(brand)">
+                      <div class="number-campaigns">
+                        <img src="content/images/ic/ic_logo.png" alt="" class="logo-campaigns"/>
+                        <h3 class="brand-campaign-count">{{brand.no_campaigns}}</h3>
+                        <p class="brand-name">{{brand.name}}</p>                        
+                      </div>
+                      <p class="view-more-campaigns clearfix">
+                        <span>view more</span>
+                        <i class="fa fa-arrow-circle-o-right pull-right"></i>
+                      </p>
+                      <div class="brand-btn-group">
+                        <button class="btn btn-default btn-xs brand-btn-edit">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                          edit
+                        </button>
+                      </div>
+                    </div>  
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+
+  <div class="container" data-ng-include="'views/common/modal-account.html'"></div>
+  <div class="container" data-ng-include="'views/common/modal-assets.html'"></div>
+</div>

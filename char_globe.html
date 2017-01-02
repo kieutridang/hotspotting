@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style type="text/css">
+html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000 url('/content/images/preloader2.gif') center center no-repeat;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  height: 100%;
+}
+#container{
+  width: 100%;
+  height: 100%;
+}
+.container-zoom-global{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1006;
+  width: 28px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+.container-zoom-global a:hover{
+  color:#000;
+}
+.container-zoom-global a{
+  display: block;
+  width: 28px;
+  height: 27px;
+  line-height: 27px;
+  font-family: 'gotham-medium';
+  font-size: 22px;
+  color: #333;
+  text-align: center;
+  text-decoration: none !important;
+}
+.container-zoom-global a:first-child{
+  border-bottom: 1px solid #e8e8e8;
+}
+</style>
+</head>
+<body>
+  <div class="container-zoom-global">
+    <a onclick="zoomIn()">+</a>
+    <a onclick="zoomOut()">-</a>
+  </div>
+  <div id="container"></div>
+  <!-- build:js content/globe.js -->
+  <!--SCRIPTS-->
+  <script src="app/lib/globe/jquery.min.js"></script>
+  <script src="app/lib/globe/three.min.js"></script>
+  <script src="app/lib/globe/tween.min.js"></script>
+  <script src="app/lib/globe/CanvasRenderer.js"></script>
+  <script src="app/lib/globe/Detector.js"></script>
+  <script src="app/lib/globe/Projector.js"></script>
+  <script src="app/lib/globe/extensions.js"></script>
+  <script src="app/lib/globe/html2canvas.js"></script>
+  <script src="app/lib/globe/stats.min.js"></script>
+  <script src="app/lib/globe/globe.js"></script>
+  <!--SCRIPTS END-->
+  <!-- endbuild -->
+  <script type="text/javascript">
+  var container = document.getElementById('container');
+  var globe = null;
+  // var globe = new DAT.Globe(container);
+
+  window.addEventListener("message", receiveMessage, false);
+  function zoomIn(){
+    globe.zoom(200);
+  }
+  function zoomOut(){
+    globe.zoom(-200);
+  }
+
+  function receiveMessage(event)
+  {
+    console.log(event);
+    if (event.data.name === 'initGlobe'){
+      //container.clear();
+      var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+      // if (origin !== "http://example.org:8080")
+
+      var data = event.data.data;
+
+      $("#container").empty();
+
+      if(!Detector.webgl) {
+        Detector.addGetWebGLMessage();
+      } else {
+        container = document.getElementById('container');
+        globe = new DAT.Globe(container);
+
+        var settime = function(globe, t) {
+          return function() {
+            new TWEEN.Tween(globe).to({
+              time: t/3
+            },500).easing(TWEEN.Easing.Elastic.Out).start();
+          };
+        };
+
+        globe.scene.scale.x = 1.2;
+        globe.scene.scale.y = 1.2;
+        globe.scene.scale.z = 1.2;
+        globe.addData(data, {format: 'magnitude', name: 'globe', animated: true});
+        globe.createPoints();
+        settime(globe,0)();
+        globe.animate();
+      }
+    }
+
+  }
+
+
+
+  $(document).ready(function(){
+    var flagClick = false;
+    var rotate = false;
+    parent.postMessage({name: 'readyForGlobe'}, "*");
+    $("#container").click(function(){
+      if(globe) parent.postMessage({name: 'click', country: globe.getCountry(), rotate: rotate}, "*");
+      flagClick = false;
+      rotate = false;
+    })
+    $("#container").mousedown(function(){
+      flagClick = true;
+    })
+    $("#container").mousemove(function(){
+      if(flagClick) rotate = true;
+    })    
+  });
+
+  </script>
+</body>
+</html>
